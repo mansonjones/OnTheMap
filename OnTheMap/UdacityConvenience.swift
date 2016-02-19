@@ -11,27 +11,55 @@ import Foundation
 
 extension UdacityClient {
     // MARK: GET Convenience Methods
-    
     /*
-    func getPublicUserData(student: StudentInformation) {
-        let methodParameters = [:] // need to add user info
-        taskForGetMethod("blah", parameters: methodparameters) { (results, error) in
+    func loginToFacebook() {
+    let parameters = [:]
+    let httpBody = ""
+    
+    // 2. Make the request
+    taskForPostMethod("", parameters: parameters, jsonBody: httpBody) { (results, error) in
+    
+    // 3. Send the desired value(s) to completion handler
+    if let error = error {
+    completionHandlerForLogin(result: nil, error: error)
+    } else {
+    if let results = results[UdacityClient.JSONResponseKeys.StatusCode] as? Int {
+    compleletionHandlerForLogin(result: results, error: nil)
+    } else {
+    completionHandlerForFavorite(result: nil, error: NSError(domain: "udacity login parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse udacity login post list"]))
+    }
+    }
+    }
+    */
+    
+    func getPublicUserData(
+        completionHandlerForGetPublicUserData: (success: Bool,/* userID: Int?, */ errorString: String?) -> Void) {
+        // HTTP Get https://www.udacity.com/api/users/<user_id>
+        
+            let parameters = [Constants.ParameterKeys.Users: "putTheUserIdHere"]
             
+            // Make the request
+            taskForGetMethod("blah", parameters: parameters) { (results, error) in
+    
             // 3. Send the desired values to the completion handler
             if let error = error {
                 print(error)
-                completionHanlderForUserID(success: false, userID: nil, errorString: "get public user data failed")
+                completionHandlerForGetPublicUserData(success: false, /* userID: nil, */ errorString: "get public user data failed")
             } else {
-                if let userID = results[UdacityClient.JSONResponseKeys.UserID] as? Int {
-                    completionHandlerForPublicUserData(success: true, userID: userID, errorString: nil)
+                print(" successful return from getPublicUserData")
+                /* TODO: handle the output
+                if let userID = results[Constants.JSONResponseKeys.UserID] as? Int {
+                    completionHandlerForGetPublicUserData(success: true, userID: userID, errorString: nil)
                 } else {
-                    print("Could not find \(UdacityClient.JSONResponseKeys,UserID) in \(results)")
-                    completionHandlerForUserID(success: false, userID: nil, errorString: "Login Failed (User ID).")
+                    print("Could not find \(Constants.JSONResponseKeys,UserID) in \(results)")
+                    completionHandlerForGetPublicUserData(success: false, userID: nil, errorString: "Login Failed (User ID).")
+                }
+                */
                 }
             }
     }
     
-    */
+
     // MARK: POST Convenience Methods
     func loginToUdacity(student: StudentInformation, completionHandlerForLogin: (result: Int?, error: NSError?) -> Void) {
         // HTTP Post to https://www.udacity.com/api/session -
@@ -63,42 +91,30 @@ extension UdacityClient {
             }
         }
     }
-}
-      
-        /*
-        func loginToFacebook() {
-            let parameters = [:]
-            let httpBody = ""
-            
-            // 2. Make the request
-            taskForPostMethod("", parameters: parameters, jsonBody: httpBody) { (results, error) in
-                
-                // 3. Send the desired value(s) to completion handler
-                if let error = error {
-                    completionHandlerForLogin(result: nil, error: error)
-                } else {
-                    if let results = results[UdacityClient.JSONResponseKeys.StatusCode] as? Int {
-                        compleletionHandlerForLogin(result: results, error: nil)
-                    } else {
-                        completionHandlerForFavorite(result: nil, error: NSError(domain: "udacity login parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse udacity login post list"]))
-                    }
-                }
-        }
-        */
-    
-        /*
-        // MARK: DELETE Convenience Methods
-        func logoutFromUdacity() {
-            // let mutableMethod =
-            let methodParameters = [:]
-            
-            taskForDeleteMethod(String, parameters: methodParameters, jsonBody: httpBody)
+
+    // MARK: DELETE Convenience Methods
+    func logoutFromUdacity(completionHandlerForLogout: (result: Int?, error: NSError?) -> Void) {
+        let parameters = ["":""]
+        
+        let method: String = Constants.Methods.Session
+        // Note: Maybe remove jsonBody from the argument list if it's never used
+        let httpBody = ""
+        
+        taskForDeleteMethod(method, parameters: parameters, jsonBody: httpBody) {
             (results,error) in
             // 3. Send the desired values to the completion handler
             if let error = error {
-                completionHandlerForLogout(result: results, error: nil)
+                completionHandlerForLogout(result: nil, error: error)
             } else {
-                completionHandlerForLogout(result: nil, error: NSError(domain: "udacity delete parsgin", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse the response from the udacity logout"])
+                if let results = results[Constants.JSONResponseKeys.StatusCode] as? Int {
+                    completionHandlerForLogout(result: results, error: nil)
+                } else {
+                    completionHandlerForLogout(result: nil, error: NSError(domain: "udacity delete parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse the response from the udacity logout"]))
+                }
             }
         }
-        */
+            }
+            
+}
+
+

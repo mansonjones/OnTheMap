@@ -22,7 +22,7 @@ struct StudentInformation {
         firstName = "Keith"
         lastName = "Richards"
         email = "manson.jones@gmail.com"
-        password = "blah"
+        password = "susie#1"
         udacityId = "blah"
     }
 }

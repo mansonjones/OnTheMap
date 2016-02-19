@@ -41,7 +41,6 @@ class ViewController: UIViewController {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        
         // question: Can the query?? function be used to build this string?
         // Do I need to escape the quotation marks?
         // This is just a guess
@@ -54,9 +53,9 @@ class ViewController: UIViewController {
         componentsTest.queryItems!.append(q2)
         print(componentsTest.URL!)
         */
-        let udacity = "{\"" + Constants.UdacityParameterKeys.Udacity + "\":"
-        let username = "{\"" + Constants.UdacityParameterKeys.Username + "\": \"" + self.emailTextField.text! + "\","
-        let password = "\"" + Constants.UdacityParameterKeys.Password + "\": \"" + self.passwordTextField.text! + "\"}}"
+        let udacity = "{\"" + Constants.JSONBodyKeys.Udacity + "\":"
+        let username = "{\"" + Constants.JSONBodyKeys.Username + "\": \"" + self.emailTextField.text! + "\","
+        let password = "\"" + Constants.JSONBodyKeys.Password + "\": \"" + self.passwordTextField.text! + "\"}}"
         
         let httpBody = udacity + username + password
         
@@ -151,6 +150,33 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    func logout() {
+        let dict = [:]
+        
+//        let student = StudentInformation(dictionary: dict as! [String : AnyObject])
+        
+        UdacityClient.sharedInstance().logoutFromUdacity() { (statusCode, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if statusCode == 1 || statusCode == 12 || statusCode == 13 {
+                    // self.session = session
+                    // performUIUpdatesOn Main {
+                    //  go ahead and launch the tab bar controller
+                    // }
+                    print("launch the tab bar controller")
+                } else {
+                    print("Unexpected status code \(statusCode)")
+                }
+            }
+        }
+       
+    }
+    
+    func getPublicUserData() {
+        
+    }
         
     @IBAction func loginClicked(sender: AnyObject) {
         print("loginClicked")
@@ -158,6 +184,7 @@ class ViewController: UIViewController {
         // udacitySession()
         // Here's another way to do it.
         login()
+        logout()
     }
 
 

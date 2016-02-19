@@ -36,7 +36,7 @@ class UdacityClient: NSObject {
             
             // 1. Set the parameters
             // TODO: assign the users key/value pair correctly.
-            parameters = [:]
+            // parameters[Constants.
             // parameters[ParameterKeys.Users] = "manson.jones@gmail.com"
             
             // 2/3. Build the URL and configure the request
@@ -184,9 +184,9 @@ class UdacityClient: NSObject {
             // Build the URL
             // let methodParameters: [String: String] = []
             
-            let methodParameters: [String:String!] = [:]
+            // let methodParameters: [String:String!] = [:]
             
-            let request = NSMutableURLRequest(URL: udacityURLFromParameters(methodParameters))
+            let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
             // TODO: Move the code for building the request into it's own function
             // It's OK for now, but pay attention to the way that the system for
             // building requests with bodies is done in the example cod
@@ -215,12 +215,25 @@ class UdacityClient: NSObject {
                     //      self.debugTextLabel.text = "Login Failed (Login Step)."
                     //    }
                 }
+                guard (error == nil) else {
+                    displayError("There was an error with your request: \(error)")
+                    return
+                }
+            
+                // Parse the data and use the data
                 let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
                 print("Here's the DATA!!!")
                 print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+                
                 /* Guard: Was there an error? */
                 guard (error == nil) else {
                     displayError("There was an error with your request: \(error)")
+                    return
+                }
+                
+                /* Guard: Was there any data returned? */
+                guard let data = data else {
+                    displayError("No data was returned by the request!")
                     return
                 }
                 
@@ -231,17 +244,14 @@ class UdacityClient: NSObject {
                             displayError("Your request returned a status code other than 2xx!")
                             return
                 }
-                /* Guard: Was there any data returned? */
-                guard let data = data else {
-                    displayError("No data was returned by the request!")
-                    return
-                }
+                
                 /* 5. Parse the data */
                 let parsedResult: AnyObject!
                 do {
                     parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
                     print("Here's the parsed result!")
                     print(parsedResult)
+                    /*
                     guard let accountKey = parsedResult["account.key"] as? Int else {
                         displayError("Cannot find account key")
                         return
@@ -251,6 +261,7 @@ class UdacityClient: NSObject {
                     print("accont registered")
                     print("expirgation")
                     print("id")
+                    */
                 } catch {
                     displayError("Could not parse the data as JSON: '\(data)/")
                 }

@@ -25,10 +25,13 @@ struct Constants {
     }
     
     // MARK: Udacity Parameter Keys
-    struct UdacityParameterKeys {
+    struct ParameterKeys {
+        static let Users = "users"
+        /*
         static let Udacity = "udacity"
         static let Username = "username"
         static let Password = "password"
+        */
     }
     
     // MARK: Udacity Response Keys
