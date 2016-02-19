@@ -13,6 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var sharedSession = NSURLSession.sharedSession()
+    var requestToken: String? = nil
+    var sessionID: String? = nil
+    var userID: Int? = nil
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -42,5 +46,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+// MARK: Create URL from Parameters
+
+extension AppDelegate {
+    
+    func udacityURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
+        
+        let components = NSURLComponents()
+        components.scheme = Constants.Udacity.ApiScheme
+        components.host = Constants.Udacity.ApiHost
+        components.path = Constants.Udacity.ApiPath + (withPathExtension ?? "")
+        components.queryItems = [NSURLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        
+        return components.URL!
+    }
 }
 
