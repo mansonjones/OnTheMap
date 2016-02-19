@@ -24,6 +24,8 @@
 		3C483C981C766EDE006A8291 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C483C951C766EDE006A8291 /* Roboto-Medium.ttf */; };
 		3C483C991C766EDE006A8291 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C483C961C766EDE006A8291 /* Roboto-Regular.ttf */; };
 		3C483C9A1C766EDE006A8291 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C483C971C766EDE006A8291 /* Roboto-Thin.ttf */; };
+		3C483C9D1C76CF05006A8291 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */; };
+		3C483C9F1C76DFDD006A8291 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		3C483C951C766EDE006A8291 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		3C483C961C766EDE006A8291 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		3C483C971C766EDE006A8291 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
+		3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +123,9 @@
 			children = (
 				3C483C591C73D6BA006A8291 /* AppDelegate.swift */,
 				3C483C8B1C7519E1006A8291 /* UdacityClient.swift */,
+				3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */,
 				3C483C8D1C75545E006A8291 /* ParseClient.swift */,
+				3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */,
 				3C483C911C761F28006A8291 /* StudentInformation.swift */,
 				3C483C8F1C755472006A8291 /* FacebookClient.swift */,
 				3C483C5B1C73D6BA006A8291 /* ViewController.swift */,
@@ -297,9 +303,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C483C9F1C76DFDD006A8291 /* ParseConvenience.swift in Sources */,
 				3C483C921C761F28006A8291 /* StudentInformation.swift in Sources */,
 				3C483C8E1C75545E006A8291 /* ParseClient.swift in Sources */,
 				3C483C901C755472006A8291 /* FacebookClient.swift in Sources */,
+				3C483C9D1C76CF05006A8291 /* UdacityConvenience.swift in Sources */,
 				3C483C941C763A67006A8291 /* OTMTableViewController.swift in Sources */,
 				3C483C8C1C7519E2006A8291 /* UdacityClient.swift in Sources */,
 				3C483C5C1C73D6BA006A8291 /* ViewController.swift in Sources */,
@@ -530,6 +538,7 @@
 				3C483C801C73D6BB006A8291 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C483C811C73D6BB006A8291 /* Build configuration list for PBXNativeTarget "OnTheMapTests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +547,7 @@
 				3C483C831C73D6BB006A8291 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C483C841C73D6BB006A8291 /* Build configuration list for PBXNativeTarget "OnTheMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +556,7 @@
 				3C483C861C73D6BB006A8291 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

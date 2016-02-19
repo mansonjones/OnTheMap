@@ -127,12 +127,37 @@ class ViewController: UIViewController {
         }
         task.resume()
     }
+    
+    func login() {
+        // TODO: Figure out which return values from the POST are required for further processing
+        
+        let dict = [:]
+        
+        let student = StudentInformation(dictionary: dict as! [String : AnyObject])
+        
+        UdacityClient.sharedInstance().loginToUdacity(student) { (statusCode, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if statusCode == 1 || statusCode == 12 || statusCode == 13 {
+                    // self.session = session
+                    // performUIUpdatesOn Main {
+                    //  go ahead and launch the tab bar controller
+                    // }
+                    print("launch the tab bar controller")
+                } else {
+                    print("Unexpected status code \(statusCode)")
+                }
+            }
+        }
+    }
         
     @IBAction func loginClicked(sender: AnyObject) {
         print("loginClicked")
         // Here's one way to do it
-        udacitySession()
+        // udacitySession()
         // Here's another way to do it.
+        login()
     }
 
 

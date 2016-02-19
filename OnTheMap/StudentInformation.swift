@@ -11,6 +11,9 @@ struct StudentInformation {
     
     let firstName: String
     let lastName: String
+    let email: String
+    let password: String
+    let udacityId: String
     
     // Mark Initializers
     
@@ -18,5 +21,8 @@ struct StudentInformation {
     init(dictionary: [String:AnyObject]) {
         firstName = "Keith"
         lastName = "Richards"
+        email = "manson.jones@gmail.com"
+        password = "blah"
+        udacityId = "blah"
     }
 }

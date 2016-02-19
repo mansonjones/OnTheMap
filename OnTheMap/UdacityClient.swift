@@ -76,9 +76,6 @@ class UdacityClient: NSObject {
             return task
     }
     
-    
-
-    
     // MARK: POST
     func taskForPostMethod(method: String,
         var parameters: [String:AnyObject],
@@ -86,17 +83,15 @@ class UdacityClient: NSObject {
         completionHandlerForPost: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             // 1. Set the parameters
+            // (There are no extra parameters to add)
             parameters = [:]
             
             // 2/3. Build the URL and configure the request
             
-            // Set the parameters
-            // Build the URL
-            // let methodParameters: [String: String] = []
-            
-            let methodParameters: [String:String!] = [:]
-            
-            let request = NSMutableURLRequest(URL: udacityURLFromParameters(methodParameters))
+            // TODO
+            // Need to figure what the path extension is(if any) for these udacity
+            // requests.
+            let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
             // TODO: Move the code for building the request into it's own function
             // It's OK for now, but pay attention to the way that the system for
             // building requests with bodies is done in the example cod
@@ -104,6 +99,7 @@ class UdacityClient: NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
+            // ToDo: verify that the json is correct
             request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
             
             // 4. Make the request
@@ -177,7 +173,7 @@ class UdacityClient: NSObject {
     func taskForDeleteMethod(method: String,
         var parameters: [String:AnyObject],
         jsonBody: String,
-        completionHandlerForPost: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        completionHandlerForDelete: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             // 1. Set the parameters
             parameters = [:]
@@ -307,4 +303,12 @@ class UdacityClient: NSObject {
         completionHandlerForConvertData(result: parsedResult, error: nil)
     }
 
+    // MARK: Shared Instance
+    
+    class func sharedInstance() -> UdacityClient {
+        struct Singleton {
+            static var sharedInstance = UdacityClient()
+        }
+        return Singleton.sharedInstance
+    }
 }
