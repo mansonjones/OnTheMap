@@ -26,6 +26,7 @@
 		3C483C9A1C766EDE006A8291 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C483C971C766EDE006A8291 /* Roboto-Thin.ttf */; };
 		3C483C9D1C76CF05006A8291 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */; };
 		3C483C9F1C76DFDD006A8291 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */; };
+		3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483CA01C77D7B9006A8291 /* ParseConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		3C483C971C766EDE006A8291 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
+		3C483CA01C77D7B9006A8291 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */,
 				3C483C8D1C75545E006A8291 /* ParseClient.swift */,
 				3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */,
+				3C483CA01C77D7B9006A8291 /* ParseConstants.swift */,
 				3C483C911C761F28006A8291 /* StudentInformation.swift */,
 				3C483C8F1C755472006A8291 /* FacebookClient.swift */,
 				3C483C5B1C73D6BA006A8291 /* ViewController.swift */,
@@ -314,6 +317,7 @@
 				3C483C881C73DAC7006A8291 /* OTMMapViewController.swift in Sources */,
 				3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */,
 				3C483C8A1C73ED9E006A8291 /* Constants.swift in Sources */,
+				3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

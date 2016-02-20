@@ -33,7 +33,7 @@ extension UdacityClient {
     */
     
     func getPublicUserData(
-        completionHandlerForGetPublicUserData: (success: Bool,/* userID: Int?, */ errorString: String?) -> Void) {
+        completionHandlerForGetPublicUserData: (result: Int?, error: NSError?) -> Void) {
         // HTTP Get https://www.udacity.com/api/users/<user_id>
         
             let parameters = [Constants.ParameterKeys.Users: "putTheUserIdHere"]
@@ -44,7 +44,7 @@ extension UdacityClient {
             // 3. Send the desired values to the completion handler
             if let error = error {
                 print(error)
-                completionHandlerForGetPublicUserData(success: false, /* userID: nil, */ errorString: "get public user data failed")
+                completionHandlerForGetPublicUserData(result: nil, error: error)
             } else {
                 print(" successful return from getPublicUserData")
                 /* TODO: handle the output

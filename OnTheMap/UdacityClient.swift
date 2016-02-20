@@ -42,7 +42,7 @@ class UdacityClient: NSObject {
             // 2/3. Build the URL and configure the request
             // question: can this be done as an NSURLRequest?
             let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters))
-
+            
             // 4. Make the request
             let task = session.dataTaskWithRequest(request) { (data, response, error) in
                 

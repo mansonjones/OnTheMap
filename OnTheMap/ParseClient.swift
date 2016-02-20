@@ -42,8 +42,8 @@ class ParseClient: NSObject {
             // 2/3. Build the URL and configure the request
             // question: can this be done as an NSURLRequest?
             let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters))
-            request.addValue("Qr", forHTTPHeaderField: "X-Parse-Application-Id")
-            request.addValue("QU", forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue(ParseClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ParseClient.Constants.ParseRESTApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
             
             // 4. Make the request
             let task = session.dataTaskWithRequest(request) { (data, response, error) in
@@ -79,8 +79,6 @@ class ParseClient: NSObject {
     }
     
     
-    
-    
     // MARK: POST
     func taskForPostMethod(method: String,
         var parameters: [String:AnyObject],
@@ -103,8 +101,8 @@ class ParseClient: NSObject {
             // It's OK for now, but pay attention to the way that the system for
             // building requests with bodies is done in the example cod
             request.HTTPMethod = "POST"
-            request.addValue("Qr", forHTTPHeaderField: "X-Parse-Application-Id")
-            request.addValue("Qu", forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue(ParseClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ParseClient.Constants.ParseRESTApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
             request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
@@ -160,17 +158,6 @@ class ParseClient: NSObject {
                 }
                 
                 
-                /* Guard: Did parse return an error? */
-                // if let _ = parsedResult[Constants.parseResponseKeys.StatusCode] as? Int {
-                //     displayError("The parse server returned an error. See the ")
-                //     return
-                // }
-                
-                // 6. Use The data!
-                // Guard: Is the success key in parseResult?
-                
-                /* Use the data */
-                // self.getSessionID(self.appDelegate.requestToken)
             }
             task.resume()
             return task
@@ -301,18 +288,11 @@ class ParseClient: NSObject {
             // It's OK for now, but pay attention to the way that the system for
             // building requests with bodies is done in the example cod
             request.HTTPMethod = "PUT"
-            var xsrfCookie: NSHTTPCookie? = nil
-            let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-            
-            for cookie in sharedCookieStorage.cookies! {
-                if cookie.name == "XSRF-TOKEN" {
-                    xsrfCookie = cookie
-                }
-            }
-            if let xsrfCookie = xsrfCookie {
-                // Question: In the project instructions it xsrfCookie.value!
-                request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
-            }
+            request.addValue(ParseClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ParseClient.Constants.ParseRESTApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
+
             let session = NSURLSession.sharedSession()
             
             // 4. Make the request
@@ -386,9 +366,9 @@ class ParseClient: NSObject {
     private func parseURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
         
         let components = NSURLComponents()
-        components.scheme = Constants.Parse.ApiScheme
-        components.host = Constants.Parse.ApiHost
-        components.path = Constants.Parse.ApiPath + (withPathExtension ?? "")
+        components.scheme = Constants.ApiScheme /* Constants.Parse.ApiScheme */
+        components.host = Constants.ApiHost
+        components.path = Constants.ApiPath + (withPathExtension ?? "")
         components.queryItems = [NSURLQueryItem]()
         
         for (key, value) in parameters {

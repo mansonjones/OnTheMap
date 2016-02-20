@@ -11,7 +11,9 @@ import UIKit
 import Foundation
 
 extension ParseClient {
-    // MARK: GET Convenience Methods
+
+// MARK: GET Convenience Methods
+ 
     /*
     func getStudentLocations(student: StudentInformation) {
         let methodParameters = [:] // need to add user info
@@ -30,7 +32,7 @@ extension ParseClient {
                 }
             }
         }
-      */
+      *
     
     /*
         func queryStudentLocation(student: StudentInformation) {
@@ -84,7 +86,7 @@ extension ParseClient {
             
       */
 
-/*
+
                 // MARK: PUT Convenience Methods
                 func updateStudentLocation() {
                     // let mutableMethod =
@@ -100,4 +102,5 @@ extension ParseClient {
                     }
                 }
 */
+
 }
