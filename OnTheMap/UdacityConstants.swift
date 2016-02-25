@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Constants {
+extension UdacityClient {
     
-    // MARK: Udacity
-    struct Udacity {
+    // MARK: Constants
+    struct Constants {
         static let ApiScheme = "https"
         // question: does this also work with simple udacity.com?
         static let ApiHost = "www.udacity.com"
@@ -46,7 +46,7 @@ struct Constants {
         static let ApiPath = "/1"
     }
     
-    // MARK: JSONBodyKeys 
+    // MARK: JSONBodyKeys
     struct JSONBodyKeys {
         static let Udacity = "udacity"
         static let Username = "username"
@@ -58,7 +58,8 @@ struct Constants {
         // Mark General
         static let StatusMessage = "status_message"
         static let StatusCode = "status_code"
-        
+        static let Email = "email"
+        static let Password = "password"
         //MARK: session
         // TODO: Not sure which of these are needed.
         // TODO: Not sure if the dot notation works for json
@@ -67,8 +68,4 @@ struct Constants {
         static let Expiration = "session.expiration"
         static let Id = "session.id"
     }
-
-    
-    
-    
 }

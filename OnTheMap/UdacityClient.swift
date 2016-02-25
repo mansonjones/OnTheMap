@@ -134,6 +134,9 @@ class UdacityClient: NSObject {
                     return
                 }
                 /* 5. Parse the data */
+                
+//                self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPost)
+                
                 let parsedResult: AnyObject!
                 do {
                     parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
@@ -287,9 +290,9 @@ class UdacityClient: NSObject {
     private func udacityURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
         
         let components = NSURLComponents()
-        components.scheme = Constants.Udacity.ApiScheme
-        components.host = Constants.Udacity.ApiHost
-        components.path = Constants.Udacity.ApiPath + (withPathExtension ?? "")
+        components.scheme = UdacityClient.Constants.ApiScheme
+        components.host = UdacityClient.Constants.ApiHost
+        components.path = UdacityClient.Constants.ApiPath + (withPathExtension ?? "")
         components.queryItems = [NSURLQueryItem]()
         
         for (key, value) in parameters {
@@ -297,6 +300,8 @@ class UdacityClient: NSObject {
             components.queryItems!.append(queryItem)
         }
         
+        print("***** Udacity URL *****")
+        print(components.URL!)
         return components.URL!
     }
     

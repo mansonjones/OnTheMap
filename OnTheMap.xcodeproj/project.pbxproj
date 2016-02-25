@@ -15,7 +15,7 @@
 		3C483C6F1C73D6BB006A8291 /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C6E1C73D6BB006A8291 /* OnTheMapTests.swift */; };
 		3C483C7A1C73D6BB006A8291 /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C791C73D6BB006A8291 /* OnTheMapUITests.swift */; };
 		3C483C881C73DAC7006A8291 /* OTMMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C871C73DAC6006A8291 /* OTMMapViewController.swift */; };
-		3C483C8A1C73ED9E006A8291 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C891C73ED9E006A8291 /* Constants.swift */; };
+		3C483C8A1C73ED9E006A8291 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C891C73ED9E006A8291 /* UdacityConstants.swift */; };
 		3C483C8C1C7519E2006A8291 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C8B1C7519E1006A8291 /* UdacityClient.swift */; };
 		3C483C8E1C75545E006A8291 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C8D1C75545E006A8291 /* ParseClient.swift */; };
 		3C483C901C755472006A8291 /* FacebookClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C8F1C755472006A8291 /* FacebookClient.swift */; };
@@ -62,7 +62,7 @@
 		3C483C791C73D6BB006A8291 /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		3C483C7B1C73D6BB006A8291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C483C871C73DAC6006A8291 /* OTMMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMMapViewController.swift; sourceTree = "<group>"; };
-		3C483C891C73ED9E006A8291 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3C483C891C73ED9E006A8291 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		3C483C8B1C7519E1006A8291 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		3C483C8D1C75545E006A8291 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		3C483C8F1C755472006A8291 /* FacebookClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookClient.swift; sourceTree = "<group>"; };
@@ -127,12 +127,10 @@
 			children = (
 				3C483C591C73D6BA006A8291 /* AppDelegate.swift */,
 				3C483D9D1C7F58B2006A8291 /* Model */,
-				3C483C911C761F28006A8291 /* StudentInformation.swift */,
 				3C483C8F1C755472006A8291 /* FacebookClient.swift */,
 				3C483C5D1C73D6BA006A8291 /* Main.storyboard */,
 				3C483DB01C7F724B006A8291 /* Controllers */,
 				3C483D991C7F57EF006A8291 /* GCDBlackBox.swift */,
-				3C483C891C73ED9E006A8291 /* Constants.swift */,
 				3C483C601C73D6BA006A8291 /* Assets.xcassets */,
 				3C483C9B1C766EF2006A8291 /* Fonts */,
 				3C483C621C73D6BA006A8291 /* LaunchScreen.storyboard */,
@@ -191,6 +189,8 @@
 			children = (
 				3C483C8B1C7519E1006A8291 /* UdacityClient.swift */,
 				3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */,
+				3C483C891C73ED9E006A8291 /* UdacityConstants.swift */,
+				3C483C911C761F28006A8291 /* StudentInformation.swift */,
 			);
 			name = Udacity;
 			sourceTree = "<group>";
@@ -359,7 +359,7 @@
 				3C483C5C1C73D6BA006A8291 /* LoginViewController.swift in Sources */,
 				3C483C881C73DAC7006A8291 /* OTMMapViewController.swift in Sources */,
 				3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */,
-				3C483C8A1C73ED9E006A8291 /* Constants.swift in Sources */,
+				3C483C8A1C73ED9E006A8291 /* UdacityConstants.swift in Sources */,
 				3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */,
 				3C483D9A1C7F57EF006A8291 /* GCDBlackBox.swift in Sources */,
 			);

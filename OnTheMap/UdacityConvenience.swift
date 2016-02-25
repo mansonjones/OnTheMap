@@ -36,7 +36,7 @@ extension UdacityClient {
         completionHandlerForGetPublicUserData: (result: Int?, error: NSError?) -> Void) {
         // HTTP Get https://www.udacity.com/api/users/<user_id>
         
-            let parameters = [Constants.ParameterKeys.Users: "putTheUserIdHere"]
+            let parameters = [UdacityClient.ParameterKeys.Users: "putTheUserIdHere"]
             
             // Make the request
             taskForGetMethod("blah", parameters: parameters) { (results, error) in
@@ -67,13 +67,32 @@ extension UdacityClient {
         // 1. Specify parameters
         let parameters = ["":""]
         
-        let method: String = Constants.Methods.Session
+        let method: String = UdacityClient.Methods.Session
         
-        let udacityKey = "{\"\(Constants.JSONBodyKeys.Udacity)\":"
-        let usernamePair = "{\"\(Constants.JSONBodyKeys.Username)\": \"\(student.email)\","
-        let passwordPair = "\"\(Constants.JSONBodyKeys.Password)\": \"\(student.password)\"}}"
+        let udacityKey = "{\"\(UdacityClient.JSONBodyKeys.Udacity)\":"
+        let usernamePair = "{\"\(UdacityClient.JSONBodyKeys.Username)\": \"\(student.email)\","
+        let passwordPair = "\"\(UdacityClient.JSONBodyKeys.Password)\": \"\(student.password)\"}}"
         
         let httpBody = udacityKey + usernamePair + passwordPair
+        
+        // here's a nicer way to build the json string
+        // This can be put into a separate function, or some other file
+        let jsonRequest: [String: AnyObject] = [
+            "\(UdacityClient.JSONBodyKeys.Udacity)": [
+                "\(UdacityClient.JSONBodyKeys.Username)" : "\(student.email)",
+                "\(UdacityClient.JSONBodyKeys.Password)" : "\(student.password)"
+            ]
+        ]
+        
+        print(jsonRequest)
+        
+        let test1 = try! NSJSONSerialization.dataWithJSONObject(jsonRequest, options: [])
+        print("  ****  JSON1  ****")
+        print(test1)
+        
+        let test2 = try! NSJSONSerialization.JSONObjectWithData(test1, options: .AllowFragments)
+        print(" **** JSON2 ***")
+        print(test2)
         
         // 2. Make the request
         taskForPostMethod(method, parameters: parameters, jsonBody: httpBody) {
@@ -83,7 +102,7 @@ extension UdacityClient {
             if let error = error {
                 completionHandlerForLogin(result: nil, error: error)
             } else {
-                if let results = results[Constants.JSONResponseKeys.StatusCode] as? Int {
+                if let results = results[UdacityClient.JSONResponseKeys.StatusCode] as? Int {
                     completionHandlerForLogin(result: results, error: nil)
                 } else {
                     completionHandlerForLogin(result: nil, error: NSError(domain: "udacity login parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse udacity login post list"]))
@@ -96,7 +115,7 @@ extension UdacityClient {
     func logoutFromUdacity(completionHandlerForLogout: (result: Int?, error: NSError?) -> Void) {
         let parameters = ["":""]
         
-        let method: String = Constants.Methods.Session
+        let method: String = UdacityClient.Methods.Session
         // Note: Maybe remove jsonBody from the argument list if it's never used
         let httpBody = ""
         
@@ -106,7 +125,7 @@ extension UdacityClient {
             if let error = error {
                 completionHandlerForLogout(result: nil, error: error)
             } else {
-                if let results = results[Constants.JSONResponseKeys.StatusCode] as? Int {
+                if let results = results[UdacityClient.JSONResponseKeys.StatusCode] as? Int {
                     completionHandlerForLogout(result: results, error: nil)
                 } else {
                     completionHandlerForLogout(result: nil, error: NSError(domain: "udacity delete parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse the response from the udacity logout"]))

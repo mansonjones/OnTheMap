@@ -19,10 +19,12 @@ struct StudentInformation {
     
     // construct a StudentInformation object from
     init(dictionary: [String:AnyObject]) {
+        email = dictionary[UdacityClient.JSONBodyKeys.Username] as! String
+        password = dictionary[UdacityClient.JSONBodyKeys.Password] as! String
         firstName = "Keith"
         lastName = "Richards"
-        email = "manson.jones@gmail.com"
-        password = "susie#1"
+        // email = "manson.jones@gmail.com"
+        // password = "susie#1"
         udacityId = "blah"
     }
 }

@@ -53,9 +53,9 @@ class LoginViewController: UIViewController {
         componentsTest.queryItems!.append(q2)
         print(componentsTest.URL!)
         */
-        let udacity = "{\"" + Constants.JSONBodyKeys.Udacity + "\":"
-        let username = "{\"" + Constants.JSONBodyKeys.Username + "\": \"" + self.emailTextField.text! + "\","
-        let password = "\"" + Constants.JSONBodyKeys.Password + "\": \"" + self.passwordTextField.text! + "\"}}"
+        let udacity = "{\"" + UdacityClient.JSONBodyKeys.Udacity + "\":"
+        let username = "{\"" + UdacityClient.JSONBodyKeys.Username + "\": \"" + self.emailTextField.text! + "\","
+        let password = "\"" + UdacityClient.JSONBodyKeys.Password + "\": \"" + self.passwordTextField.text! + "\"}}"
         
         let httpBody = udacity + username + password
         
@@ -130,10 +130,23 @@ class LoginViewController: UIViewController {
     func login() {
         // TODO: Figure out which return values from the POST are required for further processing
         
-        let dict = [:]
+       // let dict = [:]
         
-        let student = StudentInformation(dictionary: dict as! [String : AnyObject])
         
+        print(" **** email:", self.emailTextField.text!)
+        print(" **** password: ", self.passwordTextField.text!)
+        
+        let studentInfo = [
+            UdacityClient.JSONBodyKeys.Username : self.emailTextField.text!,
+            UdacityClient.JSONBodyKeys.Password : self.passwordTextField.text!
+        ]
+        
+        let student = StudentInformation(dictionary: studentInfo)
+        // let student = StudentInformation(dictionary: dict as! [String : AnyObject])
+        
+        print(" *** student")
+        print("(student)")
+            
         UdacityClient.sharedInstance().loginToUdacity(student) { (statusCode, error) in
             if let error = error {
                 print(error)
@@ -200,13 +213,13 @@ class LoginViewController: UIViewController {
     }
         
     @IBAction func loginClicked(sender: AnyObject) {
+        login()
         completeLogin()
         print("loginClicked")
         // Here's one way to do it
         // udacitySession()
         // Here's another way to do it.
-        login()
-        logout()
+ //       logout()
     }
 
 
