@@ -27,6 +27,7 @@
 		3C483C9D1C76CF05006A8291 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */; };
 		3C483C9F1C76DFDD006A8291 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */; };
 		3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483CA01C77D7B9006A8291 /* ParseConstants.swift */; };
+		3C483D9A1C7F57EF006A8291 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483D991C7F57EF006A8291 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		3C483CA01C77D7B9006A8291 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
+		3C483D991C7F57EF006A8291 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,17 +126,14 @@
 			isa = PBXGroup;
 			children = (
 				3C483C591C73D6BA006A8291 /* AppDelegate.swift */,
-				3C483C8B1C7519E1006A8291 /* UdacityClient.swift */,
-				3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */,
-				3C483C8D1C75545E006A8291 /* ParseClient.swift */,
-				3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */,
-				3C483CA01C77D7B9006A8291 /* ParseConstants.swift */,
+				3C483D9D1C7F58B2006A8291 /* Model */,
 				3C483C911C761F28006A8291 /* StudentInformation.swift */,
 				3C483C8F1C755472006A8291 /* FacebookClient.swift */,
 				3C483C5B1C73D6BA006A8291 /* ViewController.swift */,
 				3C483C5D1C73D6BA006A8291 /* Main.storyboard */,
 				3C483C931C763A67006A8291 /* OTMTableViewController.swift */,
 				3C483C871C73DAC6006A8291 /* OTMMapViewController.swift */,
+				3C483D991C7F57EF006A8291 /* GCDBlackBox.swift */,
 				3C483C891C73ED9E006A8291 /* Constants.swift */,
 				3C483C601C73D6BA006A8291 /* Assets.xcassets */,
 				3C483C9B1C766EF2006A8291 /* Fonts */,
@@ -170,6 +169,42 @@
 				3C483C971C766EDE006A8291 /* Roboto-Thin.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		3C483D9D1C7F58B2006A8291 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C483D9E1C7F58C2006A8291 /* Clients */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3C483D9E1C7F58C2006A8291 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				3C483DA01C7F5912006A8291 /* Parse */,
+				3C483D9F1C7F58E2006A8291 /* Udacity */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		3C483D9F1C7F58E2006A8291 /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+				3C483C8B1C7519E1006A8291 /* UdacityClient.swift */,
+				3C483C9C1C76CF05006A8291 /* UdacityConvenience.swift */,
+			);
+			name = Udacity;
+			sourceTree = "<group>";
+		};
+		3C483DA01C7F5912006A8291 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				3C483C8D1C75545E006A8291 /* ParseClient.swift */,
+				3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */,
+				3C483CA01C77D7B9006A8291 /* ParseConstants.swift */,
+			);
+			name = Parse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +353,7 @@
 				3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */,
 				3C483C8A1C73ED9E006A8291 /* Constants.swift in Sources */,
 				3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */,
+				3C483D9A1C7F57EF006A8291 /* GCDBlackBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

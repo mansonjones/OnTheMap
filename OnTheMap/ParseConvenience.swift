@@ -8,21 +8,21 @@
 
 import Foundation
 import UIKit
-import Foundation
 
 extension ParseClient {
 
-// MARK: GET Convenience Methods
+    // MARK: GET Convenience Methods
  
     /*
-    func getStudentLocations(student: StudentInformation) {
-        let methodParameters = [:] // need to add user info
-        taskForGetMethod("blah", parameters: methodparameters) { (results, error) in
+    func getStudentLocations(student: StudentInformation,
+        completionHandlerForGetStudentLocations: (success: Bool, errorString: String?) -> Void) {
+            let parameters = [:] // need to add user info
+            taskForGETMethod("blah", parameters: parameters) { (results, error) in
             
-            // 3. Send the desired values to the completion handler
+            // 3. Send the values to the completion handler
             if let error = error {
                 print(error)
-                completionHanlderForUserID(success: false, userID: nil, errorString: "get public user data failed")
+                completionHandlerForGetStudentLocations(success: false, errorString: "get public user data failed")
             } else {
                 if let userID = results[UdacityClient.JSONResponseKeys.UserID] as? Int {
                     completionHandlerForPublicUserData(success: true, userID: userID, errorString: nil)
@@ -32,7 +32,7 @@ extension ParseClient {
                 }
             }
         }
-      *
+*/
     
     /*
         func queryStudentLocation(student: StudentInformation) {
@@ -88,6 +88,7 @@ extension ParseClient {
 
 
                 // MARK: PUT Convenience Methods
+    /*
                 func updateStudentLocation() {
                     // let mutableMethod =
                     let methodParameters = [:]
