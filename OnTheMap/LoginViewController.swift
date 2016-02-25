@@ -151,6 +151,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func completeLogin() {
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("MainTabBarController") as!
+        UITabBarController
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
     func logout() {
         let dict = [:]
         
@@ -194,6 +200,7 @@ class LoginViewController: UIViewController {
     }
         
     @IBAction func loginClicked(sender: AnyObject) {
+        completeLogin()
         print("loginClicked")
         // Here's one way to do it
         // udacitySession()
