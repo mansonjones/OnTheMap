@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - UdacityClient: NSObject
-
+// 
 class UdacityClient: NSObject {
 
     // MARK: Properties
