@@ -30,5 +30,15 @@ extension ParseClient {
         static let Order = "order"
     }
     
+    struct JSONBodyKeys {
+        static let UniqueKey = "uniqueKey"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let MapString = "mapString"
+        static let MediaUrl = "mediaUrl"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+    }
+    
     
 }

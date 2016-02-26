@@ -17,6 +17,9 @@ struct StudentInformation {
     let latitude: Double
     let longitude: Double
     let mediaURL: String
+    let uniqueKey: Int64
+    let mapString: String
+    
     
     // Mark Initializers
     
@@ -32,5 +35,31 @@ struct StudentInformation {
         latitude = 1.0
         longitude = 1.0
         mediaURL = "https://www.udacity.com"
+        mapString = "mapString"
+        uniqueKey = 12345
     }
+    
+    /*
+    static func studensFromResults(results: [[String : AnyObject]]) -> [StudentInformation] {
+        var students = [StudentInformation]()
+        
+        // iterate through array of dictionaries
+        for student in students {
+            student.append(StudentInformation(dictionary: result))
+        }
+        return students
+    }
+    */
 }
+
+// MARK: - StudentInformation: Equatable
+
+/*
+
+extension StudentInformation: Equatable {}
+
+func ==(lhs: StudentInformation, rhs: StudentInformation) -> Bool {
+   return lhs.id == rhs.id
+}
+
+*/

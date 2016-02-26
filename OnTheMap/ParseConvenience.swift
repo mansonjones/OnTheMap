@@ -67,21 +67,34 @@ extension ParseClient {
             
       */
     
-    /*
         
         // MARK: POST Convenience Methods
         func postStudenLocation(student: StudentInformation) {
             // 1. Specify parameters
-            let parameters = [:]
+            // https://api.parse.com/1/classes/StudentLocation
             
-            let udacity = "{\"\(Constants.JSONBodyKeys.Udacity)\":"
-            let username = "{\"\(Constants.JSONBodyKeys.Username)\": \"\(student.email)\","
-            let password = "\"\(Constants.JSONBodyKeys.Password)\": \"\(student.password)\"}}"
+            // let parameters [String: Anyobject]= [] // need to add user info
+            // let parameters = ["skip" : 400]
             
-            let httpBody = udacity + username + password
-            
+            let method: String = ParseClient.Methods.StudentLocation
+
+            let jsonRequest: [String: AnyObject] = [
+                ParseClient.JSONBodyKeys.UniqueKey : "a",
+                ParseClient.JSONBodyKeys.FirstName : "b",
+                ParseClient.JSONBodyKeys.LastName : "c",
+                ParseClient.JSONBodyKeys.MapString : "d",
+                ParseClient.JSONBodyKeys.MediaUrl : "e",
+                ParseClient.JSONBodyKeys.Latitude : "f",
+                ParseClient.JSONBodyKeys.Longitude : "g",
+            ]
+
+            print(jsonRequest)
+            print(method)
+            // let httpBody = try! NSJSONSerialization.dataWithJSONObject(jsonRequest, options: [])
+            // let test = try! NSJSONSerialization.
+            /*
             // 2. Make the request
-            taskForPostMethod(mutableMethod, parameters: parameters, jsonBody: httpBody) { (results,
+            taskForPostMethod(method, parameters: parameters, jsonBody: httpBody) { (results,
                 error) in
                 
                 // 3. Send the desired value(s) to completion handler
@@ -94,9 +107,10 @@ extension ParseClient {
                         completionHandlerForFavorite(result: nil, error: NSError(domain: "udacity login parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse udacity login post list"]))
                     }
                 }
+              */
             }
             
-      */
+
 
 
                 // MARK: PUT Convenience Methods

@@ -86,7 +86,7 @@ class ParseClient: NSObject {
         completionHandlerForPost: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             // 1. Set the parameters
-            parameters = [:]
+            // parameters = [:]
             
             // 2/3. Build the URL and configure the request
             
@@ -94,9 +94,9 @@ class ParseClient: NSObject {
             // Build the URL
             // let methodParameters: [String: String] = []
             
-            let methodParameters: [String:String!] = [:]
+            // let methodParameters: [String:String!] = [:]
             
-            let request = NSMutableURLRequest(URL: parseURLFromParameters(methodParameters))
+            let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
             // TODO: Move the code for building the request into it's own function
             // It's OK for now, but pay attention to the way that the system for
             // building requests with bodies is done in the example cod
