@@ -13,26 +13,33 @@ extension ParseClient {
 
     // MARK: GET Convenience Methods
  
-    /*
-    func getStudentLocations(student: StudentInformation,
-        completionHandlerForGetStudentLocations: (success: Bool, errorString: String?) -> Void) {
-            let parameters = [:] // need to add user info
-            taskForGETMethod("blah", parameters: parameters) { (results, error) in
+
+    func getStudentLocations(
+        completionHandlerForGetStudentLocations: (result: [StudentInformation]?, errorString: String?) -> Void) {
+            let parameters = ["limit" : 100] // need to add user info
+            // let parameters = ["skip" : 400]
             
-            // 3. Send the values to the completion handler
-            if let error = error {
-                print(error)
-                completionHandlerForGetStudentLocations(success: false, errorString: "get public user data failed")
-            } else {
-                if let userID = results[UdacityClient.JSONResponseKeys.UserID] as? Int {
-                    completionHandlerForPublicUserData(success: true, userID: userID, errorString: nil)
+            let method = ""
+            
+            taskForGETMethod(method, parameters: parameters) { (results, error) in
+                
+                // 3. Send the values to the completion handler
+                if let error = error {
+                    print(error)
+                    completionHandlerForGetStudentLocations(result : nil, errorString: "get public user data failed")
                 } else {
-                    print("Could not find \(UdacityClient.JSONResponseKeys,UserID) in \(results)")
-                    completionHandlerForUserID(success: false, userID: nil, errorString: "Login Failed (User ID).")
+                    /*
+                    if let userID = results[UdacityClient.JSONResponseKeys.UserID] as? Int {
+                        completionHandlerForPublicUserData(success: true, userID: userID, errorString: nil)
+                    } else {
+                        print("Could not find \(UdacityClient.JSONResponseKeys,UserID) in \(results)")
+                        completionHandlerForUserID(success: false, userID: nil, errorString: "Login Failed (User ID).")
+                    }
+                    */
                 }
             }
-        }
-*/
+    }
+    
     
     /*
         func queryStudentLocation(student: StudentInformation) {

@@ -16,6 +16,7 @@ struct StudentInformation {
     let udacityId: String
     let latitude: Double
     let longitude: Double
+    let mediaURL: String
     
     // Mark Initializers
     
@@ -30,5 +31,6 @@ struct StudentInformation {
         udacityId = "blah"
         latitude = 1.0
         longitude = 1.0
+        mediaURL = "https://www.udacity.com"
     }
 }

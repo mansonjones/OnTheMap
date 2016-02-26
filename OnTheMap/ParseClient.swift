@@ -30,7 +30,7 @@ class ParseClient: NSObject {
     
     
     // MARK: GET
-    func taskForGetMethod(method: String,
+    func taskForGETMethod(method: String,
         var parameters: [String:AnyObject],
         completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             

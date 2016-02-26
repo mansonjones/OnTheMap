@@ -15,9 +15,14 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     let regionRadius: CLLocationDistance = 1000
     
+    
+    
     // the data for the map
-    // To Do: Need to replace this with pins
+    // To Do: Need to replace this with pins, or can pins be generated on the fly?
+    // Can pins be a computed property?
     // var pins = [Pin]
+    var students: [StudentInformation] = [StudentInformation]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +36,20 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        /*
-        UdacityClient.sharedInstance().getPublicUserData({students, error) in
+        ParseClient.sharedInstance().getStudentLocations { (students, error) in
             if let students = students {
                 self.students = students
-                /*
+                
                 performUIUpdatesOnMain {
-                   self.??.reloadData()
+                    // is there an equivalent to reloadData?
+                    //   self.??.reloadData()
+                    print(" **** debug message from mapviewcontroller **** ")
                 }
-                */
+            } else {
+                    print(error)
             }
-        */
-        
+            
+        }
     }
     
     func createBarButtonItems() {
