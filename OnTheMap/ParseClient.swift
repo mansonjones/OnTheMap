@@ -36,12 +36,12 @@ class ParseClient: NSObject {
             
             // 1. Set the parameters
             // TODO: assign the users key/value pair correctly.
-            parameters = [:]
+        //    parameters = [:]
             // parameters[ParameterKeys.Users] = "manson.jones@gmail.com"
             
             // 2/3. Build the URL and configure the request
             // question: can this be done as an NSURLRequest?
-            let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters))
+            let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
             request.addValue(ParseClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
             request.addValue(ParseClient.Constants.ParseRESTApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
             
@@ -376,6 +376,9 @@ class ParseClient: NSObject {
             components.queryItems!.append(queryItem)
         }
         
+        
+        print("  ***** URL ******")
+        print(components.URL!)
         return components.URL!
     }
     
@@ -385,6 +388,8 @@ class ParseClient: NSObject {
         var parsedResult: AnyObject!
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            print(" ***** Parsed Result ****")
+            print(parsedResult)
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
             completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))

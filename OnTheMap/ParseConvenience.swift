@@ -16,10 +16,15 @@ extension ParseClient {
 
     func getStudentLocations(
         completionHandlerForGetStudentLocations: (result: [StudentInformation]?, errorString: String?) -> Void) {
-            let parameters = ["limit" : 100] // need to add user info
+            
+            /* https://api.parse.com/1/classes/StudentLocation?limit=100 */
+            
+            // let parameters = [:]
+            
+            let parameters = [ParseClient.ParameterKeys.Limit : 100] // need to add user info
             // let parameters = ["skip" : 400]
             
-            let method = ""
+            let method: String = ParseClient.Methods.StudentLocation
             
             taskForGETMethod(method, parameters: parameters) { (results, error) in
                 

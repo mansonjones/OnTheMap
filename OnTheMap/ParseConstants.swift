@@ -21,7 +21,14 @@ extension ParseClient {
     }
 
     struct Methods {
-        static let StudentLocation = "classes/StudentLocation"
+        static let StudentLocation = "/classes/StudentLocation"
     }
+    
+    struct ParameterKeys {
+        static let Limit = "limit"
+        static let Skip = "skip"
+        static let Order = "order"
+    }
+    
     
 }

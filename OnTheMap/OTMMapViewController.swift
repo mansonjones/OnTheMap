@@ -37,6 +37,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         super.viewWillAppear(animated)
         
         ParseClient.sharedInstance().getStudentLocations { (students, error) in
+            print("***** DEBUG ***********")
             if let students = students {
                 self.students = students
                 
