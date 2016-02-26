@@ -14,6 +14,8 @@ struct StudentInformation {
     let email: String
     let password: String
     let udacityId: String
+    let latitude: Double
+    let longitude: Double
     
     // Mark Initializers
     
@@ -26,5 +28,7 @@ struct StudentInformation {
         // email = "manson.jones@gmail.com"
         // password = "susie#1"
         udacityId = "blah"
+        latitude = 1.0
+        longitude = 1.0
     }
 }

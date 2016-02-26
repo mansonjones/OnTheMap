@@ -306,5 +306,32 @@ class FacebookClient: NSObject {
         
         completionHandlerForConvertData(result: parsedResult, error: nil)
     }
+    // create a URL from parameters
+    private func facebookURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
+        
+        let components = NSURLComponents()
+        components.scheme = FacebookClient.Constants.ApiScheme
+        components.host = FacebookClient.Constants.ApiHost
+        components.path = FacebookClient.Constants.ApiPath + (withPathExtension ?? "")
+        components.queryItems = [NSURLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        
+        return components.URL!
+    }
+    
+    // MARK: Shared Instance
+    
+    class func sharedInstance() -> FacebookClient {
+        struct Singleton {
+            static var sharedInstance = FacebookClient()
+        }
+        return Singleton.sharedInstance
+    }
+    
+    
     
 }

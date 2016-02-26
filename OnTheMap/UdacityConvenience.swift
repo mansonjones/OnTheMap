@@ -132,8 +132,8 @@ extension UdacityClient {
                 }
             }
         }
-            }
-            
+    }
+    
 }
 
 

@@ -157,6 +157,7 @@ class LoginViewController: UIViewController {
                     //  go ahead and launch the tab bar controller
                     // }
                     print("launch the tab bar controller")
+                    self.completeLogin()
                 } else {
                     print("Unexpected status code \(statusCode)")
                 }
@@ -214,7 +215,7 @@ class LoginViewController: UIViewController {
         
     @IBAction func loginClicked(sender: AnyObject) {
         login()
-        completeLogin()
+        // completeLogin()
         print("loginClicked")
         // Here's one way to do it
         // udacitySession()

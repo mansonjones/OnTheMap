@@ -15,6 +15,10 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     let regionRadius: CLLocationDistance = 1000
     
+    // the data for the map
+    // To Do: Need to replace this with pins
+    // var pins = [Pin]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.82944)
@@ -22,6 +26,23 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         // question: How to add more than one bar button item programmatically?
         // There's only one rightBarButtonItem
         createBarButtonItems()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        /*
+        UdacityClient.sharedInstance().getPublicUserData({students, error) in
+            if let students = students {
+                self.students = students
+                /*
+                performUIUpdatesOnMain {
+                   self.??.reloadData()
+                }
+                */
+            }
+        */
+        
     }
     
     func createBarButtonItems() {
@@ -44,6 +65,31 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         
     }
     
+    func logout1() {
+        // TODO: Figure out which return values from the POST are required for further processing
+        
+        // let dict = [:]
+        
+        
+        UdacityClient.sharedInstance().logoutFromUdacity() { (statusCode, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if statusCode == 1 || statusCode == 12 || statusCode == 13 {
+                    // self.session = session
+                    // performUIUpdatesOn Main {
+                    //  go ahead and launch the tab bar controller
+                    // }
+                    print("launch the tab bar controller")
+                    self.completeLogout()
+                } else {
+                    print("Unexpected status code \(statusCode)")
+                }
+            }
+        }
+    }
+    
+    
     func addLocation() {
         print("add a pin")
     }
@@ -54,6 +100,13 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     func logout() {
         print("logout")
+        completeLogout()
+    }
+    
+    private func completeLogout() {
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("LoginController") as!
+        LoginViewController
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     func centerMapOnLocation(location: CLLocation) {

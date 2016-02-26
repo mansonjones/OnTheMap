@@ -28,6 +28,8 @@
 		3C483C9F1C76DFDD006A8291 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */; };
 		3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483CA01C77D7B9006A8291 /* ParseConstants.swift */; };
 		3C483D9A1C7F57EF006A8291 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483D991C7F57EF006A8291 /* GCDBlackBox.swift */; };
+		3C483DB31C7FC783006A8291 /* FacebookConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483DB21C7FC783006A8291 /* FacebookConvenience.swift */; };
+		3C483DB51C7FC792006A8291 /* FacebookConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483DB41C7FC792006A8291 /* FacebookConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		3C483CA01C77D7B9006A8291 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		3C483D991C7F57EF006A8291 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		3C483DB21C7FC783006A8291 /* FacebookConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookConvenience.swift; sourceTree = "<group>"; };
+		3C483DB41C7FC792006A8291 /* FacebookConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +131,6 @@
 			children = (
 				3C483C591C73D6BA006A8291 /* AppDelegate.swift */,
 				3C483D9D1C7F58B2006A8291 /* Model */,
-				3C483C8F1C755472006A8291 /* FacebookClient.swift */,
 				3C483C5D1C73D6BA006A8291 /* Main.storyboard */,
 				3C483DB01C7F724B006A8291 /* Controllers */,
 				3C483D991C7F57EF006A8291 /* GCDBlackBox.swift */,
@@ -178,6 +181,7 @@
 		3C483D9E1C7F58C2006A8291 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				3C483DB11C7FC743006A8291 /* Facebook */,
 				3C483DA01C7F5912006A8291 /* Parse */,
 				3C483D9F1C7F58E2006A8291 /* Udacity */,
 			);
@@ -213,6 +217,16 @@
 				3C483C871C73DAC6006A8291 /* OTMMapViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3C483DB11C7FC743006A8291 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				3C483C8F1C755472006A8291 /* FacebookClient.swift */,
+				3C483DB21C7FC783006A8291 /* FacebookConvenience.swift */,
+				3C483DB41C7FC792006A8291 /* FacebookConstants.swift */,
+			);
+			name = Facebook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,7 +375,9 @@
 				3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */,
 				3C483C8A1C73ED9E006A8291 /* UdacityConstants.swift in Sources */,
 				3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */,
+				3C483DB51C7FC792006A8291 /* FacebookConstants.swift in Sources */,
 				3C483D9A1C7F57EF006A8291 /* GCDBlackBox.swift in Sources */,
+				3C483DB31C7FC783006A8291 /* FacebookConvenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

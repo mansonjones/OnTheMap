@@ -27,8 +27,6 @@ class UdacityClient: NSObject {
         super.init()
     }
     
-    
-    
     // MARK: GET
     func taskForGetMethod(method: String,
         var parameters: [String:AnyObject],
@@ -142,15 +140,18 @@ class UdacityClient: NSObject {
                     parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
                     print("Here's the parsed result!")
                     print(parsedResult)
+                    // TO DO: Fix This
+                    /*
                     guard let accountKey = parsedResult["account.key"] as? Int else {
                         displayError("Cannot find account key")
                         return
                     }
-                    
+
                     print("account key", accountKey)
                     print("accont registered")
                     print("expirgation")
                     print("id")
+                    */
                 } catch {
                     displayError("Could not parse the data as JSON: '\(data)/")
                 }
