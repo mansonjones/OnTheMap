@@ -389,7 +389,44 @@ class ParseClient: NSObject {
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
             print(" ***** Parsed Result ****")
-            print(parsedResult)
+            // print(parsedResult)
+            // To Do: Get this to work
+            if let resultsArray = parsedResult.valueForKey("results") as? [AnyObject] {
+                print(resultsArray.count)
+                for (var i = 0; i < resultsArray.count; i++) {
+                    if let createdAt = resultsArray[i].valueForKey("createdAt") as? String {
+                        print(createdAt)
+                    }
+                    if let firstName = resultsArray[i].valueForKey("firstName") as? String {
+                        print(firstName)
+                    }
+                    if let lastName = resultsArray[i].valueForKey("lastName") as? String {
+                        print(lastName)
+                    }
+                    if let latitude = resultsArray[i].valueForKey("latitude") as? String {
+                        print(latitude)
+                    }
+                    if let longitude = resultsArray[i].valueForKey("longitude") as? String {
+                        print(longitude)
+                    }
+                    if let mapString = resultsArray[i].valueForKey("mapString") as? String {
+                        print(mapString)
+                    }
+                    if let mediaURL = resultsArray[i].valueForKey("medialURL") as? String {
+                        print(mediaURL)
+                    }
+                    if let objectId = resultsArray[i].valueForKey("objectId") as? String {
+                        print(objectId)
+                    }
+                    if let uniqueKey = resultsArray[i].valueForKey("uniqueKey") as? String {
+                        print(uniqueKey)
+                    }
+                    if let updatedAt = resultsArray[i].valueForKey("updatedAt") as? String {
+                        print(updatedAt)
+                    }
+                }
+            }
+            print(" **** Done Parsing Result *** ")
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
             completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
