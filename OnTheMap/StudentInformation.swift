@@ -6,7 +6,9 @@
 //  Copyright © 2016 Manson Jones. All rights reserved.
 //
 
-struct StudentInformation {
+import MapKit
+
+class StudentInformation : NSObject, MKAnnotation {
     // MARK: Properties
     
     let firstName: String
@@ -19,6 +21,7 @@ struct StudentInformation {
     let mediaURL: String
     let uniqueKey: Int64
     let mapString: String
+    let coordinate: CLLocationCoordinate2D
     
     
     // Mark Initializers
@@ -37,8 +40,25 @@ struct StudentInformation {
         mediaURL = "https://www.udacity.com"
         mapString = "mapString"
         uniqueKey = 12345
+        self.coordinate = CLLocationCoordinate2D(latitude: 100.0, longitude: 100.0)
     }
-    
+
+    override init() {
+        email = "a"
+        password = "b"
+        firstName = "Keith"
+        lastName = "Richards"
+        // email = "manson.jones@gmail.com"
+        // password = "susie#1"
+        udacityId = "blah"
+        latitude = 1.0
+        longitude = 1.0
+        mediaURL = "https://www.udacity.com"
+        mapString = "mapString"
+        uniqueKey = 12345
+        self.coordinate = CLLocationCoordinate2D(latitude: 21.282778, longitude: -157.82944)
+    }
+
     /*
     static func studensFromResults(results: [[String : AnyObject]]) -> [StudentInformation] {
         var students = [StudentInformation]()

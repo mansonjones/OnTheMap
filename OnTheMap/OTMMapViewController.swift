@@ -31,11 +31,33 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         // question: How to add more than one bar button item programmatically?
         // There's only one rightBarButtonItem
         createBarButtonItems()
+        mapView.delegate = self
     }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let annotation = annotation as? StudentInformation {
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+                return view
+            }
+        }
+        return nil
+    }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        //
+        // Hard-Code A Pin to appear on the map.
+        // This is for layout purposes only.
+        let student1 = StudentInformation()
+        mapView.addAnnotation(student1)
+        /*
         ParseClient.sharedInstance().getStudentLocations { (students, error) in
             print("***** DEBUG ***********")
             if let students = students {
@@ -51,6 +73,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
             }
             
         }
+        */
     }
     
     func createBarButtonItems() {
