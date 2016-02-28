@@ -43,7 +43,7 @@ class StudentInformation : NSObject, MKAnnotation {
         self.coordinate = CLLocationCoordinate2D(latitude: 100.0, longitude: 100.0)
     }
 
-    override init() {
+    init(latitude: Double, longitude: Double) {
         email = "a"
         password = "b"
         firstName = "Keith"
@@ -51,12 +51,15 @@ class StudentInformation : NSObject, MKAnnotation {
         // email = "manson.jones@gmail.com"
         // password = "susie#1"
         udacityId = "blah"
-        latitude = 1.0
-        longitude = 1.0
+        self.latitude = latitude
+        self.longitude = longitude
         mediaURL = "https://www.udacity.com"
         mapString = "mapString"
         uniqueKey = 12345
-        self.coordinate = CLLocationCoordinate2D(latitude: 21.282778, longitude: -157.82944)
+        print("\(latitude)")
+        print("\(longitude)")
+        
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
     /*

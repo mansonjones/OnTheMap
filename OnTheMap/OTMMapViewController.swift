@@ -55,8 +55,15 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         //
         // Hard-Code A Pin to appear on the map.
         // This is for layout purposes only.
-        let student1 = StudentInformation()
-        mapView.addAnnotation(student1)
+        let student1 = StudentInformation(latitude: 21.283921, longitude: -157.831661)
+        let student2 = StudentInformation(latitude: 21.283921 + 0.01, longitude: -157.831661 + 0.01 )
+        let student3 = StudentInformation(latitude: 21.283921 - 0.01, longitude: -157.831661 + 0.01)
+        let student4 = StudentInformation(latitude: 21.283921 + 0.01, longitude: -157.831661 - 0.01)
+        let student5 = StudentInformation(latitude: 21.283921 - 0.01, longitude: -157.831661 - 0.01)
+
+        let students = [student1, student2, student3, student4, student5]
+        
+        mapView.addAnnotations(students)
         /*
         ParseClient.sharedInstance().getStudentLocations { (students, error) in
             print("***** DEBUG ***********")
