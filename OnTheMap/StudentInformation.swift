@@ -62,17 +62,19 @@ class StudentInformation : NSObject, MKAnnotation {
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
-    /*
-    static func studensFromResults(results: [[String : AnyObject]]) -> [StudentInformation] {
+    // One of the requirements is that the array of students should be stored
+    // outside the tableviewcontroller and the mapviewcontroller.
+    
+    static func studentsFromResults(results: [[String : AnyObject]]) -> [StudentInformation] {
         var students = [StudentInformation]()
         
         // iterate through array of dictionaries
-        for student in students {
-            student.append(StudentInformation(dictionary: result))
+        for result in results {
+            students.append(StudentInformation(dictionary: result))
         }
         return students
     }
-    */
+    
 }
 
 // MARK: - StudentInformation: Equatable
