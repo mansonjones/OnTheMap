@@ -8,7 +8,8 @@
 
 import UIKit
 
-class OTMTableViewController: UITableViewController {
+class OTMTableViewController: UITableViewController
+{
 
     let teams = ["Warriors", "Spurs", "Thunder", "Wizards", "Heat"]
     
@@ -36,6 +37,11 @@ class OTMTableViewController: UITableViewController {
     
     func addLocation() {
         print("add a pin")
+        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingVC")
+        let informationPostingVC = object as! InformationPostingVC
+        
+        // TODO: pass information to the posting view
+        presentViewController(informationPostingVC, animated: true, completion: nil)
     }
     
     func updateTable() {
@@ -49,18 +55,27 @@ class OTMTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return teams.count
     }
-    
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("OTMTableViewCell")!
         
         cell.textLabel?.text = teams[indexPath.row]
+        cell.imageView?.image = UIImage(named: "pin")
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("this is where you launch the detail view that displays information about the user")
+        // open safari browser
+        // TODO: pass in the url from the user
+        if let checkURL = NSURL(string: "https://news.ycombinator.com") {
+            if UIApplication.sharedApplication().openURL(checkURL) {
+                print(" url successfully opened")
+            }
+        } else {
+            print("invalide url")
+        }
     }
     
 }

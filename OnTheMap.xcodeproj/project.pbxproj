@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C33B8511C84999200415C02 /* InformationPostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C33B8501C84999200415C02 /* InformationPostingVC.swift */; };
 		3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C591C73D6BA006A8291 /* AppDelegate.swift */; };
 		3C483C5C1C73D6BA006A8291 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C5B1C73D6BA006A8291 /* LoginViewController.swift */; };
 		3C483C5F1C73D6BA006A8291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C483C5D1C73D6BA006A8291 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C33B8501C84999200415C02 /* InformationPostingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingVC.swift; sourceTree = "<group>"; };
 		3C483C561C73D6BA006A8291 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C483C591C73D6BA006A8291 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C483C5B1C73D6BA006A8291 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		3C483DB01C7F724B006A8291 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3C33B8501C84999200415C02 /* InformationPostingVC.swift */,
 				3C483C5B1C73D6BA006A8291 /* LoginViewController.swift */,
 				3C483C931C763A67006A8291 /* OTMTableViewController.swift */,
 				3C483C871C73DAC6006A8291 /* OTMMapViewController.swift */,
@@ -375,6 +378,7 @@
 				3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */,
 				3C483C8A1C73ED9E006A8291 /* UdacityConstants.swift in Sources */,
 				3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */,
+				3C33B8511C84999200415C02 /* InformationPostingVC.swift in Sources */,
 				3C483DB51C7FC792006A8291 /* FacebookConstants.swift in Sources */,
 				3C483D9A1C7F57EF006A8291 /* GCDBlackBox.swift in Sources */,
 				3C483DB31C7FC783006A8291 /* FacebookConvenience.swift in Sources */,

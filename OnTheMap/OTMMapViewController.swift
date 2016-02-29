@@ -34,20 +34,6 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         mapView.delegate = self
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if let annotation = annotation as? StudentInformation {
-            let identifier = "pin"
-            var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView {
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-                return view
-            }
-        }
-        return nil
-    }
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -103,6 +89,36 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         
     }
     
+    // MARK : MapKit Delegate Functions
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let annotation = annotation as? StudentInformation {
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+                return view
+            }
+        }
+        return nil
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("Hello from calloutAccessoryControlTapped")
+    }
+    
+    // TODO: Call this function when a pin is to be updated.≥®
+    func launchInfoPostingView() {
+       let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingVC")
+        let informationPostingVC = object as! InformationPostingVC
+    
+        // TODO: pass information to the posting view
+        presentViewController(informationPostingVC, animated: true, completion: nil)
+    }
+    
+    // MARK :
+    
     func logout1() {
         // TODO: Figure out which return values from the POST are required for further processing
         
@@ -130,6 +146,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     func addLocation() {
         print("add a pin")
+        launchInfoPostingView()
     }
     
     func updateTable() {
