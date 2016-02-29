@@ -136,6 +136,15 @@ class LoginViewController: UIViewController {
         print(" **** email:", self.emailTextField.text!)
         print(" **** password: ", self.passwordTextField.text!)
         
+        if self.emailTextField!.text! == "" {
+            print("The email text field is empty")
+            let alertController = UIAlertController(title: "Empty Email or Password",
+                message: "",
+            preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
         let studentInfo = [
             UdacityClient.JSONBodyKeys.Username : self.emailTextField.text!,
             UdacityClient.JSONBodyKeys.Password : self.passwordTextField.text!
