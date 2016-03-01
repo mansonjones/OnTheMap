@@ -8,7 +8,7 @@
 
 import MapKit
 
-class StudentInformation : NSObject, MKAnnotation {
+struct StudentInformation {
     // MARK: Properties
     
     let firstName: String
