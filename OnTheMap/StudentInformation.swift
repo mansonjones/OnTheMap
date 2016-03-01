@@ -17,7 +17,7 @@ class StudentInformation : NSObject, MKAnnotation {
     let latitude: Double
     let longitude: Double
     let mediaURL: String
-    let uniqueKey: Int64
+    let uniqueKey: Int64  /* The Udacity account (user) id */
     let mapString: String
     let coordinate: CLLocationCoordinate2D
     

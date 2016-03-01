@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
     func udacitySession() {
             // Set the parameters
             // Build the URL
@@ -128,6 +129,7 @@ class LoginViewController: UIViewController {
         }
         task.resume()
     }
+    */
     
     func login() {
         // TODO: Figure out which return values from the POST are required for further processing
@@ -144,7 +146,9 @@ class LoginViewController: UIViewController {
             password: self.passwordTextField.text!) { (statusCode, error) in
             if let error = error {
                 print(error)
+                self.launchLoginFailAlertView()
             } else {
+                self.launchLoginFailAlertView()
                 if statusCode == 1 || statusCode == 12 || statusCode == 13 {
                     // self.session = session
                     // performUIUpdatesOn Main {
@@ -178,6 +182,14 @@ class LoginViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
         }
+        
+    }
+    private func launchLoginFailAlertView() {
+        let alertController = UIAlertController(title: "Blah",
+            message: "",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
         
     }
     

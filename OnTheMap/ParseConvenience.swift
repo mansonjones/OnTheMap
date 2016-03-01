@@ -26,8 +26,10 @@ extension ParseClient {
             
             //
             
-            let parameters = [ParseClient.ParameterKeys.Limit : 100] // need to add user info
-            // let parameters = ["skip" : 400]
+            let parameters = [
+                ParseClient.ParameterKeys.Limit : 100,
+                ParseClient.ParameterKeys.Order : "-updatedAt"
+            ]
             
             let task = taskForGETMethod(ParseClient.Methods.StudentLocation, parameters: parameters) { (results, error) in
                 
