@@ -30,15 +30,39 @@ extension ParseClient {
         static let Order = "order"
     }
     
+    // TODO: These can probably be deleted
     struct JSONBodyKeys {
         static let UniqueKey = "uniqueKey"
         static let FirstName = "firstName"
         static let LastName = "lastName"
         static let MapString = "mapString"
-        static let MediaUrl = "mediaUrl"
+        static let MediaUrl = "mediaURL"
         static let Latitude = "latitude"
         static let Longitude = "longitude"
+        static let CreatedAt = "createdAt"
+        static let ObjectId = "objectId"
+        static let UpdatedAt = "updatedAt"
     }
     
-    
+    struct JSONResponseKeys {
+        
+        // This is the key that is used to extract the 
+        // array of student information from the 
+        // json object.
+        
+        static let StudentResults = "results"
+        
+        // MARK: StudentLocation
+        static let CreatedAt = "createdAt"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        static let MapString = "mapString"
+        static let MediaUrl = "mediaURL"
+        static let ObjectId = "objectId"
+        static let UniqueKey = "uniqueKey"
+        static let UpdatedAt = "updatedAt"
+    }
+
 }

@@ -63,9 +63,24 @@ extension UdacityClient {
         //MARK: session
         // TODO: Not sure which of these are needed.
         // TODO: Not sure if the dot notation works for json
+        
+        // MARK: Udacity student information
         static let Key = "account.key"
         static let Registered = "account.registered"
         static let Expiration = "session.expiration"
         static let Id = "session.id"
+        
+        static let UniqueKey = "uniqueKey"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let MapString = "mapString"
+        static let MediaUrl = "mediaUrl"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        static let CreatedAt = "createdAt"
+        static let ObjectId = "objectId"
+        static let UpdatedAt = "updatedAt"
+        
+        
     }
 }

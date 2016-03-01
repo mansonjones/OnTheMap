@@ -14,35 +14,40 @@ extension ParseClient {
     // MARK: GET Convenience Methods
  
 
+    // TODO: Would it be more intuitive to call this function
+    // getUdacityStudentLocations?
+    // Would getStudentInformation be a better name?
+    // Would it be better to provide the limit of 100 students as an input?
+    
     func getStudentLocations(
-        completionHandlerForGetStudentLocations: (result: [StudentInformation]?, errorString: String?) -> Void) {
+        completionHandlerForStudentLocations: (result: [StudentInformation]?, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             /* https://api.parse.com/1/classes/StudentLocation?limit=100 */
             
-            // let parameters = [:]
+            //
             
             let parameters = [ParseClient.ParameterKeys.Limit : 100] // need to add user info
             // let parameters = ["skip" : 400]
             
-            let method: String = ParseClient.Methods.StudentLocation
-            
-            taskForGETMethod(method, parameters: parameters) { (results, error) in
+            let task = taskForGETMethod(ParseClient.Methods.StudentLocation, parameters: parameters) { (results, error) in
                 
                 // 3. Send the values to the completion handler
                 if let error = error {
                     print(error)
-                    completionHandlerForGetStudentLocations(result : nil, errorString: "get public user data failed")
+                    completionHandlerForStudentLocations(result : nil, error: error)
                 } else {
-                    /*
-                    if let userID = results[UdacityClient.JSONResponseKeys.UserID] as? Int {
-                        completionHandlerForPublicUserData(success: true, userID: userID, errorString: nil)
+                    
+                    if let results = results[ParseClient.JSONResponseKeys.StudentResults] as? [[String : AnyObject]] {
+                        let students = StudentInformation.studentsFromResults(results)
+                        completionHandlerForStudentLocations(result: students, error: nil)
                     } else {
-                        print("Could not find \(UdacityClient.JSONResponseKeys,UserID) in \(results)")
-                        completionHandlerForUserID(success: false, userID: nil, errorString: "Login Failed (User ID).")
+                        completionHandlerForStudentLocations(result: nil, error: NSError(domain: "getStudentLocations parsing", code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocations"]))
                     }
-                    */
+                    
                 }
             }
+            return task
     }
     
     

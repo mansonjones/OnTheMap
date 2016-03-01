@@ -61,7 +61,7 @@ extension UdacityClient {
     
 
     // MARK: POST Convenience Methods
-    func loginToUdacity(student: StudentInformation, completionHandlerForLogin: (result: Int?, error: NSError?) -> Void) {
+    func loginToUdacity(email: String, password: String, completionHandlerForLogin: (result: Int?, error: NSError?) -> Void) {
         // HTTP Post to https://www.udacity.com/api/session -
         // Sets the ?? property on the StudentInformation record
         // 1. Specify parameters
@@ -70,8 +70,8 @@ extension UdacityClient {
         let method: String = UdacityClient.Methods.Session
         
         let udacityKey = "{\"\(UdacityClient.JSONBodyKeys.Udacity)\":"
-        let usernamePair = "{\"\(UdacityClient.JSONBodyKeys.Username)\": \"\(student.email)\","
-        let passwordPair = "\"\(UdacityClient.JSONBodyKeys.Password)\": \"\(student.password)\"}}"
+        let usernamePair = "{\"\(UdacityClient.JSONBodyKeys.Username)\": \"\(email)\","
+        let passwordPair = "\"\(UdacityClient.JSONBodyKeys.Password)\": \"\(password)\"}}"
         
         let httpBody = udacityKey + usernamePair + passwordPair
         
@@ -79,8 +79,8 @@ extension UdacityClient {
         // This can be put into a separate function, or some other file
         let jsonRequest: [String: AnyObject] = [
             "\(UdacityClient.JSONBodyKeys.Udacity)": [
-                "\(UdacityClient.JSONBodyKeys.Username)" : "\(student.email)",
-                "\(UdacityClient.JSONBodyKeys.Password)" : "\(student.password)"
+                "\(UdacityClient.JSONBodyKeys.Username)" : "\(email)",
+                "\(UdacityClient.JSONBodyKeys.Password)" : "\(password)"
             ]
         ]
         

@@ -13,9 +13,7 @@ class StudentInformation : NSObject, MKAnnotation {
     
     let firstName: String
     let lastName: String
-    let email: String
-    let password: String
-    let udacityId: String
+    // let udacityId: String
     let latitude: Double
     let longitude: Double
     let mediaURL: String
@@ -28,29 +26,21 @@ class StudentInformation : NSObject, MKAnnotation {
     
     // construct a StudentInformation object from
     init(dictionary: [String:AnyObject]) {
-        email = dictionary[UdacityClient.JSONBodyKeys.Username] as! String
-        password = dictionary[UdacityClient.JSONBodyKeys.Password] as! String
-        firstName = "Keith"
-        lastName = "Richards"
-        // email = "manson.jones@gmail.com"
-        // password = "susie#1"
-        udacityId = "blah"
-        latitude = 1.0
-        longitude = 1.0
-        mediaURL = "https://www.udacity.com"
-        mapString = "mapString"
-        uniqueKey = 12345
-        self.coordinate = CLLocationCoordinate2D(latitude: 100.0, longitude: 100.0)
+        firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
+        lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as! String
+        // udacityId = "blah"
+        latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as! Double
+        longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
+        mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaUrl] as! String
+        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
+        uniqueKey = 1234
+//        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! Int64
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
     init(latitude: Double, longitude: Double) {
-        email = "a"
-        password = "b"
         firstName = "Keith"
         lastName = "Richards"
-        // email = "manson.jones@gmail.com"
-        // password = "susie#1"
-        udacityId = "blah"
         self.latitude = latitude
         self.longitude = longitude
         mediaURL = "https://www.udacity.com"

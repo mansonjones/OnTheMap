@@ -145,18 +145,8 @@ class LoginViewController: UIViewController {
             self.presentViewController(alertController, animated: true, completion: nil)
         }
         
-        let studentInfo = [
-            UdacityClient.JSONBodyKeys.Username : self.emailTextField.text!,
-            UdacityClient.JSONBodyKeys.Password : self.passwordTextField.text!
-        ]
-        
-        let student = StudentInformation(dictionary: studentInfo)
-        // let student = StudentInformation(dictionary: dict as! [String : AnyObject])
-        
-        print(" *** student")
-        print("(student)")
-            
-        UdacityClient.sharedInstance().loginToUdacity(student) { (statusCode, error) in
+        UdacityClient.sharedInstance().loginToUdacity(self.emailTextField.text!,
+            password: self.passwordTextField.text!) { (statusCode, error) in
             if let error = error {
                 print(error)
             } else {

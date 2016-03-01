@@ -11,9 +11,11 @@ import MapKit
 
 class OTMMapViewController: UIViewController,  MKMapViewDelegate {
 
+    // MARK: Properties
+    
     @IBOutlet weak var mapView: MKMapView!
     
-    let regionRadius: CLLocationDistance = 1000
+    let regionRadius: CLLocationDistance = 1000000
     
     
     
@@ -26,7 +28,9 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.82944)
+        // Center of U.S.
+        // let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.82944)
+        let initialLocation = CLLocation(latitude: 39.5, longitude: -98.35)
         centerMapOnLocation(initialLocation)
         // question: How to add more than one bar button item programmatically?
         // There's only one rightBarButtonItem
@@ -41,6 +45,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         //
         // Hard-Code A Pin to appear on the map.
         // This is for layout purposes only.
+        /*
         let student1 = StudentInformation(latitude: 21.283921, longitude: -157.831661)
         let student2 = StudentInformation(latitude: 21.283921 + 0.01, longitude: -157.831661 + 0.01 )
         let student3 = StudentInformation(latitude: 21.283921 - 0.01, longitude: -157.831661 + 0.01)
@@ -50,7 +55,27 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         let students = [student1, student2, student3, student4, student5]
         
         mapView.addAnnotations(students)
+        */
+        
+        
+        ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
+            if let students = students {
+                self.students = students
+                print(" *** NUMBER OF ELEMENTS IS")
+                print(self.students.count)
+                performUIUpdatesOnMain {
+                    // create Array of Annotations.
+                    self.mapView.addAnnotations(self.students)
+                                    
+                    // self.tableView.reloadData()
+                }
+            }
+        }
+
+        
+        
         /*
+        
         ParseClient.sharedInstance().getStudentLocations { (students, error) in
             print("***** DEBUG ***********")
             if let students = students {
@@ -66,7 +91,9 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
             }
             
         }
+       
         */
+        
     }
     
     func createBarButtonItems() {

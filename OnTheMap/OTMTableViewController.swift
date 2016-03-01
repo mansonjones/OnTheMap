@@ -11,11 +11,28 @@ import UIKit
 class OTMTableViewController: UITableViewController
 {
 
-    let teams = ["Warriors", "Spurs", "Thunder", "Wizards", "Heat"]
+
+    // let teams = ["Warriors", "Spurs", "Thunder", "Wizards", "Heat"]
+    var students = [StudentInformation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createBarButtonItems()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        // Note: This could be built out to work like the MoviePickerViewController.
+        ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
+            if let students = students {
+                self.students = students
+                print(" *** NUMBER OF ELEMENTS IS")
+                print(self.students.count)
+                performUIUpdatesOnMain {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
   
     func createBarButtonItems() {
@@ -53,15 +70,21 @@ class OTMTableViewController: UITableViewController
     }
    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return teams.count
+        // return teams.count
+     //super.\\\\   self.tableView.reloadData()
+        print("**** Number Of Rows in Section:", students.count)
+        return students.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("OTMTableViewCell")!
         
+        /*
         cell.textLabel?.text = teams[indexPath.row]
+        */
+        cell.textLabel?.text = self.students[indexPath.row].firstName
         cell.imageView?.image = UIImage(named: "pin")
-        
+    
         return cell
     }
     
