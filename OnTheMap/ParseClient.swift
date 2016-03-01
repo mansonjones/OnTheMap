@@ -36,7 +36,7 @@ class ParseClient: NSObject {
             
             // 1. Set the parameters
             // TODO: assign the users key/value pair correctly.
-        //    parameters = [:]
+            //    parameters = [:]
             // parameters[ParameterKeys.Users] = "manson.jones@gmail.com"
             
             // 2/3. Build the URL and configure the request
@@ -82,7 +82,7 @@ class ParseClient: NSObject {
     // MARK: POST
     func taskForPostMethod(method: String,
         var parameters: [String:AnyObject],
-        jsonBody: String,
+        jsonBody: NSData,
         completionHandlerForPost: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             // 1. Set the parameters
@@ -105,7 +105,7 @@ class ParseClient: NSObject {
             request.addValue(ParseClient.Constants.ParseRESTApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
+            request.HTTPBody = jsonBody
             
             // 4. Make the request
             let task = session.dataTaskWithRequest(request) { (data, response, error) in
@@ -265,7 +265,7 @@ class ParseClient: NSObject {
             task.resume()
             return task
     }
-
+    
     // MARK: PUT
     func taskForPutMethod(method: String,
         var parameters: [String:AnyObject],
@@ -292,7 +292,7 @@ class ParseClient: NSObject {
             request.addValue(ParseClient.Constants.ParseRESTApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
-
+            
             let session = NSURLSession.sharedSession()
             
             // 4. Make the request

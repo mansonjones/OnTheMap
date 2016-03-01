@@ -34,11 +34,11 @@ struct StudentInformation {
         mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaUrl] as! String
         mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
         uniqueKey = 1234
-//        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! Int64
+        //        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! Int64
         // coordinate could also be defined as a computed parameter.
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-  
+    
     // One of the requirements is that the array of students should be stored
     // outside the tableviewcontroller and the mapviewcontroller.
     
@@ -61,7 +61,7 @@ struct StudentInformation {
 extension StudentInformation: Equatable {}
 
 func ==(lhs: StudentInformation, rhs: StudentInformation) -> Bool {
-   return lhs.id == rhs.id
+return lhs.id == rhs.id
 }
 
 */

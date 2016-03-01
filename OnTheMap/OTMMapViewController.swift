@@ -10,21 +10,14 @@ import UIKit
 import MapKit
 
 class OTMMapViewController: UIViewController,  MKMapViewDelegate {
-
+    
     // MARK: Properties
     
     @IBOutlet weak var mapView: MKMapView!
     
     let regionRadius: CLLocationDistance = 1000000
     
-    
-    
-    // the data for the map
-    // To Do: Need to replace this with pins, or can pins be generated on the fly?
-    // Can pins be a computed property?
-    // var pins = [Pin]
     var students: [StudentInformation] = [StudentInformation]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +43,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
                 performUIUpdatesOnMain {
                     let annotations = self.buildPointAnnotations()
                     self.mapView.addAnnotations(annotations)
-                 }
+                }
             }
         }
     }
@@ -78,9 +71,8 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     }
     
     private func createBarButtonItems() {
-        // TODO: Get the right artwork for the pin image
         navigationItem.title = "On The Map"
-
+        
         let pinImage = UIImage(named: "pin")!
         
         let pinButton = UIBarButtonItem(image: pinImage, style: .Plain, target: self, action: "addLocation")
@@ -113,18 +105,6 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
             pinView!.annotation = annotation
         }
         return pinView
-        /* (
-        if let annotation = annotation as? StudentInformation {
-            let identifier = "pin"
-            var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView {
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-                return view
-            }
-        }
-        return nil
-         */
     }
     
     // This delegate method is implemented to respond to taps.  It opens the system
@@ -147,9 +127,9 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     // TODO: Call this function when a pin is to be updated.≥®
     func launchInfoPostingView() {
-       let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingVC")
+        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingVC")
         let informationPostingVC = object as! InformationPostingVC
-    
+        
         // TODO: pass information to the posting view
         presentViewController(informationPostingVC, animated: true, completion: nil)
     }
