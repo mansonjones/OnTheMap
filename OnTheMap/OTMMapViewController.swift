@@ -42,22 +42,6 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //
-        // Hard-Code A Pin to appear on the map.
-        // This is for layout purposes only.
-        /*
-        let student1 = StudentInformation(latitude: 21.283921, longitude: -157.831661)
-        let student2 = StudentInformation(latitude: 21.283921 + 0.01, longitude: -157.831661 + 0.01 )
-        let student3 = StudentInformation(latitude: 21.283921 - 0.01, longitude: -157.831661 + 0.01)
-        let student4 = StudentInformation(latitude: 21.283921 + 0.01, longitude: -157.831661 - 0.01)
-        let student5 = StudentInformation(latitude: 21.283921 - 0.01, longitude: -157.831661 - 0.01)
-
-        let students = [student1, student2, student3, student4, student5]
-        
-        mapView.addAnnotations(students)
-        */
-        
-        
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students {
                 self.students = students
@@ -71,29 +55,6 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
                 }
             }
         }
-
-        
-        
-        /*
-        
-        ParseClient.sharedInstance().getStudentLocations { (students, error) in
-            print("***** DEBUG ***********")
-            if let students = students {
-                self.students = students
-                
-                performUIUpdatesOnMain {
-                    // is there an equivalent to reloadData?
-                    //   self.??.reloadData()
-                    print(" **** debug message from mapviewcontroller **** ")
-                }
-            } else {
-                    print(error)
-            }
-            
-        }
-       
-        */
-        
     }
     
     func createBarButtonItems() {
@@ -135,6 +96,11 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         print("Hello from calloutAccessoryControlTapped")
     }
     
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        print("didSelectAnnotationView")
+        // TODO: Based on the pin selection, find the user information
+        // if let objects = MKAnnotationView. ???
+    }
     
     // TODO: Call this function when a pin is to be updated.≥®
     func launchInfoPostingView() {

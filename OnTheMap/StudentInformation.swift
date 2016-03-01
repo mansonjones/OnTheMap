@@ -35,23 +35,10 @@ class StudentInformation : NSObject, MKAnnotation {
         mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
         uniqueKey = 1234
 //        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! Int64
+        // coordinate could also be defined as a computed parameter.
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-
-    init(latitude: Double, longitude: Double) {
-        firstName = "Keith"
-        lastName = "Richards"
-        self.latitude = latitude
-        self.longitude = longitude
-        mediaURL = "https://www.udacity.com"
-        mapString = "mapString"
-        uniqueKey = 12345
-        print("\(latitude)")
-        print("\(longitude)")
-        
-        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-
+  
     // One of the requirements is that the array of students should be stored
     // outside the tableviewcontroller and the mapviewcontroller.
     

@@ -93,7 +93,8 @@ class OTMTableViewController: UITableViewController
         print("this is where you launch the detail view that displays information about the user")
         // open safari browser
         // TODO: pass in the url from the user
-        if let checkURL = NSURL(string: "https://news.ycombinator.com") {
+        let url = students[indexPath.row].mediaURL
+        if let checkURL = NSURL(string: url) {
             if UIApplication.sharedApplication().openURL(checkURL) {
                 print(" url successfully opened")
             }
