@@ -48,34 +48,36 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
                 print(" *** NUMBER OF ELEMENTS IS")
                 print(self.students.count)
                 performUIUpdatesOnMain {
-                    var annotations = [MKPointAnnotation]()
-                    for student in self.students {
-                        let lat = CLLocationDegrees(student.latitude)
-                        let long = CLLocationDegrees(student.longitude)
-                        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                        
-                        let first = student.firstName
-                        let last = student.lastName
-                        let mediaURL = student.mediaURL
-                        
-                        let annotation = MKPointAnnotation()
-                        annotation.coordinate = coordinate
-                        annotation.title = "\(first) \(last)"
-                        annotation.subtitle = mediaURL
-                        
-                        annotations.append(annotation)
-                    }
+                    let annotations = self.buildPointAnnotations()
                     self.mapView.addAnnotations(annotations)
-                    // create Array of Annotations.
-                    // self.mapView.addAnnotations(self.students)
-                                    
-                    // self.tableView.reloadData()
-                }
+                 }
             }
         }
     }
     
-    func createBarButtonItems() {
+    
+    private func buildPointAnnotations() -> [MKPointAnnotation] {
+        var annotations = [MKPointAnnotation]()
+        for student in self.students {
+            let lat = CLLocationDegrees(student.latitude)
+            let long = CLLocationDegrees(student.longitude)
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            
+            let first = student.firstName
+            let last = student.lastName
+            let mediaURL = student.mediaURL
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = "\(first) \(last)"
+            annotation.subtitle = mediaURL
+            
+            annotations.append(annotation)
+        }
+        return annotations
+    }
+    
+    private func createBarButtonItems() {
         // TODO: Get the right artwork for the pin image
         navigationItem.title = "On The Map"
 
