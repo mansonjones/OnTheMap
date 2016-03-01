@@ -48,8 +48,26 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
                 print(" *** NUMBER OF ELEMENTS IS")
                 print(self.students.count)
                 performUIUpdatesOnMain {
+                    var annotations = [MKPointAnnotation]()
+                    for student in self.students {
+                        let lat = CLLocationDegrees(student.latitude)
+                        let long = CLLocationDegrees(student.longitude)
+                        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                        
+                        let first = student.firstName
+                        let last = student.lastName
+                        let mediaURL = student.mediaURL
+                        
+                        let annotation = MKPointAnnotation()
+                        annotation.coordinate = coordinate
+                        annotation.title = "\(first) \(last)"
+                        annotation.subtitle = mediaURL
+                        
+                        annotations.append(annotation)
+                    }
+                    self.mapView.addAnnotations(annotations)
                     // create Array of Annotations.
-                    self.mapView.addAnnotations(self.students)
+                    // self.mapView.addAnnotations(self.students)
                                     
                     // self.tableView.reloadData()
                 }
@@ -80,6 +98,20 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     // MARK : MapKit Delegate Functions
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = UIColor.redColor()
+            pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+        } else {
+            pinView!.annotation = annotation
+        }
+        return pinView
+        /* (
         if let annotation = annotation as? StudentInformation {
             let identifier = "pin"
             var view: MKPinAnnotationView
@@ -90,10 +122,19 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
             }
         }
         return nil
+         */
     }
     
+    // This delegate method is implemented to respond to taps.  It opens the system
+    // browser to the URL specified in the annotations subtitle property
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("Hello from calloutAccessoryControlTapped")
+        if (control == view.rightCalloutAccessoryView) {
+            let app = UIApplication.sharedApplication()
+            if let toOpen = view.annotation?.subtitle! {
+                app.openURL(NSURL(string: toOpen)!)
+            }
+        }
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
