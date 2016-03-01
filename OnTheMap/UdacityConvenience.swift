@@ -63,37 +63,14 @@ extension UdacityClient {
     // MARK: POST Convenience Methods
     func loginToUdacity(email: String, password: String, completionHandlerForLogin: (result: Int?, error: NSError?) -> Void) {
         // HTTP Post to https://www.udacity.com/api/session -
-        // Sets the ?? property on the StudentInformation record
+        // Sets the uniqueKey property on the StudentInformation record
         // 1. Specify parameters
         let parameters = ["":""]
         
         let method: String = UdacityClient.Methods.Session
         
-        let udacityKey = "{\"\(UdacityClient.JSONBodyKeys.Udacity)\":"
-        let usernamePair = "{\"\(UdacityClient.JSONBodyKeys.Username)\": \"\(email)\","
-        let passwordPair = "\"\(UdacityClient.JSONBodyKeys.Password)\": \"\(password)\"}}"
-        
-        let httpBody = udacityKey + usernamePair + passwordPair
-        
-        // here's a nicer way to build the json string
-        // This can be put into a separate function, or some other file
-        let jsonRequest: [String: AnyObject] = [
-            "\(UdacityClient.JSONBodyKeys.Udacity)": [
-                "\(UdacityClient.JSONBodyKeys.Username)" : "\(email)",
-                "\(UdacityClient.JSONBodyKeys.Password)" : "\(password)"
-            ]
-        ]
-        
-        print(jsonRequest)
-        
-        let test1 = try! NSJSONSerialization.dataWithJSONObject(jsonRequest, options: [])
-        print("  ****  JSON1  ****")
-        print(test1)
-        
-        let test2 = try! NSJSONSerialization.JSONObjectWithData(test1, options: .AllowFragments)
-        print(" **** JSON2 ***")
-        print(test2)
-        
+        let httpBody = loginJSONRequest(email, password: password)
+        // let httpBody = try! NSJSONSerialization.dataWithJSONObject(jsonRequest, options: [])
         // 2. Make the request
         taskForPostMethod(method, parameters: parameters, jsonBody: httpBody) {
             (results, error) in
@@ -111,6 +88,30 @@ extension UdacityClient {
         }
     }
 
+    private func loginJSONRequest(email: String, password: String) -> NSData {
+        let jsonRequest: [String: AnyObject] = [
+            "\(UdacityClient.JSONBodyKeys.Udacity)": [
+                "\(UdacityClient.JSONBodyKeys.Username)" : "\(email)",
+                "\(UdacityClient.JSONBodyKeys.Password)" : "\(password)"
+            ]
+        ]
+        
+        print("****")
+        print(jsonRequest)
+        
+        let httpBody = try! NSJSONSerialization.dataWithJSONObject(jsonRequest, options: [])
+        print("  ****  JSON1  ****")
+        print(httpBody)
+        
+        /*
+        let test2 = try! NSJSONSerialization.JSONObjectWithData(test1, options: .AllowFragments)
+        print(" **** JSON2 ***")
+        print(test2)
+        */
+        return httpBody
+    }
+    
+    
     // MARK: DELETE Convenience Methods
     func logoutFromUdacity(completionHandlerForLogout: (result: Int?, error: NSError?) -> Void) {
         let parameters = ["":""]

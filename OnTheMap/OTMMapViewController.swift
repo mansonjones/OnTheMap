@@ -135,6 +135,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         print("Hello from calloutAccessoryControlTapped")
     }
     
+    
     // TODO: Call this function when a pin is to be updated.≥®
     func launchInfoPostingView() {
        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingVC")

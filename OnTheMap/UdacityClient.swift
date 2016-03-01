@@ -77,7 +77,7 @@ class UdacityClient: NSObject {
     // MARK: POST
     func taskForPostMethod(method: String,
         var parameters: [String:AnyObject],
-        jsonBody: String,
+        jsonBody : NSData,
         completionHandlerForPost: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             // 1. Set the parameters
@@ -98,7 +98,8 @@ class UdacityClient: NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
             // ToDo: verify that the json is correct
-            request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
+ //           request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
+            request.HTTPBody = jsonBody
             
             // 4. Make the request
             let task = session.dataTaskWithRequest(request) { (data, response, error) in
@@ -133,7 +134,7 @@ class UdacityClient: NSObject {
                 }
                 /* 5. Parse the data */
                 
-//                self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPost)
+               self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPost)
                 
                 let parsedResult: AnyObject!
                 do {
@@ -311,7 +312,21 @@ class UdacityClient: NSObject {
     private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
         var parsedResult: AnyObject!
         do {
-            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            print("Here's the DATA!!!")
+
+            parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
+            guard let account = parsedResult[UdacityClient.JSONResponseKeys.Account] as? [String : AnyObject] else {
+                return
+            }
+            
+            guard let key = account[UdacityClient.JSONResponseKeys.Key] as? String else {
+                return
+            }
+            // This is the value that needs to be saved.
+            // TODO: This is the value that needs to be saved.
+            print("\(key)")
+            
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
             completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))

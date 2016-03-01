@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
 
@@ -136,14 +138,7 @@ class LoginViewController: UIViewController {
         print(" **** email:", self.emailTextField.text!)
         print(" **** password: ", self.passwordTextField.text!)
         
-        if self.emailTextField!.text! == "" {
-            print("The email text field is empty")
-            let alertController = UIAlertController(title: "Empty Email or Password",
-                message: "",
-            preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
+        loginErrorHandler()
         
         UdacityClient.sharedInstance().loginToUdacity(self.emailTextField.text!,
             password: self.passwordTextField.text!) { (statusCode, error) in
@@ -162,6 +157,28 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+
+    // TODO: Move this into a different file.
+    
+    private func loginErrorHandler() {
+        if self.emailTextField!.text! == "" {
+            print("The email text field is empty")
+            let alertController = UIAlertController(title: "Empty Email",
+                message: "",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        if self.passwordTextField!.text! == "" {
+            print("The password text field is empty")
+            let alertController = UIAlertController(title: "Empty Password",
+                message: "",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
     }
     
     private func completeLogin() {

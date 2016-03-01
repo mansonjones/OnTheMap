@@ -82,7 +82,8 @@ class OTMTableViewController: UITableViewController
         /*
         cell.textLabel?.text = teams[indexPath.row]
         */
-        cell.textLabel?.text = self.students[indexPath.row].firstName
+        cell.textLabel?.text = self.students[indexPath.row].firstName + " " + self.students[indexPath.row].lastName
+        cell.detailTextLabel?.text = self.students[indexPath.row].mediaURL
         cell.imageView?.image = UIImage(named: "pin")
     
         return cell

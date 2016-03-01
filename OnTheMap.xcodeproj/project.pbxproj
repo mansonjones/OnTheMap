@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3C33B8511C84999200415C02 /* InformationPostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C33B8501C84999200415C02 /* InformationPostingVC.swift */; };
+		3C33B85B1C8552F200415C02 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8581C8552F200415C02 /* FBSDKCoreKit.framework */; };
+		3C33B85C1C8552F200415C02 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8591C8552F200415C02 /* FBSDKLoginKit.framework */; };
+		3C33B85D1C8552F200415C02 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B85A1C8552F200415C02 /* FBSDKShareKit.framework */; };
 		3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C591C73D6BA006A8291 /* AppDelegate.swift */; };
 		3C483C5C1C73D6BA006A8291 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C5B1C73D6BA006A8291 /* LoginViewController.swift */; };
 		3C483C5F1C73D6BA006A8291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C483C5D1C73D6BA006A8291 /* Main.storyboard */; };
@@ -52,6 +55,9 @@
 
 /* Begin PBXFileReference section */
 		3C33B8501C84999200415C02 /* InformationPostingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingVC.swift; sourceTree = "<group>"; };
+		3C33B8581C8552F200415C02 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		3C33B8591C8552F200415C02 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		3C33B85A1C8552F200415C02 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		3C483C561C73D6BA006A8291 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C483C591C73D6BA006A8291 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C483C5B1C73D6BA006A8291 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +94,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C33B85C1C8552F200415C02 /* FBSDKLoginKit.framework in Frameworks */,
+				3C33B85B1C8552F200415C02 /* FBSDKCoreKit.framework in Frameworks */,
+				3C33B85D1C8552F200415C02 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +120,9 @@
 		3C483C4D1C73D6B9006A8291 = {
 			isa = PBXGroup;
 			children = (
+				3C33B8581C8552F200415C02 /* FBSDKCoreKit.framework */,
+				3C33B8591C8552F200415C02 /* FBSDKLoginKit.framework */,
+				3C33B85A1C8552F200415C02 /* FBSDKShareKit.framework */,
 				3C483C581C73D6BA006A8291 /* OnTheMap */,
 				3C483C6D1C73D6BB006A8291 /* OnTheMapTests */,
 				3C483C781C73D6BB006A8291 /* OnTheMapUITests */,
@@ -521,6 +533,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OnTheMap",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.manson.project-v1.OnTheMap";
@@ -532,6 +549,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OnTheMap",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.manson.project-v1.OnTheMap";

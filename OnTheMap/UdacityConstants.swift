@@ -65,7 +65,8 @@ extension UdacityClient {
         // TODO: Not sure if the dot notation works for json
         
         // MARK: Udacity student information
-        static let Key = "account.key"
+        static let Account = "account"
+        static let Key = "key"
         static let Registered = "account.registered"
         static let Expiration = "session.expiration"
         static let Id = "session.id"
