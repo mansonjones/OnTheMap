@@ -114,7 +114,7 @@ extension UdacityClient {
     
     // MARK: DELETE Convenience Methods
     func logoutFromUdacity(completionHandlerForLogout: (result: Int?, error: NSError?) -> Void) {
-        let parameters = ["":""]
+        let parameters = [String:String]()
         
         let method: String = UdacityClient.Methods.Session
         // Note: Maybe remove jsonBody from the argument list if it's never used

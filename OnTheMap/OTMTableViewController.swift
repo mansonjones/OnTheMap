@@ -67,6 +67,8 @@ class OTMTableViewController: UITableViewController
     
     func logout() {
         print("logout")
+        logoutFromUdacity()
+        completeLogout()
     }
    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,5 +104,24 @@ class OTMTableViewController: UITableViewController
             print("invalide url")
         }
     }
+    
+    private func logoutFromUdacity() {
+        UdacityClient.sharedInstance().logoutFromUdacity() {_,_ in
+            print(self.students.count)
+            performUIUpdatesOnMain {
+                self.completeLogout()
+            }
+        }
+        
+    }
+    
+    private func completeLogout() {
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("LoginController") as!
+        LoginViewController
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
+   
+    
     
 }

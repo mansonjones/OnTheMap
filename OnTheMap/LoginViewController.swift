@@ -11,7 +11,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
-
+    
     // MARK: Properties
     
     var appDelegate: AppDelegate!
@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
         passwordTextField.secureTextEntry = true
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -32,39 +32,36 @@ class LoginViewController: UIViewController {
     
     
     func login() {
-        // TODO: Figure out which return values from the POST are required for further processing
-        
-       // let dict = [:]
-        
-        
-        print(" **** email:", self.emailTextField.text!)
-        print(" **** password: ", self.passwordTextField.text!)
-        
         loginErrorHandler()
         
-        UdacityClient.sharedInstance().loginToUdacity(self.emailTextField.text!,
-            password: self.passwordTextField.text!) { (statusCode, error) in
-            if let error = error {
-                print(error)
-                self.launchLoginFailAlertView()
-            } else {
-                self.launchLoginFailAlertView()
-                if statusCode == 1 || statusCode == 12 || statusCode == 13 {
-                    // self.session = session
+        UdacityClient.sharedInstance().loginToUdacity(
+            self.emailTextField.text!,
+            password: self.passwordTextField.text!
+            ) { (statusCode, error) in
+                if let error = error {
+                    print(error)
                     performUIUpdatesOnMain {
-                    //  go ahead and launch the tab bar controller
-                        print("launch the tab bar controller")
                         self.completeLogin()
+                        // self.launchLoginFailAlertView()
                     }
                 } else {
-                    performUIUpdatesOnMain {
-                        print("Unexpected status code \(statusCode)")
+                    // self.launchLoginFailAlertView()
+                    if statusCode == 1 || statusCode == 12 || statusCode == 13 {
+                        // self.session = session
+                        performUIUpdatesOnMain {
+                            //  go ahead and launch the tab bar controller
+                            print("launch the tab bar controller")
+                            self.completeLogin()
+                        }
+                    } else {
+                        performUIUpdatesOnMain {
+                            print("Unexpected status code \(statusCode)")
+                        }
                     }
                 }
-            }
         }
     }
-
+    
     // TODO: Move this into a different file.
     
     private func loginErrorHandler() {
@@ -102,9 +99,8 @@ class LoginViewController: UIViewController {
     }
     
     func logout() {
-        let dict = [:]
         
-//        let student = StudentInformation(dictionary: dict as! [String : AnyObject])
+        //        let student = StudentInformation(dictionary: dict as! [String : AnyObject])
         
         UdacityClient.sharedInstance().logoutFromUdacity() { (statusCode, error) in
             if let error = error {
@@ -121,7 +117,7 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-       
+        
     }
     
     func getPublicUserData() {
@@ -142,18 +138,12 @@ class LoginViewController: UIViewController {
         }
         
     }
-        
+    
     @IBAction func loginClicked(sender: AnyObject) {
         login()
-        // completeLogin()
-        print("loginClicked")
-        // Here's one way to do it
-        // udacitySession()
-        // Here's another way to do it.
- //       logout()
     }
-
-
+    
+    
     @IBAction func facebookClicked(sender: AnyObject) {
         print("facebookClicked")
     }
