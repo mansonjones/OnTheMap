@@ -12,11 +12,14 @@ import MapKit
 class InformationPostingVC: UIViewController,
     UINavigationControllerDelegate
 {
+    @IBOutlet weak var locationTextField: UITextField!
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     var student: StudentInformation!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner.hidesWhenStopped = true
     }
     
     @IBAction func cancelInformationEditor() {
@@ -25,7 +28,8 @@ class InformationPostingVC: UIViewController,
     
     @IBAction func postStudentLocation(sender: AnyObject) {
         print("post student information to server")
-       // launch.AlertView("Could Not Geocode the String", message : "")
+        geocode()
+        // launch.AlertView("Could Not Geocode the String", message : "")
     }
     
     func postStudentLocation() {
@@ -34,6 +38,7 @@ class InformationPostingVC: UIViewController,
         // is launched.
         // to do: use let/if to check the student object
         print("Posting Student Locations")
+        geocode()
         ParseClient.sharedInstance().postStudenLocation(student) { (statusCode, error) -> Void in
             if let error = error {
                 print(error)
@@ -55,16 +60,58 @@ class InformationPostingVC: UIViewController,
         // startWithCompletionHandler
         // To Do: Show a spinner while the geoCode is being computed.
         // Given a city name, find the latitude and longitude.
-        /*
-        var geocoder = CLGeocoder()
-        let addressString = "Dallas"
-        geocoder.geocodeAddressString(<#T##addressString: String##String#>) { (placemarks : [CLPlacemark], ErrorType) -> Void in
-            let placemark = placemark[0]
-            
+        spinner.startAnimating()
+        
+        print(" **** Geo code **")
+//        let address = "15426 Bestor Blvd., Pacific Palisades, CA"
+        let address = "aldfkjasl;dfjas"
+        // Start the spinner
+        CLGeocoder().geocodeAddressString(address) { (placemarks : [CLPlacemark]?, error: NSError?) -> Void in
+            print("Hello From geocode ")
+            print(" **** Number of placemerks ****")
+            print(placemarks!.count)
+            for placemark in placemarks! {
+                print("\(placemark)")
+            }
+            // close the spinner
         }
-        */
+        // Use MKLocal
+        //
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = address
         
+        let search = MKLocalSearch(request: request)
         
+        // start the spinner
+        
+        search.startWithCompletionHandler { (response, error) -> Void in
+            print("hello")
+            
+            
+            // TODO: Display an alert if geocoding fails.
+            if error != nil {
+                print("error occured in search: \(error?.localizedDescription)")
+                self.launchAlertView("blah", message: "dee blah")
+            } else if response?.mapItems.count == 0 {
+                print("no matches found")
+                self.launchAlertView("blah", message: "dee blah")
+            } else {
+                for item in response!.mapItems {
+                    
+                    print("\(item.name)")
+                    print("\(item.placemark.location)")
+                    let latitude = item.placemark.location?.coordinate.latitude
+                    let longitude = item.placemark.location?.coordinate.longitude
+                    print("\(latitude!)")
+                    print("\(longitude!)")
+                    performUIUpdatesOnMain({ () -> Void in
+                        self.spinner.stopAnimating()
+                    })
+                    
+                }
+                
+            }
+        }
     }
     
     private func launchAlertView(title : String, message : String) {

@@ -35,6 +35,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // TODO: display an alert if the download fails
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students {
                 self.students = students

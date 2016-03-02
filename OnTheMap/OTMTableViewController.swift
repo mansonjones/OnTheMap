@@ -23,6 +23,7 @@ class OTMTableViewController: UITableViewController
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         // Note: This could be built out to work like the MoviePickerViewController.
+        // TODO: Display an alert view if the download fails.
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students {
                 self.students = students
