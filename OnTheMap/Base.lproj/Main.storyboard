@@ -99,6 +99,15 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="WPG-l4-B2G" firstAttribute="leading" secondItem="UoL-y8-748" secondAttribute="leading" constant="20" id="B7q-hz-9YL"/>
+                                    <constraint firstAttribute="trailing" secondItem="WPG-l4-B2G" secondAttribute="trailing" id="I3h-ch-Jtg"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="B7q-hz-9YL"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
