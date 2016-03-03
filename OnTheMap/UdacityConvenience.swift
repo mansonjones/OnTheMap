@@ -48,15 +48,7 @@ extension UdacityClient {
                 completionHandlerForGetPublicUserData(result: nil, error: error)
             } else {
                 print(" successful return from getPublicUserData")
-                /* TODO: handle the output
-                if let userID = results[Constants.JSONResponseKeys.UserID] as? Int {
-                    completionHandlerForGetPublicUserData(success: true, userID: userID, errorString: nil)
-                } else {
-                    print("Could not find \(Constants.JSONResponseKeys,UserID) in \(results)")
-                    completionHandlerForGetPublicUserData(success: false, userID: nil, errorString: "Login Failed (User ID).")
-                }
-                */
-                }
+                 }
             }
     }
     

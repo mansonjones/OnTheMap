@@ -46,33 +46,11 @@ class LoginViewController: UIViewController {
                 } else {
                     performUIUpdatesOnMain {
                         self.displayError(errorString)
+                        self.launchLoginFailAlertView("Invalide Email or Password",message:"Please try again")
                     }
                 }
         }
-                /*
-                if let error = error {
-                    print(error)
-                    performUIUpdatesOnMain {
-                        self.completeLogin()
-                        // self.launchLoginFailAlertView()
-                    }
-                } else {
-                    // self.launchLoginFailAlertView()
-                    if statusCode == 1 || statusCode == 12 || statusCode == 13 {
-                        // self.session = session
-                        performUIUpdatesOnMain {
-                            //  go ahead and launch the tab bar controller
-                            print("launch the tab bar controller")
-                            self.completeLogin()
-                        }
-                    } else {
-                        performUIUpdatesOnMain {
-                            print("Unexpected status code \(statusCode)")
-                        }
-                    }
-                }
-                */
-        }
+         }
     
     private func displayError(errorString: String?) {
         if let errorString = errorString {
@@ -85,25 +63,17 @@ class LoginViewController: UIViewController {
     private func loginErrorHandler() {
         if self.emailTextField!.text! == "" {
             print("The email text field is empty")
-            let alertController = UIAlertController(title: "Empty Email",
-                message: "",
-                preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
+            launchLoginFailAlertView("Empty Email", message: "Please try again")
         }
         if self.passwordTextField!.text! == "" {
             print("The password text field is empty")
-            let alertController = UIAlertController(title: "Empty Password",
-                message: "",
-                preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
+            launchLoginFailAlertView("Empty Password", message: "Please try again")
+         }
         
     }
-    private func launchLoginFailAlertView() {
-        let alertController = UIAlertController(title: "Blah",
-            message: "",
+    private func launchLoginFailAlertView(title : String, message : String) {
+        let alertController = UIAlertController(title: title,
+            message: message,
             preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -118,7 +88,6 @@ class LoginViewController: UIViewController {
     
     func logout() {
         
-        //        let student = StudentInformation(dictionary: dict as! [String : AnyObject])
         
         UdacityClient.sharedInstance().logoutFromUdacity() { (statusCode, error) in
             if let error = error {
