@@ -75,100 +75,55 @@ class UdacityClient: NSObject {
     }
     
     // MARK: POST
+    
     func taskForPostMethod(method: String,
-        var parameters: [String:AnyObject],
+        var parameters: [String : AnyObject],
         jsonBody : NSData,
         completionHandlerForPost: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             // 1. Set the parameters
-            // (There are no extra parameters to add)
-            parameters = [:]
             
             // 2/3. Build the URL and configure the request
             
-            // TODO
-            // Need to figure what the path extension is(if any) for these udacity
-            // requests.
             let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
-            // TODO: Move the code for building the request into it's own function
-            // It's OK for now, but pay attention to the way that the system for
-            // building requests with bodies is done in the example cod
             request.HTTPMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            // ToDo: verify that the json is correct
- //           request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
             request.HTTPBody = jsonBody
             
             // 4. Make the request
             let task = session.dataTaskWithRequest(request) { (data, response, error) in
-                // if any error occurs, print it and re-enable the UI
-                func displayError(error: String, debugLabelText: String? = nil) {
+                
+                func sendError(error: String) {
                     print(error)
-                    // performUIpdatesOnMain {
-                    //            self.setUIEnabled(true)
-                    //      self.debugTextLabel.text = "Login Failed (Login Step)."
-                    //    }
+                    let userInfo = [NSLocalizedDescriptionKey : error]
+                    completionHandlerForPost(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+            
                 }
-                let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-                print("Here's the DATA!!!")
-                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+                
                 /* Guard: Was there an error? */
                 guard (error == nil) else {
-                    displayError("There was an error with your request: \(error)")
+                    sendError("There was an error with your request: \(error)")
                     return
                 }
                 
                 /* Guard: Did we get a successful 2xx response? */
                 guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where
-                    statusCode >= 200 &&
-                        statusCode <= 299 else {
-                            displayError("Your request returned a status code other than 2xx!")
-                            return
+                    statusCode >= 200 && statusCode <= 299 else {
+                        sendError("Your request returned a status code other than 2xx!")
+                        return
                 }
+                
                 /* Guard: Was there any data returned? */
                 guard let data = data else {
-                    displayError("No data was returned by the request!")
+                    sendError("No data was returned by the request!")
                     return
                 }
+                
                 /* 5. Parse the data */
+                self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPost)
                 
-               self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPost)
-                
-                let parsedResult: AnyObject!
-                do {
-                    parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-                    print("Here's the parsed result!")
-                    print(parsedResult)
-                    // TO DO: Fix This
-                    /*
-                    guard let accountKey = parsedResult["account.key"] as? Int else {
-                        displayError("Cannot find account key")
-                        return
-                    }
-
-                    print("account key", accountKey)
-                    print("accont registered")
-                    print("expirgation")
-                    print("id")
-                    */
-                } catch {
-                    displayError("Could not parse the data as JSON: '\(data)/")
-                }
-                
-                
-                /* Guard: Did Udacity return an error? */
-                // if let _ = parsedResult[Constants.UdacityResponseKeys.StatusCode] as? Int {
-                //     displayError("The Udacity server returned an error. See the ")
-                //     return
-                // }
-                
-                // 6. Use The data!
-                // Guard: Is the success key in parseResult?
-                
-                /* Use the data */
-                // self.getSessionID(self.appDelegate.requestToken)
             }
             task.resume()
             return task

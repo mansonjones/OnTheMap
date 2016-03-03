@@ -35,9 +35,6 @@ class ParseClient: NSObject {
         completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             // 1. Set the parameters
-            // TODO: assign the users key/value pair correctly.
-            //    parameters = [:]
-            // parameters[ParameterKeys.Users] = "manson.jones@gmail.com"
             
             // 2/3. Build the URL and configure the request
             // question: can this be done as an NSURLRequest?
@@ -94,8 +91,6 @@ class ParseClient: NSObject {
             // Build the URL
             // let methodParameters: [String: String] = []
             
-            // let methodParameters: [String:String!] = [:]
-            
             let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
             // TODO: Move the code for building the request into it's own function
             // It's OK for now, but pay attention to the way that the system for
@@ -109,20 +104,16 @@ class ParseClient: NSObject {
             
             // 4. Make the request
             let task = session.dataTaskWithRequest(request) { (data, response, error) in
-                // if any error occurs, print it and re-enable the UI
-                func displayError(error: String, debugLabelText: String? = nil) {
+                
+                func sendError(error : String) {
                     print(error)
-                    // performUIpdatesOnMain {
-                    //            self.setUIEnabled(true)
-                    //      self.debugTextLabel.text = "Login Failed (Login Step)."
-                    //    }
+                    let userInfo = [NSLocalizedDescriptionKey : error]
+                    completionHandlerForPost(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
                 }
-                let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-                print("Here's the DATA!!!")
-                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+                
                 /* Guard: Was there an error? */
                 guard (error == nil) else {
-                    displayError("There was an error with your request: \(error)")
+                    sendError("There was an error with your request: \(error)")
                     return
                 }
                 
@@ -130,33 +121,18 @@ class ParseClient: NSObject {
                 guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where
                     statusCode >= 200 &&
                         statusCode <= 299 else {
-                            displayError("Your request returned a status code other than 2xx!")
+                            sendError("Your request returned a status code other than 2xx!")
                             return
                 }
+                
                 /* Guard: Was there any data returned? */
                 guard let data = data else {
-                    displayError("No data was returned by the request!")
+                    sendError("No data was returned by the request!")
                     return
                 }
-                /* 5. Parse the data */
-                let parsedResult: AnyObject!
-                do {
-                    parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-                    print("Here's the parsed result!")
-                    print(parsedResult)
-                    guard let accountKey = parsedResult["account.key"] as? Int else {
-                        displayError("Cannot find account key")
-                        return
-                    }
-                    
-                    print("account key", accountKey)
-                    print("accont registered")
-                    print("expirgation")
-                    print("id")
-                } catch {
-                    displayError("Could not parse the data as JSON: '\(data)/")
-                }
                 
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPost)
                 
             }
             task.resume()
@@ -388,9 +364,8 @@ class ParseClient: NSObject {
         var parsedResult: AnyObject!
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            print(" ***** Parsed Result ****")
-            // print(parsedResult)
-            // To Do: Get this to work
+            
+            /*
             if let resultsArray = parsedResult.valueForKey("results") as? [AnyObject] {
                 print(resultsArray.count)
                 for (var i = 0; i < resultsArray.count; i++) {
@@ -426,6 +401,7 @@ class ParseClient: NSObject {
                     }
                 }
             }
+            */
             print(" **** Done Parsing Result *** ")
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]

@@ -63,16 +63,13 @@ extension UdacityClient {
     // MARK: POST Convenience Methods
     func loginToUdacity(email: String, password: String, completionHandlerForLogin: (result: Int?, error: NSError?) -> Void) {
         // HTTP Post to https://www.udacity.com/api/session -
-        // Sets the uniqueKey property on the StudentInformation record
+        // Creates a Udacity session. Returnss the property uniqueKey for the user
         // 1. Specify parameters
-        let parameters = ["":""]
-        
-        let method: String = UdacityClient.Methods.Session
+        let parameters = [String : String]()
         
         let httpBody = loginJSONRequest(email, password: password)
-        // let httpBody = try! NSJSONSerialization.dataWithJSONObject(jsonRequest, options: [])
-        // 2. Make the request
-        taskForPostMethod(method, parameters: parameters, jsonBody: httpBody) {
+
+        taskForPostMethod(UdacityClient.Methods.Session, parameters: parameters, jsonBody: httpBody) {
             (results, error) in
             
             // 3. Send the desired value(s) to completion handler */
