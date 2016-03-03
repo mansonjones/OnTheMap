@@ -37,7 +37,19 @@ class LoginViewController: UIViewController {
         UdacityClient.sharedInstance().loginToUdacity(
             self.emailTextField.text!,
             password: self.passwordTextField.text!
-            ) { (statusCode, error) in
+            ) { (success, uniqueKey, errorString) in
+                print(" ***** uniqueKey ", uniqueKey)
+                if (success) {
+                    performUIUpdatesOnMain {
+                        self.completeLogin()
+                    }
+                } else {
+                    performUIUpdatesOnMain {
+                        self.displayError(errorString)
+                    }
+                }
+        }
+                /*
                 if let error = error {
                     print(error)
                     performUIUpdatesOnMain {
@@ -59,6 +71,12 @@ class LoginViewController: UIViewController {
                         }
                     }
                 }
+                */
+        }
+    
+    private func displayError(errorString: String?) {
+        if let errorString = errorString {
+            print(" **** The was an error logging in", errorString)
         }
     }
     

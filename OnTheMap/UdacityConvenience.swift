@@ -1,3 +1,4 @@
+
 //
 //  UdacityConvenience.swift
 //  OnTheMap
@@ -61,7 +62,7 @@ extension UdacityClient {
     
 
     // MARK: POST Convenience Methods
-    func loginToUdacity(email: String, password: String, completionHandlerForLogin: (result: Int?, error: NSError?) -> Void) {
+    func loginToUdacity(email: String, password: String, completionHandlerForLogin: (success: Bool, uniqueKey : String?, errorString: String?) -> Void) {
         // HTTP Post to https://www.udacity.com/api/session -
         // Creates a Udacity session. Returnss the property uniqueKey for the user
         // 1. Specify parameters
@@ -72,15 +73,27 @@ extension UdacityClient {
         taskForPostMethod(UdacityClient.Methods.Session, parameters: parameters, jsonBody: httpBody) {
             (results, error) in
             
+            
             // 3. Send the desired value(s) to completion handler */
             if let error = error {
-                completionHandlerForLogin(result: nil, error: error)
+                print(error)
+                completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
             } else {
-                if let results = results[UdacityClient.JSONResponseKeys.StatusCode] as? Int {
-                    completionHandlerForLogin(result: results, error: nil)
-                } else {
-                    completionHandlerForLogin(result: nil, error: NSError(domain: "udacity login parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse udacity login post list"]))
+                
+                guard let account = results[UdacityClient.JSONResponseKeys.Account] as? [String : AnyObject] else {
+                    completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
+                    return
                 }
+                
+                guard let uniqueKey = account[UdacityClient.JSONResponseKeys.Key] as? String else {
+                    completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
+                    return
+                }
+
+                print("\(uniqueKey)")
+
+                
+                completionHandlerForLogin(success: true, uniqueKey: uniqueKey, errorString: nil)
             }
         }
     }
