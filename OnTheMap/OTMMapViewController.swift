@@ -36,7 +36,9 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         super.viewWillAppear(animated)
         
         // TODO: display an alert if the download fails
+        
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
+
             if let students = students {
                 self.students = students
                 print(" *** NUMBER OF ELEMENTS IS")
@@ -45,10 +47,24 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
                     let annotations = self.buildPointAnnotations()
                     self.mapView.addAnnotations(annotations)
                 }
+            } else {
+                performUIUpdatesOnMain {
+                    self.launchAlertView("Download of student information failed", message: "")
+                }
             }
         }
     }
     
+    private func launchAlertView(title : String, message : String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+
     
     private func buildPointAnnotations() -> [MKPointAnnotation] {
         var annotations = [MKPointAnnotation]()

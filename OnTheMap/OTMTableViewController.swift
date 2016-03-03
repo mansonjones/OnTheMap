@@ -32,6 +32,8 @@ class OTMTableViewController: UITableViewController
                 performUIUpdatesOnMain {
                     self.tableView.reloadData()
                 }
+            } else {
+                self.launchAlertView("Download of Student Data Failed", message : "")
             }
         }
     }
@@ -120,6 +122,16 @@ class OTMTableViewController: UITableViewController
         let controller = storyboard!.instantiateViewControllerWithIdentifier("LoginController") as!
         LoginViewController
         presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    private func launchAlertView(title : String, message : String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
     }
     
    

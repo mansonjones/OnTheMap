@@ -33,11 +33,6 @@ class InformationPostingVC: UIViewController,
     }
     
     func postStudentLocation() {
-        // TODO: get the student information
-        // it should be passed into this view controller when the controller
-        // is launched.
-        // to do: use let/if to check the student object
-        print("Posting Student Locations")
         geocode()
         ParseClient.sharedInstance().postStudenLocation(student) { (statusCode, error) -> Void in
             if let error = error {
