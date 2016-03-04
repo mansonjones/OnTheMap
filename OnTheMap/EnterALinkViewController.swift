@@ -31,8 +31,9 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
         // let longitudeCenter = -98.35
         
         // For Pacific Palisades Ca
-        latitude = 34.035633
-        longitude = -118.51559
+        //latitude = 34.035633
+        // longitude = -118.51559
+        
         
         let initialLocation = CLLocation(latitude: latitude!, longitude: longitude!)
         
@@ -44,22 +45,17 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // linkToShare.text = "bogus"
-        /*
-        UIView.animateWithDuration(5.0) { () -> Void in
-            
-            let initialLocation = CLLocation(latitude: self.latitude!, longitude: self.latitude!)
-            
-            self.centerMapOnLocation(initialLocation)
+        if let latitude = latitude  {
+            if let longitude = longitude {
+                let annotation = MKPointAnnotation()
+                let coordinate = CLLocationCoordinate2D(latitude: self.latitude!, longitude: self.longitude!)
+                annotation.coordinate = coordinate
+                annotation.title = "enter title here"
+                annotation.subtitle = "enter subtitle here"
+                self.mapView.addAnnotation(annotation)
+            }
         }
-        */
-        let annotation = MKPointAnnotation()
-        let coordinate = CLLocationCoordinate2D(latitude: self.latitude!, longitude: self.longitude!)
-        annotation.coordinate = coordinate
-        annotation.title = "enter title here"
-        annotation.subtitle = "enter subtitle here"
-        self.mapView.addAnnotation(annotation)
-
+        
     }
     
     override func viewDidAppear(animated: Bool) {

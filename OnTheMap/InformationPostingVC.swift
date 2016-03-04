@@ -35,12 +35,17 @@ class InformationPostingVC: UIViewController,
     @IBAction func postStudentLocation(sender: AnyObject) {
         print("post student information to server")
         geocode()
-        launchEnterALinkViewController(1.0, longitude : 2.0)
+        let latitudePacPal = 34.035633
+        let longitudePacPal = -118.51559
+
+        launchEnterALinkViewController(latitudePacPal, longitude : longitudePacPal)
         // launch.AlertView("Could Not Geocode the String", message : "")
     }
     
     func postStudentLocation() {
         geocode()
+        // Post Search String and coordintes to the RESTful service
+        // TODO: Display an alert if the post fails.
         /*
         ParseClient.sharedInstance().postStudenLocation(student) { (statusCode, error) -> Void in
             if let error = error {
@@ -64,12 +69,14 @@ class InformationPostingVC: UIViewController,
         // startWithCompletionHandler
         // To Do: Show a spinner while the geoCode is being computed.
         // Given a city name, find the latitude and longitude.
-        spinner.startAnimating()
+        /*
+         spinner.startAnimating()
         
         print(" **** Geo code **")
 //        let address = "15426 Bestor Blvd., Pacific Palisades, CA"
         let address = "aldfkjasl;dfjas"
         // Start the spinner
+        
         CLGeocoder().geocodeAddressString(address) { (placemarks : [CLPlacemark]?, error: NSError?) -> Void in
             print("Hello From geocode ")
             print(" **** Number of placemerks ****")
@@ -116,6 +123,7 @@ class InformationPostingVC: UIViewController,
                 
             }
         }
+        */
     }
     
     private func launchEnterALinkViewController(latitude : Double, longitude : Double) {
@@ -123,6 +131,10 @@ class InformationPostingVC: UIViewController,
         EnterALinkViewController
         
         // controller.student = student
+        // TODO: Put these in if-let statements.
+        
+        controller.latitude = latitude
+        controller.longitude = longitude
         presentViewController(controller, animated: true, completion: nil)
     }
     
