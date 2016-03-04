@@ -28,18 +28,16 @@ class UdacityClient: NSObject {
     }
     
     // MARK: GET
+    
     func taskForGetMethod(method: String,
         var parameters: [String:AnyObject],
         completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             // 1. Set the parameters
-            // TODO: assign the users key/value pair correctly.
-            // parameters[Constants.
-            // parameters[ParameterKeys.Users] = "manson.jones@gmail.com"
             
             // 2/3. Build the URL and configure the request
             // question: can this be done as an NSURLRequest?
-            let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters))
+            let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension:  method))
             
             // 4. Make the request
             let task = session.dataTaskWithRequest(request) { (data, response, error) in

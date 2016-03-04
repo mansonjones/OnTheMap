@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import FBSDKCoreKit
-import FBSDKLoginKit
+// import FBSDKCoreKit
+// import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
@@ -108,7 +108,9 @@ class LoginViewController: UIViewController {
     }
     
     func getPublicUserData() {
-        UdacityClient.sharedInstance().getPublicUserData() { (statusCode, error) in
+        /* let user_id = "1234"
+        
+        UdacityClient.sharedInstance().getPublicUserData(user_id) { (statusCode, error) in
             if let error = error {
                 print(error)
             } else {
@@ -122,7 +124,7 @@ class LoginViewController: UIViewController {
                     print("Unexpected status code \(statusCode)")
                 }
             }
-        }
+        } */
         
     }
     
@@ -130,6 +132,18 @@ class LoginViewController: UIViewController {
         login()
     }
     
+    @IBAction func signUpClicked(sender: AnyObject) {
+        let url = "https://www.udacity.com"
+        
+        if let checkURL = NSURL(string: url) {
+            if UIApplication.sharedApplication().openURL(checkURL) {
+                print(" url successfully opened")
+            }
+        } else {
+            print("invalide url")
+        }
+
+    }
     
     @IBAction func facebookClicked(sender: AnyObject) {
         print("facebookClicked")

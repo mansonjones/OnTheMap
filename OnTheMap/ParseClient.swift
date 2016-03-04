@@ -77,24 +77,20 @@ class ParseClient: NSObject {
     
     
     // MARK: POST
+    
     func taskForPostMethod(method: String,
         var parameters: [String:AnyObject],
         jsonBody: NSData,
         completionHandlerForPost: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
             
             // 1. Set the parameters
-            // parameters = [:]
             
             // 2/3. Build the URL and configure the request
             
             // Set the parameters
             // Build the URL
-            // let methodParameters: [String: String] = []
             
             let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
-            // TODO: Move the code for building the request into it's own function
-            // It's OK for now, but pay attention to the way that the system for
-            // building requests with bodies is done in the example cod
             request.HTTPMethod = "POST"
             request.addValue(ParseClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
             request.addValue(ParseClient.Constants.ParseRESTApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -119,10 +115,9 @@ class ParseClient: NSObject {
                 
                 /* Guard: Did we get a successful 2xx response? */
                 guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where
-                    statusCode >= 200 &&
-                        statusCode <= 299 else {
-                            sendError("Your request returned a status code other than 2xx!")
-                            return
+                    statusCode >= 200 && statusCode <= 299 else {
+                        sendError("Your request returned a status code other than 2xx!")
+                        return
                 }
                 
                 /* Guard: Was there any data returned? */
@@ -359,49 +354,12 @@ class ParseClient: NSObject {
     }
     
     // MARK: Helpers
-    // given a raw JSON, return a usable Foundation object
+    // given raw JSON, return a Foundation object
+    
     private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
         var parsedResult: AnyObject!
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            
-            /*
-            if let resultsArray = parsedResult.valueForKey("results") as? [AnyObject] {
-                print(resultsArray.count)
-                for (var i = 0; i < resultsArray.count; i++) {
-                    if let createdAt = resultsArray[i].valueForKey("createdAt") as? String {
-                        print(createdAt)
-                    }
-                    if let firstName = resultsArray[i].valueForKey("firstName") as? String {
-                        print(firstName)
-                    }
-                    if let lastName = resultsArray[i].valueForKey("lastName") as? String {
-                        print(lastName)
-                    }
-                    if let latitude = resultsArray[i].valueForKey("latitude") as? String {
-                        print(latitude)
-                    }
-                    if let longitude = resultsArray[i].valueForKey("longitude") as? String {
-                        print(longitude)
-                    }
-                    if let mapString = resultsArray[i].valueForKey("mapString") as? String {
-                        print(mapString)
-                    }
-                    if let mediaURL = resultsArray[i].valueForKey("medialURL") as? String {
-                        print(mediaURL)
-                    }
-                    if let objectId = resultsArray[i].valueForKey("objectId") as? String {
-                        print(objectId)
-                    }
-                    if let uniqueKey = resultsArray[i].valueForKey("uniqueKey") as? String {
-                        print(uniqueKey)
-                    }
-                    if let updatedAt = resultsArray[i].valueForKey("updatedAt") as? String {
-                        print(updatedAt)
-                    }
-                }
-            }
-            */
             print(" **** Done Parsing Result *** ")
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]

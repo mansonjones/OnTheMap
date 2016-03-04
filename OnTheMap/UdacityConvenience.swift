@@ -33,14 +33,17 @@ extension UdacityClient {
     }
     */
     
-    func getPublicUserData(
-        completionHandlerForGetPublicUserData: (result: Int?, error: NSError?) -> Void) {
+    func getPublicUserData(user_id : String?,
+        completionHandlerForGetPublicUserData: (result: StudentInformation?, error: NSError?) -> Void) {
         // HTTP Get https://www.udacity.com/api/users/<user_id>
         
             let parameters = [UdacityClient.ParameterKeys.Users: "putTheUserIdHere"]
             
+            // to do: pass the user id in
+            let user_id = "12345"
+            let method = "UdacityClient.Methods.Users/\(user_id)"
             // Make the request
-            taskForGetMethod("blah", parameters: parameters) { (results, error) in
+            taskForGetMethod(method, parameters: parameters) { (results, error) in
     
             // 3. Send the desired values to the completion handler
             if let error = error {

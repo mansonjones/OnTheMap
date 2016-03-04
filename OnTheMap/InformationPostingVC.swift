@@ -20,6 +20,12 @@ class InformationPostingVC: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.hidesWhenStopped = true
+        let user_id = "u5112578"
+        UdacityClient.sharedInstance().getPublicUserData(user_id) { (result, error) -> Void in
+            print("hello")
+            
+            
+        }
     }
     
     @IBAction func cancelInformationEditor() {
@@ -29,6 +35,7 @@ class InformationPostingVC: UIViewController,
     @IBAction func postStudentLocation(sender: AnyObject) {
         print("post student information to server")
         geocode()
+        launchEnterALinkViewController()
         // launch.AlertView("Could Not Geocode the String", message : "")
     }
     
@@ -107,6 +114,14 @@ class InformationPostingVC: UIViewController,
                 
             }
         }
+    }
+    
+    private func launchEnterALinkViewController() {
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("EnterALinkViewController") as!
+        EnterALinkViewController
+        
+        // controller.student = student
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     private func launchAlertView(title : String, message : String) {

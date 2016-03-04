@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3C33B8511C84999200415C02 /* InformationPostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C33B8501C84999200415C02 /* InformationPostingVC.swift */; };
-		3C33B85B1C8552F200415C02 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8581C8552F200415C02 /* FBSDKCoreKit.framework */; };
-		3C33B85C1C8552F200415C02 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8591C8552F200415C02 /* FBSDKLoginKit.framework */; };
-		3C33B85D1C8552F200415C02 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B85A1C8552F200415C02 /* FBSDKShareKit.framework */; };
+		3C33B8641C88E2DC00415C02 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8601C88E2DC00415C02 /* FBSDKCoreKit.framework */; };
+		3C33B8651C88E2DC00415C02 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8611C88E2DC00415C02 /* FBSDKLoginKit.framework */; };
+		3C33B8661C88E2DC00415C02 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8621C88E2DC00415C02 /* FBSDKMessengerShareKit.framework */; };
+		3C33B8671C88E2DC00415C02 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8631C88E2DC00415C02 /* FBSDKShareKit.framework */; };
+		3C33B8691C88E3D400415C02 /* EnterALinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C33B8681C88E3D400415C02 /* EnterALinkViewController.swift */; };
 		3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C591C73D6BA006A8291 /* AppDelegate.swift */; };
 		3C483C5C1C73D6BA006A8291 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C5B1C73D6BA006A8291 /* LoginViewController.swift */; };
 		3C483C5F1C73D6BA006A8291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C483C5D1C73D6BA006A8291 /* Main.storyboard */; };
@@ -55,9 +57,11 @@
 
 /* Begin PBXFileReference section */
 		3C33B8501C84999200415C02 /* InformationPostingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingVC.swift; sourceTree = "<group>"; };
-		3C33B8581C8552F200415C02 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		3C33B8591C8552F200415C02 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		3C33B85A1C8552F200415C02 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		3C33B8601C88E2DC00415C02 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		3C33B8611C88E2DC00415C02 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		3C33B8621C88E2DC00415C02 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
+		3C33B8631C88E2DC00415C02 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		3C33B8681C88E3D400415C02 /* EnterALinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterALinkViewController.swift; sourceTree = "<group>"; };
 		3C483C561C73D6BA006A8291 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C483C591C73D6BA006A8291 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C483C5B1C73D6BA006A8291 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -94,9 +98,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C33B85C1C8552F200415C02 /* FBSDKLoginKit.framework in Frameworks */,
-				3C33B85B1C8552F200415C02 /* FBSDKCoreKit.framework in Frameworks */,
-				3C33B85D1C8552F200415C02 /* FBSDKShareKit.framework in Frameworks */,
+				3C33B8671C88E2DC00415C02 /* FBSDKShareKit.framework in Frameworks */,
+				3C33B8651C88E2DC00415C02 /* FBSDKLoginKit.framework in Frameworks */,
+				3C33B8661C88E2DC00415C02 /* FBSDKMessengerShareKit.framework in Frameworks */,
+				3C33B8641C88E2DC00415C02 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,9 +125,10 @@
 		3C483C4D1C73D6B9006A8291 = {
 			isa = PBXGroup;
 			children = (
-				3C33B8581C8552F200415C02 /* FBSDKCoreKit.framework */,
-				3C33B8591C8552F200415C02 /* FBSDKLoginKit.framework */,
-				3C33B85A1C8552F200415C02 /* FBSDKShareKit.framework */,
+				3C33B8601C88E2DC00415C02 /* FBSDKCoreKit.framework */,
+				3C33B8611C88E2DC00415C02 /* FBSDKLoginKit.framework */,
+				3C33B8621C88E2DC00415C02 /* FBSDKMessengerShareKit.framework */,
+				3C33B8631C88E2DC00415C02 /* FBSDKShareKit.framework */,
 				3C483C581C73D6BA006A8291 /* OnTheMap */,
 				3C483C6D1C73D6BB006A8291 /* OnTheMapTests */,
 				3C483C781C73D6BB006A8291 /* OnTheMapUITests */,
@@ -226,6 +232,7 @@
 		3C483DB01C7F724B006A8291 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3C33B8681C88E3D400415C02 /* EnterALinkViewController.swift */,
 				3C33B8501C84999200415C02 /* InformationPostingVC.swift */,
 				3C483C5B1C73D6BA006A8291 /* LoginViewController.swift */,
 				3C483C931C763A67006A8291 /* OTMTableViewController.swift */,
@@ -390,6 +397,7 @@
 				3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */,
 				3C483C8A1C73ED9E006A8291 /* UdacityConstants.swift in Sources */,
 				3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */,
+				3C33B8691C88E3D400415C02 /* EnterALinkViewController.swift in Sources */,
 				3C33B8511C84999200415C02 /* InformationPostingVC.swift in Sources */,
 				3C483DB51C7FC792006A8291 /* FacebookConstants.swift in Sources */,
 				3C483D9A1C7F57EF006A8291 /* GCDBlackBox.swift in Sources */,
