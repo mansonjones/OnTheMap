@@ -35,12 +35,13 @@ class InformationPostingVC: UIViewController,
     @IBAction func postStudentLocation(sender: AnyObject) {
         print("post student information to server")
         geocode()
-        launchEnterALinkViewController()
+        launchEnterALinkViewController(1.0, longitude : 2.0)
         // launch.AlertView("Could Not Geocode the String", message : "")
     }
     
     func postStudentLocation() {
         geocode()
+        /*
         ParseClient.sharedInstance().postStudenLocation(student) { (statusCode, error) -> Void in
             if let error = error {
                 print(error)
@@ -54,6 +55,7 @@ class InformationPostingVC: UIViewController,
                 }
             }
         }
+        */
     }
     
     private func geocode() {
@@ -116,7 +118,7 @@ class InformationPostingVC: UIViewController,
         }
     }
     
-    private func launchEnterALinkViewController() {
+    private func launchEnterALinkViewController(latitude : Double, longitude : Double) {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("EnterALinkViewController") as!
         EnterALinkViewController
         

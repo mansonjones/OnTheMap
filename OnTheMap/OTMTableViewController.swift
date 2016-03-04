@@ -10,9 +10,6 @@ import UIKit
 
 class OTMTableViewController: UITableViewController
 {
-
-
-    // let teams = ["Warriors", "Spurs", "Thunder", "Wizards", "Heat"]
     var students = [StudentInformation]()
     
     override func viewDidLoad() {

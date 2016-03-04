@@ -15,6 +15,10 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var submitButton: UIButton!
     
+    
+    var latitude : Double?
+    var longitude : Double?
+    
     let regionRadius : CLLocationDistance = 1000000
     
     // TODO: pass in the location
@@ -22,7 +26,15 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let initialLocation = CLLocation(latitude: 39.5, longitude: -98.35)
+        // center
+        // let latitudeCenter = 39.5
+        // let longitudeCenter = -98.35
+        
+        // For Pacific Palisades Ca
+        latitude = 34.035633
+        longitude = -118.51559
+        
+        let initialLocation = CLLocation(latitude: latitude!, longitude: longitude!)
         
         centerMapOnLocation(initialLocation)
         createBarButtonItems()
@@ -33,6 +45,35 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         // linkToShare.text = "bogus"
+        /*
+        UIView.animateWithDuration(5.0) { () -> Void in
+            
+            let initialLocation = CLLocation(latitude: self.latitude!, longitude: self.latitude!)
+            
+            self.centerMapOnLocation(initialLocation)
+        }
+        */
+        let annotation = MKPointAnnotation()
+        let coordinate = CLLocationCoordinate2D(latitude: self.latitude!, longitude: self.longitude!)
+        annotation.coordinate = coordinate
+        annotation.title = "enter title here"
+        annotation.subtitle = "enter subtitle here"
+        self.mapView.addAnnotation(annotation)
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        UIView.animateWithDuration(0.5, animations: {
+            
+            let location = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
+        
+            
+            let coordinateRegion =
+            MKCoordinateRegionMakeWithDistance(location.coordinate, self.regionRadius * 0.1, self.regionRadius * 0.1)
+            
+            self.mapView.setRegion(coordinateRegion, animated: true)
+
+            })
     }
     
     private func createBarButtonItems() {
@@ -69,7 +110,7 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.pinTintColor = UIColor.yellowColor()
+            pinView!.pinTintColor = UIColor.redColor()
             pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         } else {
             pinView!.annotation = annotation
