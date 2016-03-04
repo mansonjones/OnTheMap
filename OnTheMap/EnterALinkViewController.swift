@@ -63,17 +63,17 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animateWithDuration(1.5, delay: 0.5, options: [.CurveEaseInOut], animations: {
             
             let location = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
         
             
             let coordinateRegion =
-            MKCoordinateRegionMakeWithDistance(location.coordinate, self.regionRadius * 0.1, self.regionRadius * 0.1)
+            MKCoordinateRegionMakeWithDistance(location.coordinate, self.regionRadius * 0.025, self.regionRadius * 0.025)
             
             self.mapView.setRegion(coordinateRegion, animated: true)
 
-            })
+        }, completion: nil)
     }
     
     private func createBarButtonItems() {
