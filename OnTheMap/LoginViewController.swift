@@ -10,7 +10,7 @@ import UIKit
 // import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
     
     // MARK: Properties
     
@@ -30,6 +30,28 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: FBSDKLoginButtonDelegate
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        print("Facebook login")
+        if ((error) == nil) {
+            print(" facebook login failed ")
+        } else {
+            print(" facebook login succeeded")
+            // segue to the tab view controller
+        }
+    }
+    
+    func loginButtonWillLogin(loginButton: FBSDKLoginButton!) -> Bool {
+        print("Facebook - loginButtonWillLogin")
+        return true
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("Facebook logout")
+    }
+    
     
     
     func login() {
