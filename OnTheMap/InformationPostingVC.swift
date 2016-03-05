@@ -34,11 +34,11 @@ class InformationPostingVC: UIViewController,
     
     @IBAction func postStudentLocation(sender: AnyObject) {
         print("post student information to server")
-        geocode()
-        let latitudePacPal = 34.035633
-        let longitudePacPal = -118.51559
+        let (latitude, longitude) = geocode()
+        // let latitudePacPal = 34.035633
+        // let longitudePacPal = -118.51559
 
-        launchEnterALinkViewController(latitudePacPal, longitude : longitudePacPal)
+        launchEnterALinkViewController(latitude, longitude : longitude)
         // launch.AlertView("Could Not Geocode the String", message : "")
     }
     
@@ -63,7 +63,7 @@ class InformationPostingVC: UIViewController,
         */
     }
     
-    private func geocode() {
+    private func geocode() -> (latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
         // Use CLGeocoder's geocodeAddressString() or
         // MKLocalSearch's
         // startWithCompletionHandler
@@ -73,7 +73,7 @@ class InformationPostingVC: UIViewController,
          spinner.startAnimating()
         
         print(" **** Geo code **")
-//        let address = "15426 Bestor Blvd., Pacific Palisades, CA"
+        let address = "15426 Bestor Blvd., Pacific Palisades, CA"
         let address = "aldfkjasl;dfjas"
         // Start the spinner
         
@@ -88,12 +88,17 @@ class InformationPostingVC: UIViewController,
         }
         // Use MKLocal
         //
+        */
+        
+        let address = "15426 Bestor Blvd., Pacific Palisades, CA"
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = address
         
         let search = MKLocalSearch(request: request)
         
         // start the spinner
+        var latitude: CLLocationDegrees = 0
+        var longitude: CLLocationDegrees = 0
         
         search.startWithCompletionHandler { (response, error) -> Void in
             print("hello")
@@ -111,22 +116,24 @@ class InformationPostingVC: UIViewController,
                     
                     print("\(item.name)")
                     print("\(item.placemark.location)")
-                    let latitude = item.placemark.location?.coordinate.latitude
-                    let longitude = item.placemark.location?.coordinate.longitude
-                    print("\(latitude!)")
-                    print("\(longitude!)")
+                    let geoCodedLatitude = item.placemark.location?.coordinate.latitude
+                    let geoCodedLongitude = item.placemark.location?.coordinate.longitude
+                    print("LATITUDE = \(geoCodedLatitude!)")
+                    print("LONGITUDE = \(geoCodedLongitude!)")
                     performUIUpdatesOnMain({ () -> Void in
                         self.spinner.stopAnimating()
+                        latitude = geoCodedLatitude!
+                        longitude = geoCodedLongitude!
                     })
                     
                 }
                 
             }
         }
-        */
+        return (latitude,longitude)
     }
     
-    private func launchEnterALinkViewController(latitude : Double, longitude : Double) {
+    private func launchEnterALinkViewController(latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("EnterALinkViewController") as!
         EnterALinkViewController
         

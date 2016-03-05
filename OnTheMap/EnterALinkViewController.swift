@@ -16,8 +16,8 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var submitButton: UIButton!
     
     
-    var latitude : Double?
-    var longitude : Double?
+    var latitude : CLLocationDegrees?
+    var longitude : CLLocationDegrees?
     
     let regionRadius : CLLocationDistance = 1000000
     
