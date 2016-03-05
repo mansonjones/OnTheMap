@@ -8,7 +8,7 @@
 
 import UIKit
 // import FBSDKCoreKit
-// import FBSDKLoginKit
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTextField.secureTextEntry = true

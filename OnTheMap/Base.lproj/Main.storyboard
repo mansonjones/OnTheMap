@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Xl-qj-1hB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -7,7 +7,6 @@
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
         </mutableArray>
     </customFonts>
@@ -87,20 +86,19 @@
                                             <action selector="signUpClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FdT-c7-bqS"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIG-go-WSm" customClass="FBSDKLoginButton">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJx-ZU-cGt" customClass="FBSDKLoginButton">
                                         <rect key="frame" x="0.0" y="420" width="560" height="44"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="Db1-tY-OMB"/>
+                                            <constraint firstAttribute="width" constant="240" id="NZf-Rh-hgt"/>
+                                            <constraint firstAttribute="height" constant="44" id="ZQ2-WK-y7h"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                        <state key="normal" title="Facebook">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="facebookClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3xZ-9c-IWQ"/>
-                                        </connections>
-                                    </button>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="NZf-Rh-hgt"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="WPG-l4-B2G" firstAttribute="leading" secondItem="UoL-y8-748" secondAttribute="leading" constant="20" id="B7q-hz-9YL"/>
@@ -123,6 +121,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="WPG-l4-B2G" id="OhR-he-Rxi"/>
+                        <outlet property="fbLoginButton" destination="wJx-ZU-cGt" id="jek-ir-spd"/>
                         <outlet property="passwordTextField" destination="Hhi-Bd-hcw" id="Lqj-CG-GPl"/>
                     </connections>
                 </viewController>
