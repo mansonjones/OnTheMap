@@ -108,7 +108,7 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
         if self.passwordTextField!.text! == "" {
             print("The password text field is empty")
             launchLoginFailAlertView("Empty Password", message: "Please try again")
-         }
+        }
         
     }
     private func launchLoginFailAlertView(title : String, message : String) {
@@ -126,7 +126,7 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("MainTabBarController") as!
         UITabBarController
         presentViewController(controller, animated: true, completion: nil)
-*/
+        */
     }
     
     func logout() {
@@ -154,19 +154,19 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
         /* let user_id = "1234"
         
         UdacityClient.sharedInstance().getPublicUserData(user_id) { (statusCode, error) in
-            if let error = error {
-                print(error)
-            } else {
-                if statusCode == 1 || statusCode == 12 || statusCode == 13 {
-                    // self.session = session
-                    // performUIUpdatesOn Main {
-                    //  go ahead and launch the tab bar controller
-                    // }
-                    print("launch the tab bar controller")
-                } else {
-                    print("Unexpected status code \(statusCode)")
-                }
-            }
+        if let error = error {
+        print(error)
+        } else {
+        if statusCode == 1 || statusCode == 12 || statusCode == 13 {
+        // self.session = session
+        // performUIUpdatesOn Main {
+        //  go ahead and launch the tab bar controller
+        // }
+        print("launch the tab bar controller")
+        } else {
+        print("Unexpected status code \(statusCode)")
+        }
+        }
         } */
         
     }
@@ -185,7 +185,7 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
         } else {
             print("invalide url")
         }
-
+        
     }
     
     @IBAction func facebookClicked(sender: AnyObject) {

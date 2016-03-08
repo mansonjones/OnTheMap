@@ -13,13 +13,13 @@ extension ParseClient {
         // MARK: API Key
         static let ParseApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let ParseRESTApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
-
+        
         // MARK: URLS
         static let ApiScheme = "https"
         static let ApiHost = "api.parse.com"
         static let ApiPath = "/1"
     }
-
+    
     struct Methods {
         static let StudentLocation = "/classes/StudentLocation"
     }
@@ -46,8 +46,8 @@ extension ParseClient {
     
     struct JSONResponseKeys {
         
-        // This is the key that is used to extract the 
-        // array of student information from the 
+        // This is the key that is used to extract the
+        // array of student information from the
         // json object.
         
         static let StudentResults = "results"
@@ -66,5 +66,5 @@ extension ParseClient {
         static let UniqueKey = "uniqueKey"
         static let UpdatedAt = "updatedAt"
     }
-
+    
 }

@@ -33,7 +33,7 @@ extension UdacityClient {
     }
     func getPublicUserData(userId : String,
     completionHandlerForGetPublicUserData: (result: StudentInformation?, error: NSError?) -> Void) {
-
+    
     */
     func getPublicUserData(userID: String,
         completionHandlerForGetPublicUserData: (success: Bool, firstName : String?, lastName : String?, errorString: String?) -> Void) {
@@ -80,7 +80,7 @@ extension UdacityClient {
     }
     
     
-
+    
     // MARK: POST Convenience Methods
     func loginToUdacity(email: String, password: String, completionHandlerForLogin: (success: Bool, uniqueKey : String?, errorString: String?) -> Void) {
         // HTTP Post to https://www.udacity.com/api/session -
@@ -89,7 +89,7 @@ extension UdacityClient {
         let parameters = [String : String]()
         
         let httpBody = loginJSONRequest(email, password: password)
-
+        
         taskForPostMethod(UdacityClient.Methods.Session, parameters: parameters, jsonBody: httpBody) {
             (results, error) in
             
@@ -116,13 +116,13 @@ extension UdacityClient {
                 print("\(uniqueKey)")
                 
                 self.udacityUserKey = uniqueKey
-
+                
                 
                 completionHandlerForLogin(success: true, uniqueKey: uniqueKey, errorString: nil)
             }
         }
     }
-
+    
     private func loginJSONRequest(email: String, password: String) -> NSData {
         let jsonRequest: [String: AnyObject] = [
             "\(UdacityClient.JSONBodyKeys.Udacity)": [

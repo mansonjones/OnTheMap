@@ -75,8 +75,8 @@ extension UdacityClient {
         static let Id = "session.id"
         
         static let UniqueKey = "uniqueKey"
-   //     static let FirstName = "firstName"
-   //     static let LastName = "lastName"
+        //     static let FirstName = "firstName"
+        //     static let LastName = "lastName"
         static let MapString = "mapString"
         static let MediaUrl = "mediaUrl"
         static let Latitude = "latitude"

@@ -24,7 +24,7 @@ class InformationPostingVC: UIViewController,
         super.viewDidLoad()
         spinner.hidesWhenStopped = true
         self.locationTextField.delegate = self
-        // TODO: Either pass the userid from the login view or make it available 
+        // TODO: Either pass the userid from the login view or make it available
         // otherwise.
         // Could even create a User record for saving this stuff, with it's own
         // special function for populating it.
@@ -74,7 +74,7 @@ class InformationPostingVC: UIViewController,
         let (latitude, longitude) = geocode()
         // let latitudePacPal = 34.035633
         // let longitudePacPal = -118.51559
-
+        
         launchEnterALinkViewController(latitude, longitude : longitude)
         // launch.AlertView("Could Not Geocode the String", message : "")
     }
@@ -85,17 +85,17 @@ class InformationPostingVC: UIViewController,
         // TODO: Display an alert if the post fails.
         /*
         ParseClient.sharedInstance().postStudenLocation(student) { (statusCode, error) -> Void in
-            if let error = error {
-                print(error)
-            } else {
-                if statusCode == 1 || statusCode == 12 || statusCode == 13 {
-                    performUIUpdatesOnMain{
-                        print("Perform UI updates on main")
-                    }
-                } else {
-                    print("Unexpected status code \(statusCode)")
-                }
-            }
+        if let error = error {
+        print(error)
+        } else {
+        if statusCode == 1 || statusCode == 12 || statusCode == 13 {
+        performUIUpdatesOnMain{
+        print("Perform UI updates on main")
+        }
+        } else {
+        print("Unexpected status code \(statusCode)")
+        }
+        }
         }
         */
     }
@@ -107,7 +107,7 @@ class InformationPostingVC: UIViewController,
         // To Do: Show a spinner while the geoCode is being computed.
         // Given a city name, find the latitude and longitude.
         /*
-         spinner.startAnimating()
+        spinner.startAnimating()
         
         print(" **** Geo code **")
         let address = "15426 Bestor Blvd., Pacific Palisades, CA"
@@ -115,13 +115,13 @@ class InformationPostingVC: UIViewController,
         // Start the spinner
         
         CLGeocoder().geocodeAddressString(address) { (placemarks : [CLPlacemark]?, error: NSError?) -> Void in
-            print("Hello From geocode ")
-            print(" **** Number of placemerks ****")
-            print(placemarks!.count)
-            for placemark in placemarks! {
-                print("\(placemark)")
-            }
-            // close the spinner
+        print("Hello From geocode ")
+        print(" **** Number of placemerks ****")
+        print(placemarks!.count)
+        for placemark in placemarks! {
+        print("\(placemark)")
+        }
+        // close the spinner
         }
         // Use MKLocal
         //

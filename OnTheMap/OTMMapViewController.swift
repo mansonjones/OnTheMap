@@ -48,7 +48,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
         
     }
-
+    
     
     private func buildPointAnnotations() -> [MKPointAnnotation] {
         var annotations = [MKPointAnnotation]()
@@ -121,10 +121,10 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     }
     
     private func logoutFromUdacity() {
-        UdacityClient.sharedInstance().logoutFromUdacity() {_,_ in 
-                print(self.students.count)
-                performUIUpdatesOnMain {
-                    self.completeLogout()
+        UdacityClient.sharedInstance().logoutFromUdacity() {_,_ in
+            print(self.students.count)
+            performUIUpdatesOnMain {
+                self.completeLogout()
             }
         }
         
@@ -138,7 +138,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     // TODO: Call this function when a pin is to be updated.≥®
     func launchInfoPostingView() {
-    
+        
         /*
         let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingVC")
         let informationPostingVC = object as! InformationPostingVC
@@ -151,7 +151,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     }
     
     // MARK :
-   
+    
     
     func addLocation() {
         print("add a pin")

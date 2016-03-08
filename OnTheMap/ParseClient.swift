@@ -91,9 +91,9 @@ class ParseClient: NSObject {
             // Build the URL
             // Debug
             do {
-            let foo = try NSJSONSerialization.JSONObjectWithData(jsonBody, options: .AllowFragments)
-            print("*** Foo ***")
-            print(foo)
+                let foo = try NSJSONSerialization.JSONObjectWithData(jsonBody, options: .AllowFragments)
+                print("*** Foo ***")
+                print(foo)
             } catch {
                 print("failed to parse jsonBody")
             }
@@ -140,7 +140,7 @@ class ParseClient: NSObject {
             task.resume()
             return task
     }
-        
+    
     // MARK: PUT
     func taskForPutMethod(method: String,
         var parameters: [String:AnyObject],

@@ -34,10 +34,10 @@ class OTMTableViewController: UITableViewController
             }
         }
     }
-  
+    
     func createBarButtonItems() {
         navigationItem.title = "On The Map"
-       
+        
         // TODO: Get the right artwork for the pin image
         
         let pinImage = UIImage(named: "pin")!
@@ -81,14 +81,14 @@ class OTMTableViewController: UITableViewController
         logoutFromUdacity()
         completeLogout()
     }
-   
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // return teams.count
-     //super.\\\\   self.tableView.reloadData()
+        //super.\\\\   self.tableView.reloadData()
         print("**** Number Of Rows in Section:", students.count)
         return students.count
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("OTMTableViewCell")!
         
@@ -98,7 +98,7 @@ class OTMTableViewController: UITableViewController
         cell.textLabel?.text = self.students[indexPath.row].firstName + " " + self.students[indexPath.row].lastName
         cell.detailTextLabel?.text = self.students[indexPath.row].mediaURL
         cell.imageView?.image = UIImage(named: "pin")
-    
+        
         return cell
     }
     
@@ -142,7 +142,7 @@ class OTMTableViewController: UITableViewController
         
     }
     
-   
+    
     
     
 }

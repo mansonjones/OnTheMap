@@ -56,7 +56,7 @@ extension ParseClient {
     /*
     func queryStudentLocation(result: [StudentInformation]?, error: NSError?) -> Void) -> NSURLSessionDataTask {
     
-      /* https://api.parse.com/1/classes/StudentLocation */
+    /* https://api.parse.com/1/classes/StudentLocation */
     
     let parameters = [
     
@@ -90,7 +90,7 @@ extension ParseClient {
         
         let parameters = [String: String]()
         
-       // let httpBody = postStudentLocationJSONRequest(student)
+        // let httpBody = postStudentLocationJSONRequest(student)
         let uniqueKey = "{\"\(ParseClient.JSONResponseKeys.UniqueKey)\": \"\(student.uniqueKey)\","
         let firstName = "\"\(ParseClient.JSONResponseKeys.FirstName)\": \"\(student.firstName)\","
         let lastName = "\"\(ParseClient.JSONResponseKeys.LastName)\": \"\(student.lastName)\","
@@ -110,9 +110,9 @@ extension ParseClient {
                 if let results = results[ParseClient.JSONResponseKeys.StatusCode] as? Int {
                     completionHandlerForStudentLocation(result: results, error: nil)
                 } else {
-                completionHandlerForStudentLocation(result: nil, error: NSError(domain: "postStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postStudentLocation list"]))
+                    completionHandlerForStudentLocation(result: nil, error: NSError(domain: "postStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postStudentLocation list"]))
                 }
-
+                
             }
             
         }
@@ -148,10 +148,10 @@ extension ParseClient {
         return httpBody
     }
     
-     // MARK: PUT Convenience Methods
+    // MARK: PUT Convenience Methods
     /*
     func updateStudentLocation(student: StudentInformation) {
-    // ToDo: need to pass in the 
+    // ToDo: need to pass in the
     // let httpBody = postStudentJSONRequest
     // let mutableMeth
     let parameters = [ String : String]()

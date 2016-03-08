@@ -9,9 +9,9 @@
 import Foundation
 
 // MARK: - UdacityClient: NSObject
-// 
+//
 class UdacityClient: NSObject {
-
+    
     // MARK: Properties
     
     // shared session
@@ -19,14 +19,14 @@ class UdacityClient: NSObject {
     
     // TODO: write the config method
     // var config = UdacityConfig()
-
+    
     // authentication state and user info
     var udacityUserKey: String? = nil
     var firstName: String? = nil
     var lastName: String? = nil
     
     // TODO: do we need to save any authentication state for the Udacity API?
-
+    
     // MARK: Initializers
     override init() {
         super.init()
@@ -102,7 +102,7 @@ class UdacityClient: NSObject {
                     print(error)
                     let userInfo = [NSLocalizedDescriptionKey : error]
                     completionHandlerForPost(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
-            
+                    
                 }
                 
                 /* Guard: Was there an error? */
@@ -167,7 +167,7 @@ class UdacityClient: NSObject {
                 request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
             }
             let session = NSURLSession.sharedSession()
-        
+            
             // 4. Make the request
             let task = session.dataTaskWithRequest(request) { (data, response, error) in
                 // if any error occurs, print it and re-enable the UI
@@ -182,11 +182,11 @@ class UdacityClient: NSObject {
                     displayError("There was an error with your request: \(error)")
                     return
                 }
-            
+                
                 // Parse the data and use the data
                 let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-               // print("Here's the DATA!!!")
-               // print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+                // print("Here's the DATA!!!")
+                // print(NSString(data: newData, encoding: NSUTF8StringEncoding))
                 
                 /* Guard: Was there an error? */
                 guard (error == nil) else {
@@ -216,8 +216,8 @@ class UdacityClient: NSObject {
                     print(parsedResult)
                     /*
                     guard let accountKey = parsedResult["account.key"] as? Int else {
-                        displayError("Cannot find account key")
-                        return
+                    displayError("Cannot find account key")
+                    return
                     }
                     
                     print("account key", accountKey)
@@ -272,18 +272,18 @@ class UdacityClient: NSObject {
         var parsedResult: AnyObject!
         do {
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-        //    print("Here's the DATA!!!")
-
+            //    print("Here's the DATA!!!")
+            
             parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-          //  print(parsedResult)
-          //  print(" end of data")
+            //  print(parsedResult)
+            //  print(" end of data")
             /*
             guard let account = parsedResult[UdacityClient.JSONResponseKeys.Account] as? [String : AnyObject] else {
-                return
+            return
             }
             
             guard let key = account[UdacityClient.JSONResponseKeys.Key] as? String else {
-                return
+            return
             }
             // This is the value that needs to be saved.
             // TODO: This is the value that needs to be saved.
@@ -297,7 +297,7 @@ class UdacityClient: NSObject {
         
         completionHandlerForConvertData(result: parsedResult, error: nil)
     }
-
+    
     // MARK: Shared Instance
     
     class func sharedInstance() -> UdacityClient {

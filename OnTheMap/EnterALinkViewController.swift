@@ -13,7 +13,7 @@ class EnterALinkViewController: UIViewController,
     MKMapViewDelegate,
     UITextFieldDelegate
 {
-
+    
     @IBOutlet weak var linkToShare: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var submitButton: UIButton!
@@ -67,14 +67,14 @@ class EnterALinkViewController: UIViewController,
         UIView.animateWithDuration(1.5, delay: 0.5, options: [.CurveEaseInOut], animations: {
             
             let location = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
-        
+            
             
             let coordinateRegion =
             MKCoordinateRegionMakeWithDistance(location.coordinate, self.regionRadius * 0.025, self.regionRadius * 0.025)
             
             self.mapView.setRegion(coordinateRegion, animated: true)
-
-        }, completion: nil)
+            
+            }, completion: nil)
     }
     
     private func createBarButtonItems() {
@@ -86,7 +86,7 @@ class EnterALinkViewController: UIViewController,
         var userDictionary = [String:AnyObject]()
         let firstName : String = "Manson"
         let lastName : String = "Jones"
-        let uniqueKey : String = "u5112578" 
+        let uniqueKey : String = "u5112578"
         let mapString : String = "Pacific Palisades, CA"
         let latitude : Double = 37.386052
         let longitude : Double = -122.083851
@@ -135,7 +135,7 @@ class EnterALinkViewController: UIViewController,
         }
         return pinView
     }
-
+    
     
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion =
@@ -143,9 +143,9 @@ class EnterALinkViewController: UIViewController,
         
         mapView.setRegion(coordinateRegion, animated: true)
     }
-
+    
     // UITextFieldDelegate functions
-    // 
+    //
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.text = ""
     }
@@ -154,5 +154,5 @@ class EnterALinkViewController: UIViewController,
         textField.resignFirstResponder()
         return true
     }
-
+    
 }
