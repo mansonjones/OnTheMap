@@ -75,11 +75,13 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
             self.emailTextField.text!,
             password: self.passwordTextField.text!
             ) { (success, uniqueKey, errorString) in
-                print(" ***** uniqueKey ", uniqueKey)
+                print(" ***** uniqueKey ", uniqueKey!)
                 self.udacityAccountKey = uniqueKey
                 if (success) {
                     performUIUpdatesOnMain {
                         self.completeLogin()
+                        print(" **** DEBUG ****")
+                        print(UdacityClient.sharedInstance().udacityUserKey!)
                     }
                 } else {
                     performUIUpdatesOnMain {
@@ -88,7 +90,7 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
                     }
                 }
         }
-         }
+    }
     
     private func displayError(errorString: String?) {
         if let errorString = errorString {

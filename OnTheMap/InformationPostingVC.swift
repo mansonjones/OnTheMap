@@ -10,7 +10,8 @@ import UIKit
 import MapKit
 
 class InformationPostingVC: UIViewController,
-    UINavigationControllerDelegate
+    UINavigationControllerDelegate,
+    UITextFieldDelegate
 {
     @IBOutlet weak var locationTextField: UITextField!
     
@@ -22,6 +23,7 @@ class InformationPostingVC: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.hidesWhenStopped = true
+        self.locationTextField.delegate = self
         // TODO: Either pass the userid from the login view or make it available 
         // otherwise.
         // Could even create a User record for saving this stuff, with it's own
@@ -35,17 +37,21 @@ class InformationPostingVC: UIViewController,
         // somwhere else.  It is manually set here as a convenience
         // for testing.
         
-        let udacityUserKey: String? = "u5112578"
-        print("Udacity User Key", udacityUserKey!)
+        //let udacityUserKey: String? = "u5112578"
+        let udacityUserKey = UdacityClient.sharedInstance().udacityUserKey!
+        // print("Udacity User Key", udacityUserKey!)
         
-        UdacityClient.sharedInstance().getPublicUserData(udacityUserKey!) { (success, firstName, lastName, errorString) -> Void in
+        UdacityClient.sharedInstance().getPublicUserData(udacityUserKey) { (success, firstName, lastName, errorString) -> Void in
             if success {
                 performUIUpdatesOnMain {
-                    print(" **** Debug ****")
+                    print(" **** Debug InformationPostingView - viewWillAppear ****")
                     print(firstName!)
                     print(lastName!)
                     self.firstName = firstName
                     self.lastName = lastName
+                    print(" ********** DEBUG FOR FIRSTNAME, LASTNAME **********")
+                    print(UdacityClient.sharedInstance().firstName)
+                    print(UdacityClient.sharedInstance().lastName)
                 }
             } else {
                 print("error returned by getPublicUserData")
@@ -128,8 +134,10 @@ class InformationPostingVC: UIViewController,
         let search = MKLocalSearch(request: request)
         
         // start the spinner
-        var latitude: CLLocationDegrees = 0
-        var longitude: CLLocationDegrees = 0
+        // let latitudePacPal = 34.035633
+        // let longitudePacPal = -118.51559
+        var latitude: CLLocationDegrees = 34.035633
+        var longitude: CLLocationDegrees = -118.51559
         
         search.startWithCompletionHandler { (response, error) -> Void in
             print("hello")
@@ -186,4 +194,14 @@ class InformationPostingVC: UIViewController,
         
     }
     
+    
+    // Delegate Functiond for UITextFieleDelegate
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

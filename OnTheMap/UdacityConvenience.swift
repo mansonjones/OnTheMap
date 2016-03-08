@@ -100,6 +100,8 @@ extension UdacityClient {
                 completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
             } else {
                 
+                print("loginToUdacity")
+                print(results)
                 guard let account = results[UdacityClient.JSONResponseKeys.Account] as? [String : AnyObject] else {
                     completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
                     return
@@ -112,6 +114,8 @@ extension UdacityClient {
                 print(" *** loginToUdacity - UniqueKey *** ")
                 print(results)
                 print("\(uniqueKey)")
+                
+                self.udacityUserKey = uniqueKey
 
                 
                 completionHandlerForLogin(success: true, uniqueKey: uniqueKey, errorString: nil)

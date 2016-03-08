@@ -9,7 +9,10 @@
 import UIKit
 import MapKit
 
-class EnterALinkViewController: UIViewController, MKMapViewDelegate {
+class EnterALinkViewController: UIViewController,
+    MKMapViewDelegate,
+    UITextFieldDelegate
+{
 
     @IBOutlet weak var linkToShare: UITextField!
     @IBOutlet weak var mapView: MKMapView!
@@ -25,6 +28,8 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        linkToShare.delegate = self
         
         // center
         // let latitudeCenter = 39.5
@@ -81,7 +86,7 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
         var userDictionary = [String:AnyObject]()
         let firstName : String = "Manson"
         let lastName : String = "Jones"
-        let uniqueKey : String = "uniqueKey" // fix this. it should be a string
+        let uniqueKey : String = "u5112578" 
         let mapString : String = "Pacific Palisades, CA"
         let latitude : Double = 37.386052
         let longitude : Double = -122.083851
@@ -139,5 +144,15 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
         mapView.setRegion(coordinateRegion, animated: true)
     }
 
+    // UITextFieldDelegate functions
+    // 
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
 }
