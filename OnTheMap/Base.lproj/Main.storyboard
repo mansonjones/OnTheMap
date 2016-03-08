@@ -144,28 +144,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nHj-Fs-Ndc">
-                                <rect key="frame" x="0.0" y="0.0" width="251" height="200"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="80" y="102" width="245" height="421"/>
-                                </variation>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bGw-bm-pAs">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="nHj-Fs-Ndc"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="nHj-Fs-Ndc"/>
-                            </mask>
-                        </variation>
+                        <constraints>
+                            <constraint firstItem="bGw-bm-pAs" firstAttribute="bottom" secondItem="x0j-G6-mC5" secondAttribute="top" id="103-9D-XCT"/>
+                            <constraint firstItem="bGw-bm-pAs" firstAttribute="leading" secondItem="gyn-JT-ZKL" secondAttribute="leading" id="BT5-OS-KVR"/>
+                            <constraint firstAttribute="trailing" secondItem="bGw-bm-pAs" secondAttribute="trailing" id="ZAF-SN-XKC"/>
+                            <constraint firstItem="bGw-bm-pAs" firstAttribute="top" secondItem="Zkk-ry-CMS" secondAttribute="bottom" id="e2r-qa-6NA"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CCU-xu-dLG"/>
                     <connections>
-                        <outlet property="mapView" destination="nHj-Fs-Ndc" id="MSA-e3-6yV"/>
+                        <outlet property="mapView" destination="bGw-bm-pAs" id="BZ3-dF-kfW"/>
                         <segue destination="2Xl-qj-1hB" kind="presentation" identifier="ShowInformationPostingVC" id="4bF-Kj-yqg"/>
                     </connections>
                 </viewController>
@@ -444,6 +437,6 @@
         <image name="udacity" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="otw-oe-pyk"/>
+        <segue reference="4bF-Kj-yqg"/>
     </inferredMetricsTieBreakers>
 </document>

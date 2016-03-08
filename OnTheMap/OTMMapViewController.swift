@@ -14,7 +14,6 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     // MARK: Properties
     
     @IBOutlet weak var mapView: MKMapView!
-    
     let regionRadius: CLLocationDistance = 1000000
     
     var students: [StudentInformation] = [StudentInformation]()
@@ -29,6 +28,30 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         // There's only one rightBarButtonItem
         createBarButtonItems()
         mapView.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
+            
+            if let students = students {
+                self.students = students
+                print(" *** NUMBER OF ELEMENTS IS")
+                print(self.students.count)
+                performUIUpdatesOnMain {
+                    let annotations = self.buildPointAnnotations()
+                    self.mapView.addAnnotations(annotations)
+                }
+            } else {
+                performUIUpdatesOnMain {
+                    self.launchAlertView("Download of student information failed", message: "")
+                }
+            }
+            
+            
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
