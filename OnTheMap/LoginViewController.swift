@@ -12,6 +12,9 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
     
+    let EmailValueKey = "Email Value Key"
+    let PasswordValueKey = "Password Value Key"
+    
     // MARK: Properties
     var udacityAccountKey: String? = nil
     
@@ -28,9 +31,15 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        emailTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(EmailValueKey)
+        passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(PasswordValueKey)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSUserDefaults.standardUserDefaults().setObject(emailTextField.text, forKey: EmailValueKey)
+        NSUserDefaults.standardUserDefaults().setObject(passwordTextField.text, forKey: PasswordValueKey)
     }
     
     // MARK: FBSDKLoginButtonDelegate
