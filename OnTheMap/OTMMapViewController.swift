@@ -31,29 +31,13 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         mapView.delegate = self
     }
     
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        // TODO: display an alert if the download fails
-        
-        ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
-
-            if let students = students {
-                self.students = students
-                print(" *** NUMBER OF ELEMENTS IS")
-                print(self.students.count)
-                performUIUpdatesOnMain {
-                    let annotations = self.buildPointAnnotations()
-                    self.mapView.addAnnotations(annotations)
-                }
-            } else {
-                performUIUpdatesOnMain {
-                    self.launchAlertView("Download of student information failed", message: "")
-                }
-            }
+        if segue.identifier == "ShowInformationPostingVC" {
+            let controller = segue.destinationViewController as! InformationPostingVC
         }
     }
+    
     
     private func launchAlertView(title : String, message : String) {
         let alertController = UIAlertController(
@@ -154,11 +138,16 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     // TODO: Call this function when a pin is to be updated.≥®
     func launchInfoPostingView() {
+    
+        /*
         let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingVC")
         let informationPostingVC = object as! InformationPostingVC
         
         // TODO: pass information to the posting view
         presentViewController(informationPostingVC, animated: true, completion: nil)
+        */
+        performSegueWithIdentifier("ShowInformationPostingVC", sender: self)
+        
     }
     
     // MARK :

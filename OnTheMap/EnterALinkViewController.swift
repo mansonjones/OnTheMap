@@ -78,10 +78,28 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func postStudentInformation(sender: AnyObject) {
         print("Post Student Information")
+        var userDictionary = [String:AnyObject]()
+        let firstName : String = "Manson"
+        let lastName : String = "Jones"
+        let uniqueKey : String = "uniqueKey" // fix this. it should be a string
+        let mapString : String = "Pacific Palisades, CA"
+        let latitude : Double = 37.386052
+        let longitude : Double = -122.083851
+        
+        userDictionary[ParseClient.JSONResponseKeys.FirstName] = firstName
+        userDictionary[ParseClient.JSONResponseKeys.LastName] = lastName
+        userDictionary[ParseClient.JSONResponseKeys.UniqueKey] = uniqueKey
+        userDictionary[ParseClient.JSONResponseKeys.MapString] = mapString
+        userDictionary[ParseClient.JSONResponseKeys.MediaUrl] = "https://www.3quarksdaily.com"
+        userDictionary[ParseClient.JSONResponseKeys.Latitude] = latitude
+        userDictionary[ParseClient.JSONResponseKeys.Longitude] = longitude
+        
+        let user = StudentInformation(dictionary: userDictionary)
         /*
         let studentInfo = [ParseClient.JSONResponseKeys.MapString : "blah" /* linkToShare.text */ ]
         let student = StudentInformation(dictionary: studentInfo)
-        ParseClient.sharedInstance().postStudenLocation(student) { (statusCode, error) -> Void in
+        */
+        ParseClient.sharedInstance().postStudenLocation(user) { (statusCode, error) -> Void in
             if let error = error {
                 print(error)
             } else {
@@ -92,7 +110,6 @@ class EnterALinkViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         }
-        */
     }
     
     // MARK: MapKit Delegate Functions

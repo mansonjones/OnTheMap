@@ -13,9 +13,11 @@ import FBSDKLoginKit
 class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
     
     // MARK: Properties
+    var udacityAccountKey: String? = nil
     
     var appDelegate: AppDelegate!
     
+    // MARK: Outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -40,6 +42,13 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
         } else {
             print(" facebook login succeeded")
             // segue to the tab view controller
+            
+            /*
+            let controller = storyboard!.instantiateViewControllerWithIdentifier("MainTabBarController") as!
+            UITabBarController
+            presentViewController(controller, animated: true, completion: nil)
+            */
+            performSegueWithIdentifier("ShowMainTabController", sender: self)
         }
     }
     
@@ -52,7 +61,12 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
         print("Facebook logout")
     }
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ShowMainTabController" {
+            let controller = segue.destinationViewController as! UITabBarController
+        }
+    }
     
     func login() {
         loginErrorHandler()
@@ -62,6 +76,7 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
             password: self.passwordTextField.text!
             ) { (success, uniqueKey, errorString) in
                 print(" ***** uniqueKey ", uniqueKey)
+                self.udacityAccountKey = uniqueKey
                 if (success) {
                     performUIUpdatesOnMain {
                         self.completeLogin()
@@ -104,9 +119,12 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
     }
     
     private func completeLogin() {
+        performSegueWithIdentifier("ShowMainTabController", sender: nil)
+        /*
         let controller = storyboard!.instantiateViewControllerWithIdentifier("MainTabBarController") as!
         UITabBarController
         presentViewController(controller, animated: true, completion: nil)
+*/
     }
     
     func logout() {

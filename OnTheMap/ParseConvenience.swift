@@ -90,20 +90,29 @@ extension ParseClient {
         
         let parameters = [String: String]()
         
-        let httpBody = postStudentLocationJSONRequest(student)
-        
-        taskForPostMethod(ParseClient.Methods.StudentLocation, parameters: parameters, jsonBody: httpBody) { (results, error) in
+       // let httpBody = postStudentLocationJSONRequest(student)
+        let uniqueKey = "{\"\(ParseClient.JSONResponseKeys.UniqueKey)\": \"\(student.uniqueKey)\","
+        let firstName = "\"\(ParseClient.JSONResponseKeys.FirstName)\": \"\(student.firstName)\","
+        let lastName = "\"\(ParseClient.JSONResponseKeys.LastName)\": \"\(student.lastName)\","
+        let mapString = "\"\(ParseClient.JSONResponseKeys.MapString)\": \"\(student.mapString)\","
+        let mediaUrl = "\"\(ParseClient.JSONResponseKeys.MediaUrl)\": \"\(student.mediaURL)\","
+        let latitude = "\"\(ParseClient.JSONResponseKeys.Latitude)\": \"\(student.latitude)\","
+        let longitude = "\"\(ParseClient.JSONResponseKeys.Longitude)\": \"\(student.longitude)\"}"
+        let foo = uniqueKey + firstName + lastName + mapString + mediaUrl + latitude + longitude
+        print(" the http body is:")
+        print(foo)
+        let temp = foo.dataUsingEncoding(NSUTF8StringEncoding)!
+        taskForPostMethod(ParseClient.Methods.StudentLocation, parameters: parameters, jsonBody: temp) { (results, error) in
             
             if let error = error {
                 completionHandlerForStudentLocation(result: nil, error: error)
             } else {
-                /*
-                if let result = results[ParseClient.JSONResponseKeys.StatusCode] as? Int {
-                completionHandlerForStudentLocation(result: result, error: nil)
+                if let results = results[ParseClient.JSONResponseKeys.StatusCode] as? Int {
+                    completionHandlerForStudentLocation(result: results, error: nil)
                 } else {
                 completionHandlerForStudentLocation(result: nil, error: NSError(domain: "postStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postStudentLocation list"]))
                 }
-                */
+
             }
             
         }

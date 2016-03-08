@@ -20,6 +20,11 @@ class UdacityClient: NSObject {
     // TODO: write the config method
     // var config = UdacityConfig()
 
+    // authentication state and user info
+    var udacityUserKey: String? = nil
+    var firstName: String? = nil
+    var lastName: String? = nil
+    
     // TODO: do we need to save any authentication state for the Udacity API?
 
     // MARK: Initializers
@@ -180,8 +185,8 @@ class UdacityClient: NSObject {
             
                 // Parse the data and use the data
                 let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-                print("Here's the DATA!!!")
-                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+               // print("Here's the DATA!!!")
+               // print(NSString(data: newData, encoding: NSUTF8StringEncoding))
                 
                 /* Guard: Was there an error? */
                 guard (error == nil) else {
@@ -263,12 +268,16 @@ class UdacityClient: NSObject {
     // MARK: Helpers
     // given a raw JSON, return a usable Foundation object
     private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
+        
         var parsedResult: AnyObject!
         do {
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            print("Here's the DATA!!!")
+        //    print("Here's the DATA!!!")
 
             parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
+          //  print(parsedResult)
+          //  print(" end of data")
+            /*
             guard let account = parsedResult[UdacityClient.JSONResponseKeys.Account] as? [String : AnyObject] else {
                 return
             }
@@ -279,6 +288,7 @@ class UdacityClient: NSObject {
             // This is the value that needs to be saved.
             // TODO: This is the value that needs to be saved.
             print("\(key)")
+            */
             
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]

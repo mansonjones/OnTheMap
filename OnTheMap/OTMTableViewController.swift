@@ -54,12 +54,23 @@ class OTMTableViewController: UITableViewController
     
     func addLocation() {
         print("add a pin")
+        /*
         let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingVC")
         let informationPostingVC = object as! InformationPostingVC
         
         // TODO: pass information to the posting view
         presentViewController(informationPostingVC, animated: true, completion: nil)
+        */
+        performSegueWithIdentifier("ShowInformationPostingVC", sender: self)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ShowInformationPostingVC" {
+            let controller = segue.destinationViewController as! InformationPostingVC
+        }
+    }
+    
     
     func updateTable() {
         print("update the table")

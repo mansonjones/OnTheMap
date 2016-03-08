@@ -15,17 +15,48 @@ class InformationPostingVC: UIViewController,
     @IBOutlet weak var locationTextField: UITextField!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    var student: StudentInformation!
+    var student = StudentInformation()
+    var firstName : String?
+    var lastName : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.hidesWhenStopped = true
-        let user_id = "u5112578"
-        UdacityClient.sharedInstance().getPublicUserData(user_id) { (result, error) -> Void in
-            print("hello")
-            
-            
+        // TODO: Either pass the userid from the login view or make it available 
+        // otherwise.
+        // Could even create a User record for saving this stuff, with it's own
+        // special function for populating it.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // TODO: The value of the UdacityUserKey should be read from
+        // somwhere else.  It is manually set here as a convenience
+        // for testing.
+        
+        let udacityUserKey: String? = "u5112578"
+        print("Udacity User Key", udacityUserKey!)
+        
+        UdacityClient.sharedInstance().getPublicUserData(udacityUserKey!) { (success, firstName, lastName, errorString) -> Void in
+            if success {
+                performUIUpdatesOnMain {
+                    print(" **** Debug ****")
+                    print(firstName!)
+                    print(lastName!)
+                    self.firstName = firstName
+                    self.lastName = lastName
+                }
+            } else {
+                print("error returned by getPublicUserData")
+            }
         }
+        print(" **** InformationPostingVC - viewWillAppear - ")
+        print(self.firstName)
+        print(self.lastName)
+        print(" *** another approach")
+        print(UdacityClient.sharedInstance().firstName)
+        print(UdacityClient.sharedInstance().lastName)
     }
     
     @IBAction func cancelInformationEditor() {

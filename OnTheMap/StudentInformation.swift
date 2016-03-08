@@ -11,30 +11,40 @@ import MapKit
 struct StudentInformation {
     // MARK: Properties
     
-    let firstName: String
-    let lastName: String
+    var firstName: String
+    var lastName: String
     // let udacityId: String
     let latitude: Double
     let longitude: Double
-    let mediaURL: String
-    let uniqueKey: Int64  /* The Udacity account (user) id */
     let mapString: String
+    let mediaURL: String
+    let uniqueKey: String  /* The Udacity account (user) id */
+    
     let coordinate: CLLocationCoordinate2D
     
     
     // Mark Initializers
+    init() {
+        firstName = ""
+        lastName = ""
+        latitude = 1.0
+        longitude = 2.0
+        mapString = ""
+        mediaURL = ""
+        uniqueKey = ""
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
     
     // construct a StudentInformation object from
     init(dictionary: [String:AnyObject]) {
         firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
         lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as! String
-        // udacityId = "blah"
         latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as! Double
         longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
         mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaUrl] as! String
         mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
-        uniqueKey = 1234
-        //        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! Int64
+        // uniqueKey = "u12345"
+        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
         // coordinate could also be defined as a computed parameter.
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }

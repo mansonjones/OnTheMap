@@ -52,6 +52,8 @@ extension ParseClient {
         
         static let StudentResults = "results"
         
+        static let StatusCode = "status_code"
+        
         // MARK: StudentLocation
         static let CreatedAt = "createdAt"
         static let FirstName = "firstName"

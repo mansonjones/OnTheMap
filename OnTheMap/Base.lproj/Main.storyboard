@@ -123,11 +123,12 @@
                         <outlet property="emailTextField" destination="WPG-l4-B2G" id="OhR-he-Rxi"/>
                         <outlet property="fbLoginButton" destination="wJx-ZU-cGt" id="jek-ir-spd"/>
                         <outlet property="passwordTextField" destination="Hhi-Bd-hcw" id="Lqj-CG-GPl"/>
+                        <segue destination="gh7-hF-j1H" kind="show" identifier="ShowMainTabController" id="Rd4-o8-Ogq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="175" y="1001"/>
+            <point key="canvasLocation" x="-519" y="1983"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="4oA-ja-G2R">
@@ -163,6 +164,7 @@
                     <navigationItem key="navigationItem" id="CCU-xu-dLG"/>
                     <connections>
                         <outlet property="mapView" destination="nHj-Fs-Ndc" id="MSA-e3-6yV"/>
+                        <segue destination="2Xl-qj-1hB" kind="presentation" identifier="ShowInformationPostingVC" id="4bF-Kj-yqg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWy-EZ-I9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1J-Pz-RXP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2502" y="3124"/>
+            <point key="canvasLocation" x="3330" y="2013"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="vBs-E7-6G4">
@@ -273,6 +275,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="eYM-EA-yfI"/>
+                    <connections>
+                        <segue destination="2Xl-qj-1hB" kind="presentation" identifier="ShowInformationPostingVC" id="otw-oe-pyk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gV1-n4-Idb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -366,11 +371,13 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter Your Location Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rJs-qV-YP3">
                                 <rect key="frame" x="20" y="274" width="560" height="0.0"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.79017948920000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKM-DN-nIq">
                                 <rect key="frame" x="20" y="338" width="560" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Find on the Map"/>
                                 <connections>
                                     <action selector="postStudentLocation:" destination="2Xl-qj-1hB" eventType="touchUpInside" id="hk0-BH-vPI"/>
@@ -391,7 +398,7 @@
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTk-gs-ADQ">
                                 <rect key="frame" x="244" y="120" width="112" height="71"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.79017948920000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="3Ym-Ky-QaS"/>
                                     <constraint firstAttribute="width" constant="112" id="UH4-Hd-2Is"/>
@@ -401,7 +408,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cKM-DN-nIq" firstAttribute="leading" secondItem="rJs-qV-YP3" secondAttribute="leading" id="0ih-X2-FJj"/>
                             <constraint firstItem="cKM-DN-nIq" firstAttribute="trailing" secondItem="1J6-et-aBx" secondAttribute="trailing" id="5RF-Tu-7UT"/>
@@ -425,7 +432,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jGz-my-geq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1532" y="3129"/>
+            <point key="canvasLocation" x="2681" y="2008"/>
         </scene>
     </scenes>
     <resources>
@@ -434,4 +441,7 @@
         <image name="map" width="32" height="32"/>
         <image name="udacity" width="256" height="256"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="otw-oe-pyk"/>
+    </inferredMetricsTieBreakers>
 </document>

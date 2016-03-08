@@ -61,7 +61,10 @@ extension UdacityClient {
         static let Email = "email"
         static let Password = "password"
         //MARK: session
-        // TODO: Not sure which of these are needed.
+        static let User = "user"
+        static let FirstName = "first_name"
+        static let LastName = "last_name"
+        
         // TODO: Not sure if the dot notation works for json
         
         // MARK: Udacity student information
@@ -72,8 +75,8 @@ extension UdacityClient {
         static let Id = "session.id"
         
         static let UniqueKey = "uniqueKey"
-        static let FirstName = "firstName"
-        static let LastName = "lastName"
+   //     static let FirstName = "firstName"
+   //     static let LastName = "lastName"
         static let MapString = "mapString"
         static let MediaUrl = "mediaUrl"
         static let Latitude = "latitude"

@@ -31,29 +31,54 @@ extension UdacityClient {
     }
     }
     }
+    func getPublicUserData(userId : String,
+    completionHandlerForGetPublicUserData: (result: StudentInformation?, error: NSError?) -> Void) {
+
     */
-    
-    func getPublicUserData(user_id : String?,
-        completionHandlerForGetPublicUserData: (result: StudentInformation?, error: NSError?) -> Void) {
-        // HTTP Get https://www.udacity.com/api/users/<user_id>
-        
-            let parameters = [UdacityClient.ParameterKeys.Users: "putTheUserIdHere"]
+    func getPublicUserData(userID: String,
+        completionHandlerForGetPublicUserData: (success: Bool, firstName : String?, lastName : String?, errorString: String?) -> Void) {
             
-            // to do: pass the user id in
-            let user_id = "12345"
-            let method = "UdacityClient.Methods.Users/\(user_id)"
+            // HTTP Get https://www.udacity.com/api/users/<user_id>
+            
+            let parameters = [String : AnyObject]()
+            let method = "\(UdacityClient.Methods.Users)/\(userID)"
+            
             // Make the request
             taskForGetMethod(method, parameters: parameters) { (results, error) in
-    
-            // 3. Send the desired values to the completion handler
-            if let error = error {
-                print(error)
-                completionHandlerForGetPublicUserData(result: nil, error: error)
-            } else {
-                print(" successful return from getPublicUserData")
-                 }
+                
+                // 3. Send the desired values to the completion handler
+                if let error = error {
+                    print(error)
+                    completionHandlerForGetPublicUserData(success: false,
+                        firstName: nil, lastName : nil, errorString: "get public user data failed")
+                } else {
+                    guard let user = results[UdacityClient.JSONResponseKeys.User] as? [String : AnyObject] else {
+                        completionHandlerForGetPublicUserData(success: false, firstName: nil, lastName: nil,
+                            errorString: "getPublicUserData failed in parsing user key");
+                        return
+                    }
+                    
+                    guard let firstName = user[UdacityClient.JSONResponseKeys.FirstName] as? String else {
+                        completionHandlerForGetPublicUserData(success: false, firstName: nil, lastName: nil,
+                            errorString: "getPublicUserData failed in parsing user key");
+                        return
+                    }
+                    
+                    guard let lastName = user[UdacityClient.JSONResponseKeys.LastName] as? String else {
+                        completionHandlerForGetPublicUserData(success: false, firstName: nil, lastName: nil,
+                            errorString: "getPublicUserData failed in parsing user key");
+                        return
+                    }
+                    self.firstName = firstName
+                    self.lastName = lastName
+                    completionHandlerForGetPublicUserData(success: true, firstName: firstName, lastName: lastName,
+                        errorString: nil);
+                    
+                }
+                
             }
     }
+    
     
 
     // MARK: POST Convenience Methods
@@ -84,7 +109,8 @@ extension UdacityClient {
                     completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
                     return
                 }
-
+                print(" *** loginToUdacity - UniqueKey *** ")
+                print(results)
                 print("\(uniqueKey)")
 
                 
