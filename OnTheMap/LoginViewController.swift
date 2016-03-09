@@ -33,13 +33,26 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        emailTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(EmailValueKey)
-        passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(PasswordValueKey)
+        
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let emailText  = defaults.stringForKey(EmailValueKey) {
+            emailTextField.text = emailText
+        }
+        if let passwordText = defaults.stringForKey(PasswordValueKey) {
+            passwordTextField.text = passwordText
+        }
+
+
     }
     
     override func viewWillDisappear(animated: Bool) {
-        NSUserDefaults.standardUserDefaults().setObject(emailTextField.text, forKey: EmailValueKey)
-        NSUserDefaults.standardUserDefaults().setObject(passwordTextField.text, forKey: PasswordValueKey)
+        super.viewWillDisappear(animated)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(emailTextField.text, forKey: EmailValueKey)
+        defaults.setObject(passwordTextField.text, forKey: PasswordValueKey)
+        
     }
     
     // MARK: FBSDKLoginButtonDelegate
@@ -73,12 +86,14 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "ShowMainTabController" {
-            let controller = segue.destinationViewController as! UITabBarController
+            let _ = segue.destinationViewController as! UITabBarController
         }
     }
     
     func login() {
-        loginErrorHandler()
+        if loginErrorHandler() {
+            return
+        }
         
         UdacityClient.sharedInstance().loginToUdacity(
             self.emailTextField.text!,
@@ -109,16 +124,18 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
     
     // TODO: Move this into a different file.
     
-    private func loginErrorHandler() {
+    private func loginErrorHandler() -> Bool {
         if self.emailTextField!.text! == "" {
             print("The email text field is empty")
             launchLoginFailAlertView("Empty Email", message: "Please try again")
+            return true
         }
         if self.passwordTextField!.text! == "" {
             print("The password text field is empty")
             launchLoginFailAlertView("Empty Password", message: "Please try again")
+            return true
         }
-        
+        return false
     }
     private func launchLoginFailAlertView(title : String, message : String) {
         let alertController = UIAlertController(title: title,

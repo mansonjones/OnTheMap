@@ -11,9 +11,8 @@ import MapKit
 struct StudentInformation {
     // MARK: Properties
     
-    var firstName: String
-    var lastName: String
-    // let udacityId: String
+    let firstName: String
+    let lastName: String
     let latitude: Double
     let longitude: Double
     let mapString: String
