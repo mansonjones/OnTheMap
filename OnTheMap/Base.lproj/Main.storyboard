@@ -228,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1J-Pz-RXP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3330" y="2013"/>
+            <point key="canvasLocation" x="3418" y="2008"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="vBs-E7-6G4">
@@ -423,6 +423,7 @@
                     <connections>
                         <outlet property="locationTextField" destination="rJs-qV-YP3" id="T84-R4-CgW"/>
                         <outlet property="spinner" destination="r17-FU-p8s" id="dbU-r6-UJE"/>
+                        <segue destination="Qb2-vM-Q06" kind="presentation" identifier="ShowEnterALinkViewController" modalTransitionStyle="crossDissolve" id="dzR-h5-kv6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jGz-my-geq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -437,6 +438,6 @@
         <image name="udacity" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4bF-Kj-yqg"/>
+        <segue reference="otw-oe-pyk"/>
     </inferredMetricsTieBreakers>
 </document>

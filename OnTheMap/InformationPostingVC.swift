@@ -112,14 +112,29 @@ class InformationPostingVC: UIViewController,
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ShowEnterALinkViewController" {
+            let controller = segue.destinationViewController as! EnterALinkViewController
+            controller.latitude = self.latitude
+            controller.longitude = self.longitude
+        }
+    }
+    
+    func test() {
+        performSegueWithIdentifier("ShowEnterALinkViewController", sender: self)
+    }
     
     private func launchEnterALinkViewController(latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("EnterALinkViewController") as!
-        EnterALinkViewController
+        //let controller = storyboard!.instantiateViewControllerWithIdentifier("EnterALinkViewController") as!
+       // EnterALinkViewController
         
+        /*
         controller.latitude = latitude
         controller.longitude = longitude
-        presentViewController(controller, animated: true, completion: nil)
+         presentViewController(controller, animated: true, completion: nil)
+        */
+        test()
     }
     
     private func launchAlertView(title : String, message : String) {

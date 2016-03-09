@@ -88,10 +88,10 @@ class EnterALinkViewController: UIViewController,
     @IBAction func postStudentInformation(sender: AnyObject) {
         print("Post Student Information")
         var userDictionary = [String:AnyObject]()
-        let firstName : String = "Manson"
-        let lastName : String = "Jones"
-        let uniqueKey : String = "u5112578"
-        let mapString : String = "Pacific Palisades, CA"
+        let firstName = UdacityClient.sharedInstance().firstName
+        let lastName = UdacityClient.sharedInstance().lastName
+        let uniqueKey =  "5112578" /* UdacityClient.sharedInstance().udacityUserKey */
+        let mapString : String = "Pacfic Palisades"
         let latitude : Double = self.latitude!
         let longitude : Double = self.longitude!
         
@@ -99,7 +99,7 @@ class EnterALinkViewController: UIViewController,
         userDictionary[ParseClient.JSONResponseKeys.LastName] = lastName
         userDictionary[ParseClient.JSONResponseKeys.UniqueKey] = uniqueKey
         userDictionary[ParseClient.JSONResponseKeys.MapString] = mapString
-        userDictionary[ParseClient.JSONResponseKeys.MediaUrl] = "https://www.3quarksdaily.com"
+        userDictionary[ParseClient.JSONResponseKeys.MediaUrl] = linkToShare.text!
         userDictionary[ParseClient.JSONResponseKeys.Latitude] = latitude
         userDictionary[ParseClient.JSONResponseKeys.Longitude] = longitude
         
