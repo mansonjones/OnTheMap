@@ -33,6 +33,9 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // TODO: Delete this debug statement
+        print(" **** DEBUG ****")
+        print(UdacityClient.sharedInstance().udacityUserKey!)
         
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             

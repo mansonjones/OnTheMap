@@ -137,6 +137,7 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
         }
         return false
     }
+    
     private func launchLoginFailAlertView(title : String, message : String) {
         let alertController = UIAlertController(title: title,
             message: message,

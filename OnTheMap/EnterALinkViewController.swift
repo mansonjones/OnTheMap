@@ -50,10 +50,14 @@ class EnterALinkViewController: UIViewController,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if let latitude = latitude  {
-            if let longitude = longitude {
+        print(" EnterALinkViewController - viewWillAppear ")
+        print("\(self.latitude!)")
+        print("\(self.longitude!)")
+        
+        if let latitude = self.latitude {
+            if let longitude = self.longitude {
                 let annotation = MKPointAnnotation()
-                let coordinate = CLLocationCoordinate2D(latitude: self.latitude!, longitude: self.longitude!)
+                let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 annotation.coordinate = coordinate
                 annotation.title = "enter title here"
                 annotation.subtitle = "enter subtitle here"
@@ -88,8 +92,8 @@ class EnterALinkViewController: UIViewController,
         let lastName : String = "Jones"
         let uniqueKey : String = "u5112578"
         let mapString : String = "Pacific Palisades, CA"
-        let latitude : Double = 37.386052
-        let longitude : Double = -122.083851
+        let latitude : Double = self.latitude!
+        let longitude : Double = self.longitude!
         
         userDictionary[ParseClient.JSONResponseKeys.FirstName] = firstName
         userDictionary[ParseClient.JSONResponseKeys.LastName] = lastName

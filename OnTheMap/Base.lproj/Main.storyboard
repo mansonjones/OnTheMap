@@ -375,7 +375,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Find on the Map"/>
                                 <connections>
-                                    <action selector="postStudentLocation:" destination="2Xl-qj-1hB" eventType="touchUpInside" id="hk0-BH-vPI"/>
+                                    <action selector="findOnTheMap:" destination="2Xl-qj-1hB" eventType="touchUpInside" id="pFT-eC-JnZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J6-et-aBx">

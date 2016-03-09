@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C2CA1431C90BA2100B2C351 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C2CA1421C90BA2000B2C351 /* CoreLocation.framework */; };
 		3C33B8511C84999200415C02 /* InformationPostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C33B8501C84999200415C02 /* InformationPostingVC.swift */; };
 		3C33B8641C88E2DC00415C02 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8601C88E2DC00415C02 /* FBSDKCoreKit.framework */; };
 		3C33B8651C88E2DC00415C02 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8611C88E2DC00415C02 /* FBSDKLoginKit.framework */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C2CA1421C90BA2000B2C351 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3C33B8501C84999200415C02 /* InformationPostingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingVC.swift; sourceTree = "<group>"; };
 		3C33B8601C88E2DC00415C02 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3C33B8611C88E2DC00415C02 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C2CA1431C90BA2100B2C351 /* CoreLocation.framework in Frameworks */,
 				3C33B8671C88E2DC00415C02 /* FBSDKShareKit.framework in Frameworks */,
 				3C33B8651C88E2DC00415C02 /* FBSDKLoginKit.framework in Frameworks */,
 				3C33B8661C88E2DC00415C02 /* FBSDKMessengerShareKit.framework in Frameworks */,
@@ -125,6 +128,7 @@
 		3C483C4D1C73D6B9006A8291 = {
 			isa = PBXGroup;
 			children = (
+				3C2CA1421C90BA2000B2C351 /* CoreLocation.framework */,
 				3C33B8601C88E2DC00415C02 /* FBSDKCoreKit.framework */,
 				3C33B8611C88E2DC00415C02 /* FBSDKLoginKit.framework */,
 				3C33B8621C88E2DC00415C02 /* FBSDKMessengerShareKit.framework */,

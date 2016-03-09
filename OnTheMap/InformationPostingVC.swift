@@ -19,23 +19,19 @@ class InformationPostingVC: UIViewController,
     var student = StudentInformation()
     var firstName : String?
     var lastName : String?
+
+    var latitude : CLLocationDegrees?
+    var longitude : CLLocationDegrees?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.hidesWhenStopped = true
         self.locationTextField.delegate = self
-        // TODO: Either pass the userid from the login view or make it available
-        // otherwise.
-        // Could even create a User record for saving this stuff, with it's own
-        // special function for populating it.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // TODO: The value of the UdacityUserKey should be read from
-        // somwhere else.  It is manually set here as a convenience
-        // for testing.
         
         //let udacityUserKey: String? = "u5112578"
         let udacityUserKey = UdacityClient.sharedInstance().udacityUserKey!
@@ -69,87 +65,31 @@ class InformationPostingVC: UIViewController,
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func postStudentLocation(sender: AnyObject) {
-        print("post student information to server")
-        let (latitude, longitude) = geocode()
-        // let latitudePacPal = 34.035633
-        // let longitudePacPal = -118.51559
-        
-        launchEnterALinkViewController(latitude, longitude : longitude)
-        // launch.AlertView("Could Not Geocode the String", message : "")
-    }
-    
-    func postStudentLocation() {
-        geocode()
-        // Post Search String and coordintes to the RESTful service
-        // TODO: Display an alert if the post fails.
-        /*
-        ParseClient.sharedInstance().postStudenLocation(student) { (statusCode, error) -> Void in
-        if let error = error {
-        print(error)
-        } else {
-        if statusCode == 1 || statusCode == 12 || statusCode == 13 {
-        performUIUpdatesOnMain{
-        print("Perform UI updates on main")
-        }
-        } else {
-        print("Unexpected status code \(statusCode)")
-        }
-        }
-        }
-        */
-    }
-    
-    private func geocode() -> (latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
-        // Use CLGeocoder's geocodeAddressString() or
-        // MKLocalSearch's
-        // startWithCompletionHandler
-        // To Do: Show a spinner while the geoCode is being computed.
-        // Given a city name, find the latitude and longitude.
-        /*
-        spinner.startAnimating()
-        
-        print(" **** Geo code **")
-        let address = "15426 Bestor Blvd., Pacific Palisades, CA"
-        let address = "aldfkjasl;dfjas"
-        // Start the spinner
-        
-        CLGeocoder().geocodeAddressString(address) { (placemarks : [CLPlacemark]?, error: NSError?) -> Void in
-        print("Hello From geocode ")
-        print(" **** Number of placemerks ****")
-        print(placemarks!.count)
-        for placemark in placemarks! {
-        print("\(placemark)")
-        }
-        // close the spinner
-        }
-        // Use MKLocal
-        //
-        */
-        
-        let address = "15426 Bestor Blvd., Pacific Palisades, CA"
+    @IBAction func findOnTheMap(sender: UIButton) {
         let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = address
+        request.naturalLanguageQuery = self.locationTextField.text!
         
         let search = MKLocalSearch(request: request)
         
         // start the spinner
-        // let latitudePacPal = 34.035633
-        // let longitudePacPal = -118.51559
-        var latitude: CLLocationDegrees = 34.035633
-        var longitude: CLLocationDegrees = -118.51559
+        spinner.startAnimating()
+        self.latitude = 0.0
+        self.longitude = 0.0
         
         search.startWithCompletionHandler { (response, error) -> Void in
-            print("hello")
-            
-            
-            // TODO: Display an alert if geocoding fails.
             if error != nil {
-                print("error occured in search: \(error?.localizedDescription)")
-                self.launchAlertView("blah", message: "dee blah")
+                performUIUpdatesOnMain({ () -> Void in
+                    self.spinner.stopAnimating()
+                    self.launchAlertView("Geocding failed for \(self.locationTextField.text!)",
+                        message: "error : \(error?.localizedDescription)")
+                })
             } else if response?.mapItems.count == 0 {
-                print("no matches found")
-                self.launchAlertView("blah", message: "dee blah")
+                performUIUpdatesOnMain({ () -> Void in
+                    self.spinner.stopAnimating()
+                    print("no matches found")
+                    self.launchAlertView("Geocding failed for \(self.locationTextField.text!)",
+                        message: "error : list of placemarks is empty")
+                })
             } else {
                 for item in response!.mapItems {
                     
@@ -161,23 +101,21 @@ class InformationPostingVC: UIViewController,
                     print("LONGITUDE = \(geoCodedLongitude!)")
                     performUIUpdatesOnMain({ () -> Void in
                         self.spinner.stopAnimating()
-                        latitude = geoCodedLatitude!
-                        longitude = geoCodedLongitude!
+                        self.latitude = geoCodedLatitude!
+                        self.longitude = geoCodedLongitude!
+                        self.launchEnterALinkViewController(geoCodedLatitude!, longitude: geoCodedLongitude!)
                     })
                     
                 }
                 
             }
         }
-        return (latitude,longitude)
     }
+    
     
     private func launchEnterALinkViewController(latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("EnterALinkViewController") as!
         EnterALinkViewController
-        
-        // controller.student = student
-        // TODO: Put these in if-let statements.
         
         controller.latitude = latitude
         controller.longitude = longitude
