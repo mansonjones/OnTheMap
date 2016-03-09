@@ -134,16 +134,20 @@ extension UdacityClient {
         print("****")
         print(jsonRequest)
         
-        let httpBody = try! NSJSONSerialization.dataWithJSONObject(jsonRequest, options: [])
-        print("  ****  JSON1  ****")
-        print(httpBody)
+        var httpBody : NSData!
+        do {
+            httpBody = try NSJSONSerialization.dataWithJSONObject(jsonRequest, options: [])
+        } catch {
+            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(jsonRequest)'"]
+            print("\(userInfo)")
+        }
         
         /*
         let test2 = try! NSJSONSerialization.JSONObjectWithData(test1, options: .AllowFragments)
         print(" **** JSON2 ***")
         print(test2)
         */
-        return httpBody
+        return httpBody!
     }
     
     
