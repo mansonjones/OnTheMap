@@ -21,6 +21,7 @@ class EnterALinkViewController: UIViewController,
     
     var latitude : CLLocationDegrees?
     var longitude : CLLocationDegrees?
+    var mapString : String?
     
     let regionRadius : CLLocationDistance = 1000000
     
@@ -30,15 +31,6 @@ class EnterALinkViewController: UIViewController,
         super.viewDidLoad()
         
         linkToShare.delegate = self
-        
-        // center
-        // let latitudeCenter = 39.5
-        // let longitudeCenter = -98.35
-        
-        // For Pacific Palisades Ca
-        //latitude = 34.035633
-        // longitude = -118.51559
-        
         
         let initialLocation = CLLocation(latitude: latitude!, longitude: longitude!)
         
@@ -53,6 +45,7 @@ class EnterALinkViewController: UIViewController,
         print(" EnterALinkViewController - viewWillAppear ")
         print("\(self.latitude!)")
         print("\(self.longitude!)")
+        print("\(self.mapString!)")
         
         if let latitude = self.latitude {
             if let longitude = self.longitude {
@@ -90,7 +83,7 @@ class EnterALinkViewController: UIViewController,
         var userDictionary = [String:AnyObject]()
         let firstName = UdacityClient.sharedInstance().firstName
         let lastName = UdacityClient.sharedInstance().lastName
-        let uniqueKey =  "5112578" /* UdacityClient.sharedInstance().udacityUserKey */
+        let uniqueKey =  UdacityClient.sharedInstance().udacityUserKey
         let mapString : String = "Pacfic Palisades"
         let latitude : Double = self.latitude!
         let longitude : Double = self.longitude!

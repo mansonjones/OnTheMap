@@ -13,8 +13,8 @@ class InformationPostingVC: UIViewController,
     UINavigationControllerDelegate,
     UITextFieldDelegate
 {
-    @IBOutlet weak var locationTextField: UITextField!
-    
+
+    @IBOutlet weak var mapString: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     var student = StudentInformation()
     var firstName : String?
@@ -26,7 +26,7 @@ class InformationPostingVC: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.hidesWhenStopped = true
-        self.locationTextField.delegate = self
+        self.mapString.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -67,7 +67,7 @@ class InformationPostingVC: UIViewController,
     
     @IBAction func findOnTheMap(sender: UIButton) {
         let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = self.locationTextField.text!
+        request.naturalLanguageQuery = self.mapString.text!
         
         let search = MKLocalSearch(request: request)
         
@@ -80,14 +80,14 @@ class InformationPostingVC: UIViewController,
             if error != nil {
                 performUIUpdatesOnMain({ () -> Void in
                     self.spinner.stopAnimating()
-                    self.launchAlertView("Geocding failed for \(self.locationTextField.text!)",
+                    self.launchAlertView("Geocding failed for \(self.mapString.text!)",
                         message: "error : \(error?.localizedDescription)")
                 })
             } else if response?.mapItems.count == 0 {
                 performUIUpdatesOnMain({ () -> Void in
                     self.spinner.stopAnimating()
                     print("no matches found")
-                    self.launchAlertView("Geocding failed for \(self.locationTextField.text!)",
+                    self.launchAlertView("Geocding failed for \(self.mapString.text!)",
                         message: "error : list of placemarks is empty")
                 })
             } else {
@@ -118,11 +118,8 @@ class InformationPostingVC: UIViewController,
             let controller = segue.destinationViewController as! EnterALinkViewController
             controller.latitude = self.latitude
             controller.longitude = self.longitude
+            controller.mapString = self.mapString.text!
         }
-    }
-    
-    func test() {
-        performSegueWithIdentifier("ShowEnterALinkViewController", sender: self)
     }
     
     private func launchEnterALinkViewController(latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
@@ -134,7 +131,7 @@ class InformationPostingVC: UIViewController,
         controller.longitude = longitude
          presentViewController(controller, animated: true, completion: nil)
         */
-        test()
+        performSegueWithIdentifier("ShowEnterALinkViewController", sender: self)
     }
     
     private func launchAlertView(title : String, message : String) {

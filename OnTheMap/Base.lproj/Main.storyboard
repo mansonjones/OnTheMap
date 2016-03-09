@@ -421,7 +421,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="locationTextField" destination="rJs-qV-YP3" id="T84-R4-CgW"/>
+                        <outlet property="mapString" destination="rJs-qV-YP3" id="KbE-4y-wuM"/>
                         <outlet property="spinner" destination="r17-FU-p8s" id="dbU-r6-UJE"/>
                         <segue destination="Qb2-vM-Q06" kind="presentation" identifier="ShowEnterALinkViewController" modalTransitionStyle="crossDissolve" id="dzR-h5-kv6"/>
                     </connections>
