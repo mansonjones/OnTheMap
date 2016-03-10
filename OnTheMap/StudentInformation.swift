@@ -23,6 +23,7 @@ struct StudentInformation {
     
     
     // Mark Initializers
+    
     init() {
         firstName = ""
         lastName = ""

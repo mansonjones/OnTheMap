@@ -23,7 +23,7 @@ class EnterALinkViewController: UIViewController,
     var longitude : CLLocationDegrees?
     var mapString : String?
     
-    let regionRadius : CLLocationDistance = 1000000
+    let regionRadius : CLLocationDistance = 25000
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,19 +40,15 @@ class EnterALinkViewController: UIViewController,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print(" EnterALinkViewController - viewWillAppear ")
-        print("\(self.latitude!)")
-        print("\(self.longitude!)")
-        print("\(self.mapString!)")
         
-        if let latitude = self.latitude {
-            if let longitude = self.longitude {
+        if let latitude = latitude {
+            if let longitude = longitude {
                 let annotation = MKPointAnnotation()
                 let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 annotation.coordinate = coordinate
                 annotation.title = "enter title here"
                 annotation.subtitle = "enter subtitle here"
-                self.mapView.addAnnotation(annotation)
+                mapView.addAnnotation(annotation)
             }
         }
         
@@ -65,7 +61,7 @@ class EnterALinkViewController: UIViewController,
             
             
             let coordinateRegion =
-            MKCoordinateRegionMakeWithDistance(location.coordinate, self.regionRadius * 0.025, self.regionRadius * 0.025)
+            MKCoordinateRegionMakeWithDistance(location.coordinate, self.regionRadius, self.regionRadius)
             
             self.mapView.setRegion(coordinateRegion, animated: true)
             
@@ -97,7 +93,7 @@ class EnterALinkViewController: UIViewController,
     
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion =
-        MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
+        MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 40, regionRadius * 40)
         
         mapView.setRegion(coordinateRegion, animated: true)
     }
@@ -114,7 +110,6 @@ class EnterALinkViewController: UIViewController,
     }
     
     @IBAction func postStudentInformation(sender: AnyObject) {
-        print("Post Student Information")
         var userDictionary = [String:AnyObject]()
         
         userDictionary[ParseClient.JSONResponseKeys.FirstName] = UdacityClient.sharedInstance().firstName
@@ -126,10 +121,6 @@ class EnterALinkViewController: UIViewController,
         userDictionary[ParseClient.JSONResponseKeys.Longitude] = longitude!
         
         let user = StudentInformation(dictionary: userDictionary)
-        /*
-        let studentInfo = [ParseClient.JSONResponseKeys.MapString : "blah" /* linkToShare.text */ ]
-        let student = StudentInformation(dictionary: studentInfo)
-        */
         ParseClient.sharedInstance().postStudenLocation(user) { (statusCode, error) -> Void in
             if let error = error {
                 print(error)

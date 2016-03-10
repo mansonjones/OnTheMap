@@ -26,16 +26,13 @@ class InformationPostingVC: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.hidesWhenStopped = true
-        self.mapString.delegate = self
+        mapString.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        //let udacityUserKey: String? = "u5112578"
         let udacityUserKey = UdacityClient.sharedInstance().udacityUserKey!
-        // print("Udacity User Key", udacityUserKey!)
         
         UdacityClient.sharedInstance().getPublicUserData(udacityUserKey) { (success, firstName, lastName, errorString) -> Void in
             if success {
@@ -53,12 +50,6 @@ class InformationPostingVC: UIViewController,
                 print("error returned by getPublicUserData")
             }
         }
-        print(" **** InformationPostingVC - viewWillAppear - ")
-        print(self.firstName)
-        print(self.lastName)
-        print(" *** another approach")
-        print(UdacityClient.sharedInstance().firstName)
-        print(UdacityClient.sharedInstance().lastName)
     }
     
     
@@ -66,9 +57,9 @@ class InformationPostingVC: UIViewController,
         
         if segue.identifier == "ShowEnterALinkViewController" {
             let controller = segue.destinationViewController as! EnterALinkViewController
-            controller.latitude = self.latitude
-            controller.longitude = self.longitude
-            controller.mapString = self.mapString.text!
+            controller.latitude = latitude
+            controller.longitude = longitude
+            controller.mapString = mapString.text!
         }
     }
     
@@ -90,7 +81,7 @@ class InformationPostingVC: UIViewController,
             message: message,
             preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(alertController, animated: true, completion: nil)
         
     }
     
@@ -112,14 +103,14 @@ class InformationPostingVC: UIViewController,
     
     @IBAction func findOnTheMap(sender: UIButton) {
         let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = self.mapString.text!
+        request.naturalLanguageQuery = mapString.text!
         
         let search = MKLocalSearch(request: request)
         
         // start the spinner
         spinner.startAnimating()
-        self.latitude = 0.0
-        self.longitude = 0.0
+        latitude = 0.0
+        longitude = 0.0
         
         search.startWithCompletionHandler { (response, error) -> Void in
             if error != nil {
@@ -137,13 +128,8 @@ class InformationPostingVC: UIViewController,
                 })
             } else {
                 for item in response!.mapItems {
-                    
-                    print("\(item.name)")
-                    print("\(item.placemark.location)")
                     let geoCodedLatitude = item.placemark.location?.coordinate.latitude
                     let geoCodedLongitude = item.placemark.location?.coordinate.longitude
-                    print("LATITUDE = \(geoCodedLatitude!)")
-                    print("LONGITUDE = \(geoCodedLongitude!)")
                     performUIUpdatesOnMain({ () -> Void in
                         self.spinner.stopAnimating()
                         self.latitude = geoCodedLatitude!

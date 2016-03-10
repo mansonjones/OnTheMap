@@ -25,7 +25,6 @@
 		3C483C8A1C73ED9E006A8291 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C891C73ED9E006A8291 /* UdacityConstants.swift */; };
 		3C483C8C1C7519E2006A8291 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C8B1C7519E1006A8291 /* UdacityClient.swift */; };
 		3C483C8E1C75545E006A8291 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C8D1C75545E006A8291 /* ParseClient.swift */; };
-		3C483C901C755472006A8291 /* FacebookClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C8F1C755472006A8291 /* FacebookClient.swift */; };
 		3C483C921C761F28006A8291 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C911C761F28006A8291 /* StudentInformation.swift */; };
 		3C483C941C763A67006A8291 /* OTMTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C931C763A67006A8291 /* OTMTableViewController.swift */; };
 		3C483C981C766EDE006A8291 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C483C951C766EDE006A8291 /* Roboto-Medium.ttf */; };
@@ -35,8 +34,6 @@
 		3C483C9F1C76DFDD006A8291 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */; };
 		3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483CA01C77D7B9006A8291 /* ParseConstants.swift */; };
 		3C483D9A1C7F57EF006A8291 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483D991C7F57EF006A8291 /* GCDBlackBox.swift */; };
-		3C483DB31C7FC783006A8291 /* FacebookConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483DB21C7FC783006A8291 /* FacebookConvenience.swift */; };
-		3C483DB51C7FC792006A8291 /* FacebookConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C483DB41C7FC792006A8291 /* FacebookConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +78,6 @@
 		3C483C891C73ED9E006A8291 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		3C483C8B1C7519E1006A8291 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		3C483C8D1C75545E006A8291 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
-		3C483C8F1C755472006A8291 /* FacebookClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookClient.swift; sourceTree = "<group>"; };
 		3C483C911C761F28006A8291 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		3C483C931C763A67006A8291 /* OTMTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMTableViewController.swift; sourceTree = "<group>"; };
 		3C483C951C766EDE006A8291 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -91,8 +87,6 @@
 		3C483C9E1C76DFDD006A8291 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		3C483CA01C77D7B9006A8291 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		3C483D991C7F57EF006A8291 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
-		3C483DB21C7FC783006A8291 /* FacebookConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookConvenience.swift; sourceTree = "<group>"; };
-		3C483DB41C7FC792006A8291 /* FacebookConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +119,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C483C4D1C73D6B9006A8291 = {
+		3C2CA1441C91DFEA00B2C351 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				3C2CA1421C90BA2000B2C351 /* CoreLocation.framework */,
@@ -133,6 +127,14 @@
 				3C33B8611C88E2DC00415C02 /* FBSDKLoginKit.framework */,
 				3C33B8621C88E2DC00415C02 /* FBSDKMessengerShareKit.framework */,
 				3C33B8631C88E2DC00415C02 /* FBSDKShareKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C483C4D1C73D6B9006A8291 = {
+			isa = PBXGroup;
+			children = (
+				3C2CA1441C91DFEA00B2C351 /* Frameworks */,
 				3C483C581C73D6BA006A8291 /* OnTheMap */,
 				3C483C6D1C73D6BB006A8291 /* OnTheMapTests */,
 				3C483C781C73D6BB006A8291 /* OnTheMapUITests */,
@@ -205,7 +207,6 @@
 		3C483D9E1C7F58C2006A8291 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
-				3C483DB11C7FC743006A8291 /* Facebook */,
 				3C483DA01C7F5912006A8291 /* Parse */,
 				3C483D9F1C7F58E2006A8291 /* Udacity */,
 			);
@@ -243,16 +244,6 @@
 				3C483C871C73DAC6006A8291 /* OTMMapViewController.swift */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		3C483DB11C7FC743006A8291 /* Facebook */ = {
-			isa = PBXGroup;
-			children = (
-				3C483C8F1C755472006A8291 /* FacebookClient.swift */,
-				3C483DB21C7FC783006A8291 /* FacebookConvenience.swift */,
-				3C483DB41C7FC792006A8291 /* FacebookConstants.swift */,
-			);
-			name = Facebook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,7 +383,6 @@
 				3C483C9F1C76DFDD006A8291 /* ParseConvenience.swift in Sources */,
 				3C483C921C761F28006A8291 /* StudentInformation.swift in Sources */,
 				3C483C8E1C75545E006A8291 /* ParseClient.swift in Sources */,
-				3C483C901C755472006A8291 /* FacebookClient.swift in Sources */,
 				3C483C9D1C76CF05006A8291 /* UdacityConvenience.swift in Sources */,
 				3C483C941C763A67006A8291 /* OTMTableViewController.swift in Sources */,
 				3C483C8C1C7519E2006A8291 /* UdacityClient.swift in Sources */,
@@ -403,9 +393,7 @@
 				3C483CA11C77D7B9006A8291 /* ParseConstants.swift in Sources */,
 				3C33B8691C88E3D400415C02 /* EnterALinkViewController.swift in Sources */,
 				3C33B8511C84999200415C02 /* InformationPostingVC.swift in Sources */,
-				3C483DB51C7FC792006A8291 /* FacebookConstants.swift in Sources */,
 				3C483D9A1C7F57EF006A8291 /* GCDBlackBox.swift in Sources */,
-				3C483DB31C7FC783006A8291 /* FacebookConvenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

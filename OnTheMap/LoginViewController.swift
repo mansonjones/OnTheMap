@@ -63,11 +63,12 @@ class LoginViewController: UIViewController,
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("Facebook login")
-        if ((error) == nil) {
+        if error == nil {
             print(" facebook login failed ")
         } else {
             print(" facebook login succeeded")
             // segue to the tab view controller
+            
             
             /*
             let controller = storyboard!.instantiateViewControllerWithIdentifier("MainTabBarController") as!
@@ -81,8 +82,8 @@ class LoginViewController: UIViewController,
                     self.udacityAccountKey = uniqueKey
                     if (success) {
                         performUIUpdatesOnMain {
+                            print(" *** Launching Tab Controller From facebook login")
                             self.completeLogin()
-                            print(" **** DEBUG ****")
                             print(UdacityClient.sharedInstance().udacityUserKey!)
                         }
                     } else {
@@ -149,12 +150,12 @@ class LoginViewController: UIViewController,
     }
     
     private func loginErrorHandler() -> Bool {
-        if self.emailTextField!.text! == "" {
+        if emailTextField!.text! == "" {
             print("The email text field is empty")
             launchLoginFailAlertView("Empty Email", message: "Please try again")
             return true
         }
-        if self.passwordTextField!.text! == "" {
+        if passwordTextField!.text! == "" {
             print("The password text field is empty")
             launchLoginFailAlertView("Empty Password", message: "Please try again")
             return true

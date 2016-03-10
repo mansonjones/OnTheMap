@@ -14,11 +14,6 @@ import FBSDKLoginKit
 extension UdacityClient {
 
     // MARK: GET Convenience Methods
-    /*
-    func getPublicUserData(userId : String,
-    completionHandlerForGetPublicUserData: (result: StudentInformation?, error: NSError?) -> Void) {
-    
-    */
     func getPublicUserData(userID: String,
         completionHandlerForGetPublicUserData: (success: Bool, firstName : String?, lastName : String?, errorString: String?) -> Void) {
             
