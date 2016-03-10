@@ -81,20 +81,14 @@ class EnterALinkViewController: UIViewController,
     @IBAction func postStudentInformation(sender: AnyObject) {
         print("Post Student Information")
         var userDictionary = [String:AnyObject]()
-        let firstName = UdacityClient.sharedInstance().firstName
-        let lastName = UdacityClient.sharedInstance().lastName
-        let uniqueKey =  UdacityClient.sharedInstance().udacityUserKey
-        let mapString : String = "Pacfic Palisades"
-        let latitude : Double = self.latitude!
-        let longitude : Double = self.longitude!
         
-        userDictionary[ParseClient.JSONResponseKeys.FirstName] = firstName
-        userDictionary[ParseClient.JSONResponseKeys.LastName] = lastName
-        userDictionary[ParseClient.JSONResponseKeys.UniqueKey] = uniqueKey
+        userDictionary[ParseClient.JSONResponseKeys.FirstName] = UdacityClient.sharedInstance().firstName
+        userDictionary[ParseClient.JSONResponseKeys.LastName] = UdacityClient.sharedInstance().lastName
+        userDictionary[ParseClient.JSONResponseKeys.UniqueKey] = UdacityClient.sharedInstance().udacityUserKey
         userDictionary[ParseClient.JSONResponseKeys.MapString] = mapString
         userDictionary[ParseClient.JSONResponseKeys.MediaUrl] = linkToShare.text!
-        userDictionary[ParseClient.JSONResponseKeys.Latitude] = latitude
-        userDictionary[ParseClient.JSONResponseKeys.Longitude] = longitude
+        userDictionary[ParseClient.JSONResponseKeys.Latitude] = latitude!
+        userDictionary[ParseClient.JSONResponseKeys.Longitude] = longitude!
         
         let user = StudentInformation(dictionary: userDictionary)
         /*
