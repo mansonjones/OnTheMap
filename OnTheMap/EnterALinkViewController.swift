@@ -48,7 +48,7 @@ class EnterALinkViewController: UIViewController,
                 print("error returned by getPublicUserData")
             }
         }
-
+        
         
     }
     
@@ -148,5 +148,5 @@ class EnterALinkViewController: UIViewController,
         }
     }
     
-   
+    
 }

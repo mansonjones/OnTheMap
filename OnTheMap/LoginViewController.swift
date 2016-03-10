@@ -10,7 +10,7 @@ import UIKit
 import FBSDKLoginKit
 
 class LoginViewController: UIViewController,
-    FBSDKLoginButtonDelegate {
+FBSDKLoginButtonDelegate {
     
     
     // MARK: Outlets
@@ -24,10 +24,10 @@ class LoginViewController: UIViewController,
     
     let EmailValueKey = "Email Value Key"
     let PasswordValueKey = "Password Value Key"
-
+    
     var udacityAccountKey: String? = nil
     var appDelegate: AppDelegate!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTextField.secureTextEntry = true
@@ -116,7 +116,6 @@ class LoginViewController: UIViewController,
             self.emailTextField.text!,
             password: self.passwordTextField.text!
             ) { (success, uniqueKey, errorString) in
-                print(" ***** uniqueKey ", uniqueKey!)
                 self.udacityAccountKey = uniqueKey
                 if (success) {
                     performUIUpdatesOnMain {
@@ -143,12 +142,10 @@ class LoginViewController: UIViewController,
     
     private func loginErrorHandler() -> Bool {
         if emailTextField!.text! == "" {
-            print("The email text field is empty")
             launchLoginFailAlertView("Empty Email", message: "Please try again")
             return true
         }
         if passwordTextField!.text! == "" {
-            print("The password text field is empty")
             launchLoginFailAlertView("Empty Password", message: "Please try again")
             return true
         }

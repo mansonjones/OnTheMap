@@ -85,11 +85,11 @@ class ParseClient: NSObject {
             
             // Set the parameters
             // Build the URL
+            
             // Debug
             do {
-                let foo = try NSJSONSerialization.JSONObjectWithData(jsonBody, options: .AllowFragments)
-                print("*** Foo ***")
-                print(foo)
+                let debugString = try NSJSONSerialization.JSONObjectWithData(jsonBody, options: .AllowFragments)
+                print(debugString)
             } catch {
                 print("failed to parse jsonBody")
             }

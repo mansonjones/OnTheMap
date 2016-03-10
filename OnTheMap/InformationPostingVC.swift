@@ -13,7 +13,7 @@ class InformationPostingVC: UIViewController,
     UINavigationControllerDelegate,
     UITextFieldDelegate
 {
-
+    
     @IBOutlet weak var mapString: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -68,7 +68,7 @@ class InformationPostingVC: UIViewController,
         textField.resignFirstResponder()
         return true
     }
-
+    
     
     @IBAction func cancelInformationEditor() {
         dismissViewControllerAnimated(true, completion: nil)

@@ -12,7 +12,7 @@ import Foundation
 import FBSDKLoginKit
 
 extension UdacityClient {
-
+    
     // MARK: GET Convenience Methods
     func getPublicUserData(userID: String,
         completionHandlerForGetPublicUserData: (success: Bool, firstName : String?, lastName : String?, errorString: String?) -> Void) {
@@ -60,7 +60,7 @@ extension UdacityClient {
     
     // MARK: POST Convenience Methods
     
-
+    
     func loginToUdacity(email: String, password: String, completionHandlerForLogin: (success: Bool, uniqueKey : String?, errorString: String?) -> Void) {
         // HTTP Post to https://www.udacity.com/api/session -
         // Creates a Udacity session. Returnss the property uniqueKey for the user
@@ -127,24 +127,24 @@ extension UdacityClient {
                 /*
                 print(results)
                 guard let account = results[UdacityClient.JSONResponseKeys.Account] as? [String : AnyObject] else {
-                    completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
-                    return
+                completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
+                return
                 }
                 
                 guard let uniqueKey = account[UdacityClient.JSONResponseKeys.Key] as? String else {
-                    completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
-                    return
+                completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
+                return
                 }
                 print(" *** loginToUdacity - UniqueKey *** ")
                 print(results)
                 print("\(uniqueKey)")
                 
                 self.udacityUserKey = uniqueKey
-
+                
                 
                 completionHandlerForLogin(success: true, uniqueKey: uniqueKey, errorString: nil)
-               */
-
+                */
+                
             }
         }
     }
@@ -204,7 +204,7 @@ extension UdacityClient {
         return httpBody!
     }
     
-   
+    
     // MARK: DELETE Convenience Methods
     func logoutFromUdacity(completionHandlerForLogout: (result: Int?, error: NSError?) -> Void) {
         let parameters = [String:String]()
