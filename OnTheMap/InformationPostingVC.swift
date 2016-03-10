@@ -17,7 +17,6 @@ class InformationPostingVC: UIViewController,
     @IBOutlet weak var mapString: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    var student = StudentInformation()
     var firstName : String?
     var lastName : String?
     var latitude : CLLocationDegrees?

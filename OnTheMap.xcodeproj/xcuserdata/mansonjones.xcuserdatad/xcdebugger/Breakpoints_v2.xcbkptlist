@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/InformationPostingVC.swift"
-            timestampString = "479323587.5886"
+            timestampString = "479324499.516572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205">
+            startingLineNumber = "204"
+            endingLineNumber = "204">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/StudentInformation.swift"
-            timestampString = "479165575.539172"
+            timestampString = "479324499.516572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "init(dictionary:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -370,17 +370,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OnTheMap/OTMMapViewController.swift"
-            timestampString = "479319440.253113"
+            filePath = "OnTheMap/InformationPostingVC.swift"
+            timestampString = "479324499.516572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "5">
+            startingLineNumber = "173"
+            endingLineNumber = "173">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -390,11 +388,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/InformationPostingVC.swift"
-            timestampString = "479323587.5886"
+            timestampString = "479324499.516572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174">
+            startingLineNumber = "176"
+            endingLineNumber = "176">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -404,11 +402,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/InformationPostingVC.swift"
-            timestampString = "479323587.5886"
+            timestampString = "479324499.516572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177">
+            startingLineNumber = "179"
+            endingLineNumber = "179">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -418,25 +416,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/InformationPostingVC.swift"
-            timestampString = "479323587.5886"
+            timestampString = "479324499.516572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OnTheMap/InformationPostingVC.swift"
-            timestampString = "479323587.5886"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168">
+            startingLineNumber = "167"
+            endingLineNumber = "167">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

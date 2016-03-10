@@ -34,10 +34,6 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // TODO: Delete this debug statement
-        print(" **** DEBUG ****")
-        print(UdacityClient.sharedInstance().udacityUserKey!)
-        
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             
             if let students = students {
@@ -53,15 +49,13 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
                     self.launchAlertView("Download of student information failed", message: "")
                 }
             }
-            
-            
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "ShowInformationPostingVC" {
-            let controller = segue.destinationViewController as! InformationPostingVC
+            _ = segue.destinationViewController as! InformationPostingVC
         }
     }
     

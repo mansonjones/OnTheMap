@@ -24,17 +24,6 @@ struct StudentInformation {
     
     // Mark Initializers
     
-    init() {
-        firstName = ""
-        lastName = ""
-        latitude = 1.0
-        longitude = 2.0
-        mapString = ""
-        mediaURL = ""
-        uniqueKey = ""
-        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-    
     // construct a StudentInformation object from
     init(dictionary: [String:AnyObject]) {
         firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
