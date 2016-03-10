@@ -14,6 +14,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     // MARK: Properties
     
     @IBOutlet weak var mapView: MKMapView!
+    
     let regionRadius: CLLocationDistance = 1000000
     
     var students: [StudentInformation] = [StudentInformation]()
@@ -74,7 +75,6 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
         
     }
-    
     
     private func buildPointAnnotations() -> [MKPointAnnotation] {
         var annotations = [MKPointAnnotation]()
@@ -204,7 +204,4 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
-    
-    
-    
 }

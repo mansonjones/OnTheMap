@@ -41,7 +41,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="left" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" disabledBackground="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="WPG-l4-B2G">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="left" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WPG-l4-B2G">
                                         <rect key="frame" x="0.0" y="181" width="560" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.77090617715617715" blue="0.57734192890442892" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -432,7 +432,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Camera" width="97" height="25"/>
         <image name="list" width="32" height="32"/>
         <image name="map" width="32" height="32"/>
         <image name="udacity" width="256" height="256"/>

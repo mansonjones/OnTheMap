@@ -7,28 +7,34 @@
 //
 
 import UIKit
-// import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController,
+    FBSDKLoginButtonDelegate {
+    
+    
+    // MARK: Outlets
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
     
     let EmailValueKey = "Email Value Key"
     let PasswordValueKey = "Password Value Key"
     
     // MARK: Properties
     var udacityAccountKey: String? = nil
-    
     var appDelegate: AppDelegate!
-    
-    // MARK: Outlets
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    
-    @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTextField.secureTextEntry = true
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        // If there's already a cached Facebook token, then login to udacity via
+        // facebook
+        if (FBSDKAccessToken.currentAccessToken() != nil) {
+            print("The current access token for facebook is")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -42,8 +48,6 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
         if let passwordText = defaults.stringForKey(PasswordValueKey) {
             passwordTextField.text = passwordText
         }
-
-
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -70,7 +74,24 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
             UITabBarController
             presentViewController(controller, animated: true, completion: nil)
             */
-            performSegueWithIdentifier("ShowMainTabController", sender: self)
+            
+            UdacityClient.sharedInstance().loginToUdacityUsingFacebook()
+                { (success, uniqueKey, errorString) in
+                    print(" ***** uniqueKey ", uniqueKey!)
+                    self.udacityAccountKey = uniqueKey
+                    if (success) {
+                        performUIUpdatesOnMain {
+                            self.completeLogin()
+                            print(" **** DEBUG ****")
+                            print(UdacityClient.sharedInstance().udacityUserKey!)
+                        }
+                    } else {
+                        performUIUpdatesOnMain {
+                            self.displayError(errorString)
+                            self.launchLoginFailAlertView("Invalide Email or Password",message:"Please try again")
+                        }
+                    }
+            }
         }
     }
     
@@ -93,6 +114,11 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
     func login() {
         if loginErrorHandler() {
             return
+        }
+        if FBSDKAccessToken.currentAccessToken() != nil {
+            print("Facebook token exists")
+        } else {
+            print("Facebook token does not exist")
         }
         
         UdacityClient.sharedInstance().loginToUdacity(
@@ -121,8 +147,6 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
             print(" **** The was an error logging in", errorString)
         }
     }
-    
-    // TODO: Move this into a different file.
     
     private func loginErrorHandler() -> Bool {
         if self.emailTextField!.text! == "" {
@@ -174,27 +198,6 @@ class LoginViewController: UIViewController,  FBSDKLoginButtonDelegate {
                 }
             }
         }
-        
-    }
-    
-    func getPublicUserData() {
-        /* let user_id = "1234"
-        
-        UdacityClient.sharedInstance().getPublicUserData(user_id) { (statusCode, error) in
-        if let error = error {
-        print(error)
-        } else {
-        if statusCode == 1 || statusCode == 12 || statusCode == 13 {
-        // self.session = session
-        // performUIUpdatesOn Main {
-        //  go ahead and launch the tab bar controller
-        // }
-        print("launch the tab bar controller")
-        } else {
-        print("Unexpected status code \(statusCode)")
-        }
-        }
-        } */
         
     }
     

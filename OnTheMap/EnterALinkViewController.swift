@@ -25,8 +25,6 @@ class EnterALinkViewController: UIViewController,
     
     let regionRadius : CLLocationDistance = 1000000
     
-    // TODO: pass in the location
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,37 +75,6 @@ class EnterALinkViewController: UIViewController,
     private func createBarButtonItems() {
         
     }
-    
-    @IBAction func postStudentInformation(sender: AnyObject) {
-        print("Post Student Information")
-        var userDictionary = [String:AnyObject]()
-        
-        userDictionary[ParseClient.JSONResponseKeys.FirstName] = UdacityClient.sharedInstance().firstName
-        userDictionary[ParseClient.JSONResponseKeys.LastName] = UdacityClient.sharedInstance().lastName
-        userDictionary[ParseClient.JSONResponseKeys.UniqueKey] = UdacityClient.sharedInstance().udacityUserKey
-        userDictionary[ParseClient.JSONResponseKeys.MapString] = mapString
-        userDictionary[ParseClient.JSONResponseKeys.MediaUrl] = linkToShare.text!
-        userDictionary[ParseClient.JSONResponseKeys.Latitude] = latitude!
-        userDictionary[ParseClient.JSONResponseKeys.Longitude] = longitude!
-        
-        let user = StudentInformation(dictionary: userDictionary)
-        /*
-        let studentInfo = [ParseClient.JSONResponseKeys.MapString : "blah" /* linkToShare.text */ ]
-        let student = StudentInformation(dictionary: studentInfo)
-        */
-        ParseClient.sharedInstance().postStudenLocation(user) { (statusCode, error) -> Void in
-            if let error = error {
-                print(error)
-            } else {
-                if statusCode == 1 || statusCode == 12 || statusCode == 13 {
-                    print(" student information was successfully posted")
-                } else {
-                    print(" Unexpected status code returned when trying to post student data \(statusCode)")
-                }
-            }
-        }
-    }
-    
     // MARK: MapKit Delegate Functions
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -146,4 +113,35 @@ class EnterALinkViewController: UIViewController,
         return true
     }
     
+    @IBAction func postStudentInformation(sender: AnyObject) {
+        print("Post Student Information")
+        var userDictionary = [String:AnyObject]()
+        
+        userDictionary[ParseClient.JSONResponseKeys.FirstName] = UdacityClient.sharedInstance().firstName
+        userDictionary[ParseClient.JSONResponseKeys.LastName] = UdacityClient.sharedInstance().lastName
+        userDictionary[ParseClient.JSONResponseKeys.UniqueKey] = UdacityClient.sharedInstance().udacityUserKey
+        userDictionary[ParseClient.JSONResponseKeys.MapString] = mapString
+        userDictionary[ParseClient.JSONResponseKeys.MediaUrl] = linkToShare.text!
+        userDictionary[ParseClient.JSONResponseKeys.Latitude] = latitude!
+        userDictionary[ParseClient.JSONResponseKeys.Longitude] = longitude!
+        
+        let user = StudentInformation(dictionary: userDictionary)
+        /*
+        let studentInfo = [ParseClient.JSONResponseKeys.MapString : "blah" /* linkToShare.text */ ]
+        let student = StudentInformation(dictionary: studentInfo)
+        */
+        ParseClient.sharedInstance().postStudenLocation(user) { (statusCode, error) -> Void in
+            if let error = error {
+                print(error)
+            } else {
+                if statusCode == 1 || statusCode == 12 || statusCode == 13 {
+                    print(" student information was successfully posted")
+                } else {
+                    print(" Unexpected status code returned when trying to post student data \(statusCode)")
+                }
+            }
+        }
+    }
+    
+   
 }

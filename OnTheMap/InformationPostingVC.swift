@@ -16,10 +16,10 @@ class InformationPostingVC: UIViewController,
 
     @IBOutlet weak var mapString: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     var student = StudentInformation()
     var firstName : String?
     var lastName : String?
-
     var latitude : CLLocationDegrees?
     var longitude : CLLocationDegrees?
     
@@ -60,6 +60,51 @@ class InformationPostingVC: UIViewController,
         print(UdacityClient.sharedInstance().firstName)
         print(UdacityClient.sharedInstance().lastName)
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ShowEnterALinkViewController" {
+            let controller = segue.destinationViewController as! EnterALinkViewController
+            controller.latitude = self.latitude
+            controller.longitude = self.longitude
+            controller.mapString = self.mapString.text!
+        }
+    }
+    
+    private func launchEnterALinkViewController(latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
+        //let controller = storyboard!.instantiateViewControllerWithIdentifier("EnterALinkViewController") as!
+        // EnterALinkViewController
+        
+        /*
+        controller.latitude = latitude
+        controller.longitude = longitude
+        presentViewController(controller, animated: true, completion: nil)
+        */
+        performSegueWithIdentifier("ShowEnterALinkViewController", sender: self)
+    }
+    
+    private func launchAlertView(title : String, message : String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
+    // Delegate Functiond for UITextFieleDelegate
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
     
     @IBAction func cancelInformationEditor() {
         dismissViewControllerAnimated(true, completion: nil)
@@ -110,48 +155,5 @@ class InformationPostingVC: UIViewController,
                 
             }
         }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "ShowEnterALinkViewController" {
-            let controller = segue.destinationViewController as! EnterALinkViewController
-            controller.latitude = self.latitude
-            controller.longitude = self.longitude
-            controller.mapString = self.mapString.text!
-        }
-    }
-    
-    private func launchEnterALinkViewController(latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
-        //let controller = storyboard!.instantiateViewControllerWithIdentifier("EnterALinkViewController") as!
-       // EnterALinkViewController
-        
-        /*
-        controller.latitude = latitude
-        controller.longitude = longitude
-         presentViewController(controller, animated: true, completion: nil)
-        */
-        performSegueWithIdentifier("ShowEnterALinkViewController", sender: self)
-    }
-    
-    private func launchAlertView(title : String, message : String) {
-        let alertController = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
-        
-    }
-    
-    
-    // Delegate Functiond for UITextFieleDelegate
-    func textFieldDidBeginEditing(textField: UITextField) {
-        textField.text = ""
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

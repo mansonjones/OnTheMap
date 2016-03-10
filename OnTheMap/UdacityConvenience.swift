@@ -9,28 +9,12 @@
 
 import UIKit
 import Foundation
+import FBSDKLoginKit
 
 extension UdacityClient {
+
     // MARK: GET Convenience Methods
     /*
-    func loginToFacebook() {
-    let parameters = [:]
-    let httpBody = ""
-    
-    // 2. Make the request
-    taskForPostMethod("", parameters: parameters, jsonBody: httpBody) { (results, error) in
-    
-    // 3. Send the desired value(s) to completion handler
-    if let error = error {
-    completionHandlerForLogin(result: nil, error: error)
-    } else {
-    if let results = results[UdacityClient.JSONResponseKeys.StatusCode] as? Int {
-    compleletionHandlerForLogin(result: results, error: nil)
-    } else {
-    completionHandlerForFavorite(result: nil, error: NSError(domain: "udacity login parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse udacity login post list"]))
-    }
-    }
-    }
     func getPublicUserData(userId : String,
     completionHandlerForGetPublicUserData: (result: StudentInformation?, error: NSError?) -> Void) {
     
@@ -79,9 +63,9 @@ extension UdacityClient {
             }
     }
     
-    
-    
     // MARK: POST Convenience Methods
+    
+
     func loginToUdacity(email: String, password: String, completionHandlerForLogin: (success: Bool, uniqueKey : String?, errorString: String?) -> Void) {
         // HTTP Post to https://www.udacity.com/api/session -
         // Creates a Udacity session. Returnss the property uniqueKey for the user
@@ -123,6 +107,53 @@ extension UdacityClient {
         }
     }
     
+    func loginToUdacityUsingFacebook(completionHandlerForLogin: (success: Bool, uniqueKey : String?, errorString: String?) -> Void) {
+        // HTTP Post to https://www.udacity.com/api/session -
+        // Creates a Udacity session. Returnss the property uniqueKey for the user
+        // 1. Specify parameters
+        let parameters = [String : String]()
+        
+        let httpBody = loginUsingFacebookJSONRequest()
+        
+        taskForPostMethod(UdacityClient.Methods.Session, parameters: parameters, jsonBody: httpBody) {
+            (results, error) in
+            
+            
+            // 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
+            } else {
+                
+                print("loginToUdacityFromFacebook")
+                print("here's the data")
+                print(results)
+                // TODO: parse the results correctly
+                /*
+                print(results)
+                guard let account = results[UdacityClient.JSONResponseKeys.Account] as? [String : AnyObject] else {
+                    completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
+                    return
+                }
+                
+                guard let uniqueKey = account[UdacityClient.JSONResponseKeys.Key] as? String else {
+                    completionHandlerForLogin(success: false, uniqueKey: nil, errorString: "Login to Udacity Failed")
+                    return
+                }
+                print(" *** loginToUdacity - UniqueKey *** ")
+                print(results)
+                print("\(uniqueKey)")
+                
+                self.udacityUserKey = uniqueKey
+
+                
+                completionHandlerForLogin(success: true, uniqueKey: uniqueKey, errorString: nil)
+               */
+
+            }
+        }
+    }
+    
     private func loginJSONRequest(email: String, password: String) -> NSData {
         let jsonRequest: [String: AnyObject] = [
             "\(UdacityClient.JSONBodyKeys.Udacity)": [
@@ -150,7 +181,35 @@ extension UdacityClient {
         return httpBody!
     }
     
+    private func loginUsingFacebookJSONRequest() -> NSData {
+        let accessToken = FBSDKAccessToken.currentAccessToken()
+        
+        let jsonRequest: [String: AnyObject] = [
+            "\(UdacityClient.JSONBodyKeys.FacebookMobile)": [
+                "\(UdacityClient.JSONBodyKeys.FacebookAccessToken)" : "\(accessToken)"
+            ]
+        ]
+        
+        print("****")
+        print(jsonRequest)
+        
+        var httpBody : NSData!
+        do {
+            httpBody = try NSJSONSerialization.dataWithJSONObject(jsonRequest, options: [])
+        } catch {
+            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(jsonRequest)'"]
+            print("\(userInfo)")
+        }
+        
+        /*
+        let test2 = try! NSJSONSerialization.JSONObjectWithData(test1, options: .AllowFragments)
+        print(" **** JSON2 ***")
+        print(test2)
+        */
+        return httpBody!
+    }
     
+   
     // MARK: DELETE Convenience Methods
     func logoutFromUdacity(completionHandlerForLogout: (result: Int?, error: NSError?) -> Void) {
         let parameters = [String:String]()
