@@ -17,8 +17,6 @@ class InformationPostingVC: UIViewController,
     @IBOutlet weak var mapString: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    var firstName : String?
-    var lastName : String?
     var latitude : CLLocationDegrees?
     var longitude : CLLocationDegrees?
     
@@ -27,30 +25,6 @@ class InformationPostingVC: UIViewController,
         spinner.hidesWhenStopped = true
         mapString.delegate = self
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let udacityUserKey = UdacityClient.sharedInstance().udacityUserKey!
-        
-        UdacityClient.sharedInstance().getPublicUserData(udacityUserKey) { (success, firstName, lastName, errorString) -> Void in
-            if success {
-                performUIUpdatesOnMain {
-                    print(" **** Debug InformationPostingView - viewWillAppear ****")
-                    print(firstName!)
-                    print(lastName!)
-                    self.firstName = firstName
-                    self.lastName = lastName
-                    print(" ********** DEBUG FOR FIRSTNAME, LASTNAME **********")
-                    print(UdacityClient.sharedInstance().firstName)
-                    print(UdacityClient.sharedInstance().lastName)
-                }
-            } else {
-                print("error returned by getPublicUserData")
-            }
-        }
-    }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

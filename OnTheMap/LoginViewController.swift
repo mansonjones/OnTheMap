@@ -18,10 +18,13 @@ class LoginViewController: UIViewController,
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
     
-    let EmailValueKey = "Email Value Key"
-    let PasswordValueKey = "Password Value Key"
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     // MARK: Properties
+    
+    let EmailValueKey = "Email Value Key"
+    let PasswordValueKey = "Password Value Key"
+
     var udacityAccountKey: String? = nil
     var appDelegate: AppDelegate!
 
@@ -30,16 +33,12 @@ class LoginViewController: UIViewController,
         passwordTextField.secureTextEntry = true
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        // If there's already a cached Facebook token, then login to udacity via
-        // facebook
-        if (FBSDKAccessToken.currentAccessToken() != nil) {
-            print("The current access token for facebook is")
-        }
+        spinner.hidesWhenStopped = true
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         
         let defaults = NSUserDefaults.standardUserDefaults()
         if let emailText  = defaults.stringForKey(EmailValueKey) {
@@ -59,7 +58,7 @@ class LoginViewController: UIViewController,
         
     }
     
-    // MARK: FBSDKLoginButtonDelegate
+    // MARK: FBSDKLoginButtonDelegate functions
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("Facebook login")
@@ -67,24 +66,13 @@ class LoginViewController: UIViewController,
             print(" facebook login failed ")
         } else {
             print(" facebook login succeeded")
-            // segue to the tab view controller
-            
-            
-            /*
-            let controller = storyboard!.instantiateViewControllerWithIdentifier("MainTabBarController") as!
-            UITabBarController
-            presentViewController(controller, animated: true, completion: nil)
-            */
-            
             UdacityClient.sharedInstance().loginToUdacityUsingFacebook()
                 { (success, uniqueKey, errorString) in
                     print(" ***** uniqueKey ", uniqueKey!)
                     self.udacityAccountKey = uniqueKey
                     if (success) {
                         performUIUpdatesOnMain {
-                            print(" *** Launching Tab Controller From facebook login")
                             self.completeLogin()
-                            print(UdacityClient.sharedInstance().udacityUserKey!)
                         }
                     } else {
                         performUIUpdatesOnMain {
@@ -122,6 +110,8 @@ class LoginViewController: UIViewController,
             print("Facebook token does not exist")
         }
         
+        spinner.startAnimating()
+        
         UdacityClient.sharedInstance().loginToUdacity(
             self.emailTextField.text!,
             password: self.passwordTextField.text!
@@ -131,12 +121,14 @@ class LoginViewController: UIViewController,
                 if (success) {
                     performUIUpdatesOnMain {
                         self.completeLogin()
+                        self.spinner.stopAnimating()
                         print(" **** DEBUG ****")
                         print(UdacityClient.sharedInstance().udacityUserKey!)
                     }
                 } else {
                     performUIUpdatesOnMain {
                         self.displayError(errorString)
+                        self.spinner.stopAnimating()
                         self.launchLoginFailAlertView("Invalide Email or Password",message:"Please try again")
                     }
                 }
@@ -219,8 +211,5 @@ class LoginViewController: UIViewController,
         
     }
     
-    @IBAction func facebookClicked(sender: AnyObject) {
-        print("facebookClicked")
-    }
 }
 

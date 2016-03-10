@@ -23,6 +23,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="6pT-kx-Kqq">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UoL-y8-748">
                                 <rect key="frame" x="20" y="0.0" width="560" height="464"/>
                                 <subviews>
@@ -125,12 +128,13 @@
                         <outlet property="emailTextField" destination="WPG-l4-B2G" id="OhR-he-Rxi"/>
                         <outlet property="fbLoginButton" destination="wJx-ZU-cGt" id="jek-ir-spd"/>
                         <outlet property="passwordTextField" destination="Hhi-Bd-hcw" id="Lqj-CG-GPl"/>
+                        <outlet property="spinner" destination="6pT-kx-Kqq" id="axA-ZP-2wt"/>
                         <segue destination="gh7-hF-j1H" kind="show" identifier="ShowMainTabController" id="Rd4-o8-Ogq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-519" y="1983"/>
+            <point key="canvasLocation" x="-456" y="1963"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="4oA-ja-G2R">

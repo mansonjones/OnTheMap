@@ -35,6 +35,20 @@ class EnterALinkViewController: UIViewController,
         centerMapOnLocation(initialLocation)
         createBarButtonItems()
         mapView.delegate = self
+        let udacityUserKey = UdacityClient.sharedInstance().udacityUserKey!
+        
+        UdacityClient.sharedInstance().getPublicUserData(udacityUserKey) { (success, firstName, lastName, errorString) -> Void in
+            if success {
+                performUIUpdatesOnMain {
+                    print(" **** Debug EnterALinkViewController - viewDidLoad ****")
+                    print(UdacityClient.sharedInstance().firstName)
+                    print(UdacityClient.sharedInstance().lastName)
+                }
+            } else {
+                print("error returned by getPublicUserData")
+            }
+        }
+
         
     }
     
