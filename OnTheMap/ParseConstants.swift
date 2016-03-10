@@ -7,6 +7,7 @@
 //
 
 // MARK: - ParseClient (Constants)
+
 extension ParseClient {
     // MARK: Constants
     struct Constants {

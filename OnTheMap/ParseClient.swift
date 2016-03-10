@@ -17,10 +17,6 @@ class ParseClient: NSObject {
     // shared session
     var session = NSURLSession.sharedSession()
     
-    // TODO: write the config method
-    // var config = parseConfig()
-    
-    // TODO: do we need to save any authentication state for the parse API?
     
     // MARK: Initializers
     override init() {
