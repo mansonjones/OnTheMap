@@ -121,7 +121,6 @@ FBSDKLoginButtonDelegate {
                     performUIUpdatesOnMain {
                         self.completeLogin()
                         self.spinner.stopAnimating()
-                        print(" **** DEBUG ****")
                         print(UdacityClient.sharedInstance().udacityUserKey!)
                     }
                 } else {
