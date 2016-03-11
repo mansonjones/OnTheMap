@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C2CA1431C90BA2100B2C351 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C2CA1421C90BA2000B2C351 /* CoreLocation.framework */; };
+		3C2CA1481C928F2800B2C351 /* OTMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2CA1471C928F2800B2C351 /* OTMModel.swift */; };
 		3C33B8511C84999200415C02 /* InformationPostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C33B8501C84999200415C02 /* InformationPostingVC.swift */; };
 		3C33B8641C88E2DC00415C02 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8601C88E2DC00415C02 /* FBSDKCoreKit.framework */; };
 		3C33B8651C88E2DC00415C02 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C33B8611C88E2DC00415C02 /* FBSDKLoginKit.framework */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		3C2CA1421C90BA2000B2C351 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3C2CA1471C928F2800B2C351 /* OTMModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMModel.swift; sourceTree = "<group>"; };
 		3C33B8501C84999200415C02 /* InformationPostingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingVC.swift; sourceTree = "<group>"; };
 		3C33B8601C88E2DC00415C02 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3C33B8611C88E2DC00415C02 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -129,6 +131,14 @@
 				3C33B8631C88E2DC00415C02 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C2CA1491C928F3F00B2C351 /* OTM */ = {
+			isa = PBXGroup;
+			children = (
+				3C2CA1471C928F2800B2C351 /* OTMModel.swift */,
+			);
+			name = OTM;
 			sourceTree = "<group>";
 		};
 		3C483C4D1C73D6B9006A8291 = {
@@ -207,6 +217,7 @@
 		3C483D9E1C7F58C2006A8291 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				3C2CA1491C928F3F00B2C351 /* OTM */,
 				3C483DA01C7F5912006A8291 /* Parse */,
 				3C483D9F1C7F58E2006A8291 /* Udacity */,
 			);
@@ -387,6 +398,7 @@
 				3C483C941C763A67006A8291 /* OTMTableViewController.swift in Sources */,
 				3C483C8C1C7519E2006A8291 /* UdacityClient.swift in Sources */,
 				3C483C5C1C73D6BA006A8291 /* LoginViewController.swift in Sources */,
+				3C2CA1481C928F2800B2C351 /* OTMModel.swift in Sources */,
 				3C483C881C73DAC7006A8291 /* OTMMapViewController.swift in Sources */,
 				3C483C5A1C73D6BA006A8291 /* AppDelegate.swift in Sources */,
 				3C483C8A1C73ED9E006A8291 /* UdacityConstants.swift in Sources */,

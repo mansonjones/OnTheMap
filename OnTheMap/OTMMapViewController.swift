@@ -17,8 +17,6 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     let regionRadius: CLLocationDistance = 1000000
     
-    var students: [StudentInformation] = [StudentInformation]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Center of U.S.
@@ -37,9 +35,10 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             
             if let students = students {
-                self.students = students
+                // self.students = students
+                OTMModel.students = students
                 print(" *** NUMBER OF ELEMENTS IS")
-                print(self.students.count)
+                print(OTMModel.students.count)
                 performUIUpdatesOnMain {
                     let annotations = self.buildPointAnnotations()
                     self.mapView.addAnnotations(annotations)
@@ -72,7 +71,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     private func buildPointAnnotations() -> [MKPointAnnotation] {
         var annotations = [MKPointAnnotation]()
-        for student in self.students {
+        for student in OTMModel.students {
             let lat = CLLocationDegrees(student.latitude)
             let long = CLLocationDegrees(student.longitude)
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
@@ -142,7 +141,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     private func logoutFromUdacity() {
         UdacityClient.sharedInstance().logoutFromUdacity() {_,_ in
-            print(self.students.count)
+            print(OTMModel.students.count)
             performUIUpdatesOnMain {
                 self.completeLogout()
             }

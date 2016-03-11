@@ -10,8 +10,6 @@ import UIKit
 
 class OTMTableViewController: UITableViewController
 {
-    var students = [StudentInformation]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         createBarButtonItems()
@@ -41,9 +39,9 @@ class OTMTableViewController: UITableViewController
     func updateMap() {
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students {
-                self.students = students
+                OTMModel.students = students
                 print(" *** NUMBER OF ELEMENTS IS")
-                print(self.students.count)
+                print(OTMModel.students.count)
                 performUIUpdatesOnMain {
                     self.tableView.reloadData()
                 }
@@ -103,8 +101,8 @@ class OTMTableViewController: UITableViewController
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // return teams.count
         //super.\\\\   self.tableView.reloadData()
-        print("**** Number Of Rows in Section:", students.count)
-        return students.count
+        print("**** Number Of Rows in Section:", OTMModel.students.count)
+        return OTMModel.students.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -113,8 +111,8 @@ class OTMTableViewController: UITableViewController
         /*
         cell.textLabel?.text = teams[indexPath.row]
         */
-        cell.textLabel?.text = self.students[indexPath.row].firstName + " " + self.students[indexPath.row].lastName
-        cell.detailTextLabel?.text = self.students[indexPath.row].mediaURL
+        cell.textLabel?.text = OTMModel.students[indexPath.row].firstName + " " + OTMModel.students[indexPath.row].lastName
+        cell.detailTextLabel?.text = OTMModel.students[indexPath.row].mediaURL
         cell.imageView?.image = UIImage(named: "pin")
         
         return cell
@@ -124,7 +122,7 @@ class OTMTableViewController: UITableViewController
         print("this is where you launch the detail view that displays information about the user")
         // open safari browser
         // TODO: pass in the url from the user
-        let url = students[indexPath.row].mediaURL
+        let url = OTMModel.students[indexPath.row].mediaURL
         if let checkURL = NSURL(string: url) {
             if UIApplication.sharedApplication().openURL(checkURL) {
                 print(" url successfully opened")
@@ -136,7 +134,7 @@ class OTMTableViewController: UITableViewController
     
     private func logoutFromUdacity() {
         UdacityClient.sharedInstance().logoutFromUdacity() {_,_ in
-            print(self.students.count)
+            print(OTMModel.students.count)
             performUIUpdatesOnMain {
                 self.completeLogout()
             }
