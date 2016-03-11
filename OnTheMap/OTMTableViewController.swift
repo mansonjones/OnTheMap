@@ -17,31 +17,15 @@ class OTMTableViewController: UITableViewController
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // Note: This could be built out to work like the MoviePickerViewController.
+        // Note: This could be built out to work like the MoviePicker view controller
         // TODO: Display an alert view if the download fails.
         updateMap()
-        /*
-        ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
-            if let students = students {
-                self.students = students
-                print(" *** NUMBER OF ELEMENTS IS")
-                print(self.students.count)
-                performUIUpdatesOnMain {
-                    self.tableView.reloadData()
-                }
-            } else {
-                self.launchAlertView("Download of Student Data Failed", message : "")
-            }
-        }
-        */
     }
     
     func updateMap() {
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students {
                 OTMModel.students = students
-                print(" *** NUMBER OF ELEMENTS IS")
-                print(OTMModel.students.count)
                 performUIUpdatesOnMain {
                     self.tableView.reloadData()
                 }
@@ -69,7 +53,6 @@ class OTMTableViewController: UITableViewController
     }
     
     func addLocation() {
-        print("add a pin")
         /*
         let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("InformationPostingVC")
         let informationPostingVC = object as! InformationPostingVC
@@ -83,7 +66,7 @@ class OTMTableViewController: UITableViewController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "ShowInformationPostingVC" {
-            let controller = segue.destinationViewController as! InformationPostingVC
+            _ = segue.destinationViewController as! InformationPostingVC
         }
     }
     
@@ -93,15 +76,11 @@ class OTMTableViewController: UITableViewController
     }
     
     func logout() {
-        print("logout")
         logoutFromUdacity()
         completeLogout()
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // return teams.count
-        //super.\\\\   self.tableView.reloadData()
-        print("**** Number Of Rows in Section:", OTMModel.students.count)
         return OTMModel.students.count
     }
     
@@ -119,22 +98,18 @@ class OTMTableViewController: UITableViewController
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("this is where you launch the detail view that displays information about the user")
-        // open safari browser
-        // TODO: pass in the url from the user
         let url = OTMModel.students[indexPath.row].mediaURL
         if let checkURL = NSURL(string: url) {
             if UIApplication.sharedApplication().openURL(checkURL) {
                 print(" url successfully opened")
             }
         } else {
-            print("invalide url")
+            print("invalid url")
         }
     }
     
     private func logoutFromUdacity() {
         UdacityClient.sharedInstance().logoutFromUdacity() {_,_ in
-            print(OTMModel.students.count)
             performUIUpdatesOnMain {
                 self.completeLogout()
             }

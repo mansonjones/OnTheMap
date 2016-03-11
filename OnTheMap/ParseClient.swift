@@ -78,23 +78,6 @@ class ParseClient: NSObject {
         var parameters: [String:AnyObject],
         jsonBody: NSData,
         completionHandlerForPost: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-            
-            // 1. Set the parameters
-            
-            // 2/3. Build the URL and configure the request
-            
-            // Set the parameters
-            // Build the URL
-            
-            // Debug
-            /*
-            do {
-                let debugString = try NSJSONSerialization.JSONObjectWithData(jsonBody, options: .AllowFragments)
-                print(debugString)
-            } catch {
-                print("failed to parse jsonBody")
-            }
-*/
             let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
             request.HTTPMethod = "POST"
             request.addValue(ParseClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
@@ -119,7 +102,7 @@ class ParseClient: NSObject {
                     return
                 }
                 
-                print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+                // print(NSString(data: data!, encoding: NSUTF8StringEncoding))
                 /* Guard: Did we get a successful 2xx response? */
                 guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where
                     statusCode >= 200 && statusCode <= 299 else {
@@ -177,14 +160,10 @@ class ParseClient: NSObject {
                 // if any error occurs, print it and re-enable the UI
                 func displayError(error: String, debugLabelText: String? = nil) {
                     print(error)
-                    // performUIpdatesOnMain {
-                    //            self.setUIEnabled(true)
-                    //      self.debugTextLabel.text = "Login Failed (Login Step)."
-                    //    }
                 }
                 let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-                print("Here's the DATA!!!")
-                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+                // print("Here's the DATA!!!")
+                // print(NSString(data: newData, encoding: NSUTF8StringEncoding))
                 /* Guard: Was there an error? */
                 guard (error == nil) else {
                     displayError("There was an error with your request: \(error)")
@@ -207,33 +186,18 @@ class ParseClient: NSObject {
                 let parsedResult: AnyObject!
                 do {
                     parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-                    print("Here's the parsed result!")
-                    print(parsedResult)
+                    // print("Here's the parsed result!")
+                    // print(parsedResult)
                     guard let accountKey = parsedResult["account.key"] as? Int else {
                         displayError("Cannot find account key")
                         return
                     }
                     
                     print("account key", accountKey)
-                    print("accont registered")
-                    print("expirgation")
-                    print("id")
                 } catch {
                     displayError("Could not parse the data as JSON: '\(data)/")
                 }
                 
-                
-                /* Guard: Did parse return an error? */
-                // if let _ = parsedResult[Constants.parseResponseKeys.StatusCode] as? Int {
-                //     displayError("The parse server returned an error. See the ")
-                //     return
-                // }
-                
-                // 6. Use The data!
-                // Guard: Is the success key in parseResult?
-                
-                /* Use the data */
-                // self.getSessionID(self.appDelegate.requestToken)
             }
             task.resume()
             return task
@@ -252,15 +216,8 @@ class ParseClient: NSObject {
             let queryItem = NSURLQueryItem(name: key, value: "\(value)")
             components.queryItems!.append(queryItem)
         }
-        
-        
-        print("  ***** URL ******")
-        print(components.URL!)
         return components.URL!
     }
-    
-    // MARK: Helpers
-    // given raw JSON, return a Foundation object
     
     private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
         var parsedResult: AnyObject!

@@ -130,11 +130,18 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     // This delegate method is implemented to respond to taps.  It opens the system
     // browser to the URL specified in the annotations subtitle property
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("Hello from calloutAccessoryControlTapped")
         if (control == view.rightCalloutAccessoryView) {
             let app = UIApplication.sharedApplication()
-            if let toOpen = view.annotation?.subtitle! {
-                app.openURL(NSURL(string: toOpen)!)
+            if let urlToOpen = view.annotation?.subtitle! {
+                if let checkURL = NSURL(string: urlToOpen) {
+                    app.openURL(checkURL)
+                } else {
+                    self.launchAlertView("Invalid Link", message: "")
+                }
+                
+            } else {
+                self.launchAlertView("Invalid Link", message: "")
+ 
             }
         }
     }
