@@ -74,7 +74,7 @@ class ParseClient: NSObject {
     
     // MARK: POST
     
-    func taskForPostMethod(method: String,
+    func taskForPOSTMethod(method: String,
         var parameters: [String:AnyObject],
         jsonBody: NSData,
         completionHandlerForPost: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
@@ -87,12 +87,14 @@ class ParseClient: NSObject {
             // Build the URL
             
             // Debug
+            /*
             do {
                 let debugString = try NSJSONSerialization.JSONObjectWithData(jsonBody, options: .AllowFragments)
                 print(debugString)
             } catch {
                 print("failed to parse jsonBody")
             }
+*/
             let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
             request.HTTPMethod = "POST"
             request.addValue(ParseClient.Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
@@ -107,7 +109,8 @@ class ParseClient: NSObject {
                 func sendError(error : String) {
                     print(error)
                     let userInfo = [NSLocalizedDescriptionKey : error]
-                    completionHandlerForPost(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+                    completionHandlerForPost(result: nil,
+                        error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
                 }
                 
                 /* Guard: Was there an error? */
@@ -116,10 +119,11 @@ class ParseClient: NSObject {
                     return
                 }
                 
+                print(NSString(data: data!, encoding: NSUTF8StringEncoding))
                 /* Guard: Did we get a successful 2xx response? */
                 guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where
                     statusCode >= 200 && statusCode <= 299 else {
-                        sendError("ParseClient: taskForPOSTMethod. Your request returned a status code other than 2xx!")
+                       sendError("ParseClient: taskForPOSTMethod. Your request returned a status code other than 2xx!")
                         return
                 }
                 
@@ -133,7 +137,9 @@ class ParseClient: NSObject {
                 self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPost)
                 
             }
+            /* 7. Start the request */
             task.resume()
+            
             return task
     }
     

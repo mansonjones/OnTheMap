@@ -146,11 +146,7 @@ class EnterALinkViewController: UIViewController,
             if let error = error {
                 print(error)
             } else {
-                if statusCode == 1 || statusCode == 12 || statusCode == 13 {
-                    print(" student information was successfully posted")
-                } else {
-                    print(" Unexpected status code returned when trying to post student data \(statusCode)")
-                }
+                print(" student information was successfully posted at", statusCode)
             }
         }
     }

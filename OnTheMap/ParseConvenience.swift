@@ -81,33 +81,21 @@ extension ParseClient {
     
     
     // MARK: POST Convenience Methods
-    func postStudenLocation(student: StudentInformation, completionHandlerForStudentLocation: (result: Int?, error: NSError?) -> Void) {
+    func postStudenLocation(student: StudentInformation, completionHandlerForStudentLocation: (result: String?, error: NSError?) -> Void) {
         // 1. Specify parameters
         // https://api.parse.com/1/classes/StudentLocation
         
-        // let parameters [String: Anyobject]= [] // need to add user info
-        // let parameters = ["skip" : 400]
-        
         let parameters = [String: String]()
         
-        // let httpBody = postStudentLocationJSONRequest(student)
-        let uniqueKey = "{\"\(ParseClient.JSONResponseKeys.UniqueKey)\": \"\(student.uniqueKey)\","
-        let firstName = "\"\(ParseClient.JSONResponseKeys.FirstName)\": \"\(student.firstName)\","
-        let lastName = "\"\(ParseClient.JSONResponseKeys.LastName)\": \"\(student.lastName)\","
-        let mapString = "\"\(ParseClient.JSONResponseKeys.MapString)\": \"\(student.mapString)\","
-        let mediaUrl = "\"\(ParseClient.JSONResponseKeys.MediaUrl)\": \"\(student.mediaURL)\","
-        let latitude = "\"\(ParseClient.JSONResponseKeys.Latitude)\": \"\(student.latitude)\","
-        let longitude = "\"\(ParseClient.JSONResponseKeys.Longitude)\": \"\(student.longitude)\"}"
-        let foo = uniqueKey + firstName + lastName + mapString + mediaUrl + latitude + longitude
-        print(" the http body is:")
-        print(foo)
-        let temp = foo.dataUsingEncoding(NSUTF8StringEncoding)!
-        taskForPostMethod(ParseClient.Methods.StudentLocation, parameters: parameters, jsonBody: temp) { (results, error) in
+        let httpBody = postStudentLocationJSONRequest(student)
+        taskForPOSTMethod(ParseClient.Methods.StudentLocation, parameters: parameters, jsonBody: httpBody) { (results, error) in
             
             if let error = error {
                 completionHandlerForStudentLocation(result: nil, error: error)
             } else {
-                if let results = results[ParseClient.JSONResponseKeys.StatusCode] as? Int {
+                print(" The results are:")
+                print("\(results)")
+                if let results = results[ParseClient.JSONResponseKeys.CreatedAt] as? String {
                     completionHandlerForStudentLocation(result: results, error: nil)
                 } else {
                     completionHandlerForStudentLocation(result: nil, error: NSError(domain: "postStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postStudentLocation list"]))
@@ -129,8 +117,8 @@ extension ParseClient {
             "\(ParseClient.JSONBodyKeys.LastName)" : "\(student.lastName)",
             "\(ParseClient.JSONBodyKeys.MapString)" : "\(student.mapString)",
             "\(ParseClient.JSONBodyKeys.MediaUrl)" : "\(student.mediaURL)",
-            "\(ParseClient.JSONBodyKeys.Latitude)" : "\(student.latitude)",
-            "\(ParseClient.JSONBodyKeys.Longitude)" : "\(student.longitude)"
+            "\(ParseClient.JSONBodyKeys.Latitude)" : student.latitude,
+            "\(ParseClient.JSONBodyKeys.Longitude)" : student.longitude
         ]
         
         print("****")
@@ -149,7 +137,7 @@ extension ParseClient {
         print(" **** JSON2 ***")
         print(test2)
         */
-        return httpBody
+        return httpBody!
     }
     
     // MARK: PUT Convenience Methods
