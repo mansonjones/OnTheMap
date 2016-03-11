@@ -21,6 +21,8 @@ class OTMTableViewController: UITableViewController
         super.viewWillAppear(animated)
         // Note: This could be built out to work like the MoviePickerViewController.
         // TODO: Display an alert view if the download fails.
+        updateMap()
+        /*
         ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students {
                 self.students = students
@@ -33,8 +35,24 @@ class OTMTableViewController: UITableViewController
                 self.launchAlertView("Download of Student Data Failed", message : "")
             }
         }
+        */
     }
     
+    func updateMap() {
+        ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
+            if let students = students {
+                self.students = students
+                print(" *** NUMBER OF ELEMENTS IS")
+                print(self.students.count)
+                performUIUpdatesOnMain {
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.launchAlertView("Download of Student Data Failed", message : "")
+            }
+        }
+        
+    }
     func createBarButtonItems() {
         navigationItem.title = "On The Map"
         
@@ -73,7 +91,7 @@ class OTMTableViewController: UITableViewController
     
     
     func updateTable() {
-        print("update the table")
+        updateMap()
     }
     
     func logout() {

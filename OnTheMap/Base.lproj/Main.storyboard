@@ -8,6 +8,7 @@
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -184,15 +185,12 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zdl-Zp-rLc">
                                 <rect key="frame" x="20" y="78" width="560" height="464"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="464" id="GfI-qx-rLF"/>
-                                </constraints>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHh-dZ-nBD">
                                 <rect key="frame" x="201" y="540" width="198" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="5xn-hk-ASI"/>
-                                    <constraint firstAttribute="width" constant="198" id="6UR-0t-bcD"/>
+                                    <constraint firstAttribute="height" constant="40" id="M8n-dV-S86"/>
+                                    <constraint firstAttribute="width" constant="198" id="Sv5-vm-fZp"/>
                                     <constraint firstAttribute="width" constant="191" id="mqd-w1-kTl"/>
                                 </constraints>
                                 <state key="normal" title="Submit"/>
@@ -207,21 +205,31 @@
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter a Link to Share Here" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR5-er-xL4">
                                 <rect key="frame" x="100" y="15" width="400" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fU-RP-Ojc">
+                                <rect key="frame" x="532" y="15" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelThisViewController:" destination="Qb2-vM-Q06" eventType="touchUpInside" id="EgN-yz-SK7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="JR5-er-xL4" firstAttribute="leading" secondItem="J6u-Qp-7H7" secondAttribute="leadingMargin" constant="80" id="3Sy-h8-xsR"/>
-                            <constraint firstItem="JR5-er-xL4" firstAttribute="top" secondItem="J6u-Qp-7H7" secondAttribute="topMargin" constant="15" id="EQg-i5-pHc"/>
-                            <constraint firstItem="JR5-er-xL4" firstAttribute="centerX" secondItem="zdl-Zp-rLc" secondAttribute="centerX" id="Hoa-LT-auW"/>
-                            <constraint firstItem="JR5-er-xL4" firstAttribute="centerX" secondItem="J6u-Qp-7H7" secondAttribute="centerX" id="MQu-6R-H24"/>
-                            <constraint firstItem="EHh-dZ-nBD" firstAttribute="centerX" secondItem="zdl-Zp-rLc" secondAttribute="centerX" id="PYh-cC-VC0"/>
-                            <constraint firstItem="zdl-Zp-rLc" firstAttribute="leading" secondItem="J6u-Qp-7H7" secondAttribute="leadingMargin" id="YOt-gd-jJD"/>
-                            <constraint firstAttribute="bottom" secondItem="EHh-dZ-nBD" secondAttribute="bottom" constant="20" symbolic="YES" id="a1u-1x-yyp"/>
-                            <constraint firstItem="9Q8-Xg-BLV" firstAttribute="top" secondItem="zdl-Zp-rLc" secondAttribute="bottom" constant="58" id="bqQ-iN-pEP"/>
-                            <constraint firstItem="zdl-Zp-rLc" firstAttribute="top" secondItem="JR5-er-xL4" secondAttribute="bottom" constant="19" id="eNs-YS-cjV"/>
+                            <constraint firstItem="EHh-dZ-nBD" firstAttribute="centerX" secondItem="zdl-Zp-rLc" secondAttribute="centerX" id="8ap-X7-0OT"/>
+                            <constraint firstItem="9Q8-Xg-BLV" firstAttribute="top" secondItem="zdl-Zp-rLc" secondAttribute="bottom" constant="58" id="FJR-Ug-L6z"/>
+                            <constraint firstAttribute="bottom" secondItem="EHh-dZ-nBD" secondAttribute="bottom" constant="20" symbolic="YES" id="FfV-aq-Cpp"/>
+                            <constraint firstItem="zdl-Zp-rLc" firstAttribute="leading" secondItem="J6u-Qp-7H7" secondAttribute="leadingMargin" id="Hwj-ky-paa"/>
+                            <constraint firstItem="JR5-er-xL4" firstAttribute="leading" secondItem="J6u-Qp-7H7" secondAttribute="leadingMargin" constant="80" id="NfE-UN-DTG"/>
+                            <constraint firstItem="JR5-er-xL4" firstAttribute="top" secondItem="9fU-RP-Ojc" secondAttribute="top" id="PpX-yb-Cb2"/>
+                            <constraint firstItem="zdl-Zp-rLc" firstAttribute="top" secondItem="9fU-RP-Ojc" secondAttribute="bottom" constant="33" id="Q3D-MD-uyT"/>
+                            <constraint firstItem="zdl-Zp-rLc" firstAttribute="trailing" secondItem="9fU-RP-Ojc" secondAttribute="trailing" id="V8P-1L-lq4"/>
+                            <constraint firstItem="9fU-RP-Ojc" firstAttribute="trailing" secondItem="J6u-Qp-7H7" secondAttribute="trailingMargin" id="bit-VL-HF0"/>
+                            <constraint firstItem="zdl-Zp-rLc" firstAttribute="centerX" secondItem="JR5-er-xL4" secondAttribute="centerX" id="rzn-3I-BEZ"/>
+                            <constraint firstItem="JR5-er-xL4" firstAttribute="top" secondItem="J6u-Qp-7H7" secondAttribute="topMargin" constant="15" id="uGM-ux-jrO"/>
+                            <constraint firstItem="zdl-Zp-rLc" firstAttribute="top" secondItem="JR5-er-xL4" secondAttribute="bottom" constant="19" id="zz4-Kp-kHI"/>
                         </constraints>
                     </view>
                     <connections>

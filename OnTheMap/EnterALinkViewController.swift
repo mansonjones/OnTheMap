@@ -123,6 +123,13 @@ class EnterALinkViewController: UIViewController,
         return true
     }
     
+    @IBAction func cancelThisViewController(sender: AnyObject) {
+        // dismiss this controller and return to the main tab bar controller
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("MainTabBarController") as!
+        UITabBarController
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
     @IBAction func postStudentInformation(sender: AnyObject) {
         var userDictionary = [String:AnyObject]()
         

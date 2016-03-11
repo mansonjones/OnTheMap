@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/OTMTableViewController.swift"
-            timestampString = "478803153.066255"
+            timestampString = "479365041.981554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
             <Locations>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/OTMTableViewController.swift"
-            timestampString = "478803153.066255"
+            timestampString = "479365041.981554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -246,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/EnterALinkViewController.swift"
-            timestampString = "479328556.983389"
+            timestampString = "479365906.946436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "postStudentInformation(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -262,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/EnterALinkViewController.swift"
-            timestampString = "479328556.983389"
+            timestampString = "479365906.946436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "postStudentInformation(_:)"
             landmarkType = "5">
          </BreakpointContent>
