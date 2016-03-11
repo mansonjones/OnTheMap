@@ -260,8 +260,6 @@ class UdacityClient: NSObject {
             components.queryItems!.append(queryItem)
         }
         
-        print("***** Udacity URL *****")
-        print(components.URL!)
         return components.URL!
     }
     

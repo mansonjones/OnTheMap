@@ -40,9 +40,7 @@ class EnterALinkViewController: UIViewController,
         UdacityClient.sharedInstance().getPublicUserData(udacityUserKey) { (success, firstName, lastName, errorString) -> Void in
             if success {
                 performUIUpdatesOnMain {
-                    print(" **** Debug EnterALinkViewController - viewDidLoad ****")
-                    print(UdacityClient.sharedInstance().firstName)
-                    print(UdacityClient.sharedInstance().lastName)
+                    print(" succeeded in gettng user name")
                 }
             } else {
                 print("error returned by getPublicUserData")

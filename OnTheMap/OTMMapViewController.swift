@@ -37,8 +37,6 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
             if let students = students {
                 // self.students = students
                 OTMModel.students = students
-                print(" *** NUMBER OF ELEMENTS IS")
-                print(OTMModel.students.count)
                 performUIUpdatesOnMain {
                     let annotations = self.buildPointAnnotations()
                     self.mapView.addAnnotations(annotations)
@@ -99,7 +97,7 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
         
         
         let updateButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target:self,
-            action: "updateTable")
+            action: "updateMap")
         
         navigationItem.rightBarButtonItems = [updateButton, pinButton]
         let logoutButton = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "logout")
@@ -180,16 +178,29 @@ class OTMMapViewController: UIViewController,  MKMapViewDelegate {
     
     
     func addLocation() {
-        print("add a pin")
         launchInfoPostingView()
     }
     
-    func updateTable() {
-        print("update the map")
+    func updateMap() {
+        ParseClient.sharedInstance().getStudentLocations { (students, error) -> Void in
+            
+            if let students = students {
+                // self.students = students
+                OTMModel.students = students
+                performUIUpdatesOnMain {
+                    let annotations = self.buildPointAnnotations()
+                    self.mapView.addAnnotations(annotations)
+                }
+            } else {
+                performUIUpdatesOnMain {
+                    self.launchAlertView("Download of student information failed", message: "")
+                }
+            }
+        }
+
     }
     
     func logout() {
-        print("logout")
         logoutFromUdacity()
         completeLogout()
     }
