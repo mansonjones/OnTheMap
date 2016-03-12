@@ -144,7 +144,11 @@ class EnterALinkViewController: UIViewController,
             if let error = error {
                 print(error)
             } else {
-                print(" student information was successfully posted at", statusCode)
+                let alertController = UIAlertController(title: "Was unable to post student information",
+                    message: "",
+                    preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
     }
